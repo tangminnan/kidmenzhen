@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.youershaicha.information.dao.ChildEyeaxisDao">
+
+	<select id="get" resultType="com.youershaicha.information.domain.ChildEyeaxisDO">
+		select `t_eyeaxis_id`,`first_check_od`,age,check_date,child_idcard,`first_check_os`,`second_check_od`,`second_check_os`,`delete_flag`,`history_id` from t_child_eyeaxis where t_eyeaxis_id = #{value}
+	</select>
+
+	<insert id="save" parameterType="com.youershaicha.information.domain.ChildEyeaxisDO" useGeneratedKeys="true" keyProperty="tEyeaxisId">
+		insert into t_child_eyeaxis
+		(
+			`first_check_od`, 
+			`first_check_os`, 
+			`second_check_od`, 
+			`second_check_os`, 
+			`delete_flag`, 
+			`history_id`,
+			age,
+			check_date,
+			child_idcard
+		)
+		values
+		(
+			#{firstCheckOd}, 
+			#{firstCheckOs}, 
+			#{secondCheckOd}, 
+			#{secondCheckOs}, 
+			#{deleteFlag}, 
+			#{historyId},
+			#{age},
+			#{checkDate},
+			#{childIdcard}
+		)
+	</insert>
+
+	<select id="getChildEyeaxisDO" resultType="com.youershaicha.information.domain.ChildEyeaxisDO">
+		select `t_eyeaxis_id`,`first_check_od`,age,check_date,child_idcard,`first_check_os`,`second_check_od`,
+		`second_check_os`,`delete_flag`,`history_id` from t_child_eyeaxis
+
+
+		<where>
+			<if test="childIdcard != null and childIdcard != ''"> and child_idcard = #{childIdcard} </if>
+			<if test="age!= -1"> and age = #{age} </if>
+		</where>
+
+
+		order by check_date desc limit 1
+	</select>
+	 
+	<update id="update" parameterType="com.youershaicha.information.domain.ChildEyeaxisDO">
+		update t_child_eyeaxis 
+		<set>
+			<if test="firstCheckOd != null">`first_check_od` = #{firstCheckOd}, </if>
+			<if test="firstCheckOs != null">`first_check_os` = #{firstCheckOs}, </if>
+			<if test="secondCheckOd != null">`second_check_od` = #{secondCheckOd}, </if>
+			<if test="secondCheckOs != null">`second_check_os` = #{secondCheckOs}, </if>
+			<if test="deleteFlag != null">`delete_flag` = #{deleteFlag}, </if>
+			<if test="historyId != null">`history_id` = #{historyId}</if>
+		</set>
+		where t_eyeaxis_id = #{tEyeaxisId}
+	</update>
+</mapper>

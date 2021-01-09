@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.youershaicha.information.dao.ChildDao">
+
+	<select id="get" resultType="com.youershaicha.information.domain.ChildDO">
+		select `child_id`,`child_name`,`child_birthday`,`child_idcard`,`child_gender`,`child_type`,`mother_name`,`mother_idcard`,`mother_eye_his`,`mother_eye_ins`,`father_eye_his`,`father_eye_ins`,`child_address`,`child_medicine_his`,`child_medicine_ins`,`child_phone`,`child_delivery`,`child_history_n`,`child_gestationalweek`,`child_weight`,`child_suffocation`,`child_oxygen`,`child_spec` from t_child where child_id = #{value}
+	</select>
+
+
+
+	<select id="getByChildIdcard" resultType="com.youershaicha.information.domain.ChildDO">
+		select * from t_child where child_idcard=#{childIdcard}
+	</select>
+	 
+	<insert id="save" parameterType="com.youershaicha.information.domain.ChildDO" useGeneratedKeys="true" keyProperty="childId">
+		insert into t_child
+		(
+			`child_name`, 
+			`child_birthday`, 
+			`child_idcard`, 
+			`child_gender`, 
+			`child_type`, 
+			`mother_name`, 
+			`mother_idcard`, 
+			`mother_eye_his`, 
+			`mother_eye_ins`, 
+			`father_eye_his`, 
+			`father_eye_ins`, 
+			`child_address`, 
+			`child_medicine_his`, 
+			`child_medicine_ins`, 
+			`child_phone`, 
+			`child_delivery`, 
+			`child_history_n`, 
+			`child_gestationalweek`, 
+			`child_weight`, 
+			`child_suffocation`, 
+			`child_oxygen`, 
+			`child_spec`
+		)
+		values
+		(
+			#{childName}, 
+			#{childBirthday}, 
+			#{childIdcard}, 
+			#{childGender}, 
+			#{childType}, 
+			#{motherName}, 
+			#{motherIdcard}, 
+			#{motherEyeHis}, 
+			#{motherEyeIns}, 
+			#{fatherEyeHis}, 
+			#{fatherEyeIns}, 
+			#{childAddress}, 
+			#{childMedicineHis}, 
+			#{childMedicineIns}, 
+			#{childPhone}, 
+			#{childDelivery}, 
+			#{childHistoryN}, 
+			#{childGestationalweek}, 
+			#{childWeight}, 
+			#{childSuffocation}, 
+			#{childOxygen}, 
+			#{childSpec}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.youershaicha.information.domain.ChildDO">
+		update t_child 
+		<set>
+			<if test="childName != null">`child_name` = #{childName}, </if>
+			<if test="childBirthday != null">`child_birthday` = #{childBirthday}, </if>
+			<if test="childIdcard != null">`child_idcard` = #{childIdcard}, </if>
+			<if test="childGender != null">`child_gender` = #{childGender}, </if>
+			<if test="childType != null">`child_type` = #{childType}, </if>
+			<if test="motherName != null">`mother_name` = #{motherName}, </if>
+			<if test="motherIdcard != null">`mother_idcard` = #{motherIdcard}, </if>
+			<if test="motherEyeHis != null">`mother_eye_his` = #{motherEyeHis}, </if>
+			<if test="motherEyeIns != null">`mother_eye_ins` = #{motherEyeIns}, </if>
+			<if test="fatherEyeHis != null">`father_eye_his` = #{fatherEyeHis}, </if>
+			<if test="fatherEyeIns != null">`father_eye_ins` = #{fatherEyeIns}, </if>
+			<if test="childAddress != null">`child_address` = #{childAddress}, </if>
+			<if test="childMedicineHis != null">`child_medicine_his` = #{childMedicineHis}, </if>
+			<if test="childMedicineIns != null">`child_medicine_ins` = #{childMedicineIns}, </if>
+			<if test="childPhone != null">`child_phone` = #{childPhone}, </if>
+			<if test="childDelivery != null">`child_delivery` = #{childDelivery}, </if>
+			<if test="childHistoryN != null">`child_history_n` = #{childHistoryN}, </if>
+			<if test="childGestationalweek != null">`child_gestationalweek` = #{childGestationalweek}, </if>
+			<if test="childWeight != null">`child_weight` = #{childWeight}, </if>
+			<if test="childSuffocation != null">`child_suffocation` = #{childSuffocation}, </if>
+			<if test="childOxygen != null">`child_oxygen` = #{childOxygen}, </if>
+			<if test="childSpec != null">`child_spec` = #{childSpec}</if>
+		</set>
+		where child_id = #{childId}
+	</update>
+
+
+</mapper>

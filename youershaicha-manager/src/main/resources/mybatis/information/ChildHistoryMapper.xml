@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.youershaicha.information.dao.ChildHistoryDao">
+
+	<select id="get" resultType="com.youershaicha.information.domain.ChildHistoryDO">
+		select `history_id`,`child_id`,`child_idcard`,`check_date`,child_idcard,`chector`,`conclusion`,`proposal`,`last_check_date`,`age`,check_date from t_child_history where history_id = #{value}
+	</select>
+	 
+	<insert id="save" parameterType="com.youershaicha.information.domain.ChildHistoryDO" useGeneratedKeys="true" keyProperty="historyId">
+		insert into t_child_history
+		(
+			`child_id`, 
+			`child_idcard`, 
+			`check_date`, 
+			`chector`, 
+			`conclusion`, 
+			`proposal`, 
+			`last_check_date`, 
+			`age`,
+			check_date,
+			child_idcard
+		)
+		values
+		(
+			#{childId}, 
+			#{childIdcard}, 
+			#{checkDate}, 
+			#{chector}, 
+			#{conclusion}, 
+			#{proposal}, 
+			#{lastCheckDate}, 
+			#{age},
+			#{checkDate},
+			#{childIdcard}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.youershaicha.information.domain.ChildHistoryDO">
+		update t_child_history 
+		<set>
+			<if test="childId != null">`child_id` = #{childId}, </if>
+			<if test="childIdcard != null">`child_idcard` = #{childIdcard}, </if>
+			<if test="checkDate != null">`check_date` = #{checkDate}, </if>
+			<if test="chector != null">`chector` = #{chector}, </if>
+			<if test="conclusion != null">`conclusion` = #{conclusion}, </if>
+			<if test="proposal != null">`proposal` = #{proposal}, </if>
+			<if test="lastCheckDate != null">`last_check_date` = #{lastCheckDate}, </if>
+			<if test="age != null">`age` = #{age}</if>
+		</set>
+		where history_id = #{historyId}
+	</update>
+
+</mapper>

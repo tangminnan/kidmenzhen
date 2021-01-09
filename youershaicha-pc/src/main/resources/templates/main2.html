@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <head th:include="include :: header"></head>
+    <title>欢迎页</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+   
+</head>
+<body>
+
+<div class="panel panel-default" style="background-color: #EEEEEE; top: 1px;">
+    <!-- <div class="panel-heading"> <h3>&nbsp;&nbsp;&nbsp;欢迎登录儿童近视防控数据平台管理系统</h3></div> -->
+    
+    <div id="overYear" style="width: 600px;height:400px;float: left; display: none;"></div>
+    
+ 	<div id="gradeMyopia" style="width: 600px;height:400px;float: left;display: none;"></div>
+ 	
+ 	<div id="overYearGradeMyopia" style="width: 600px;height:400px;float: left;display: none;"></div>
+    
+    <div id="studentSexMyopia" style="width: 600px;height:400px;float: left;display: none;"></div>
+    
+    <div id="overYearSexNan" style="width: 600px;height:400px;float: left;display: none;"></div>
+    
+    <div id="overYearSexNv" style="width: 600px;height:400px;float: left;display: none;"></div>
+    
+    <div id="overYearGradeSex" style="width: 600px;height:400px;float: left;display: none;"></div>
+
+ 
+</div>
+<div th:include="include::footer"></div>
+<script src="/js/plugins/echarts/echarts.js"></script>
+
+</body>
+</html>

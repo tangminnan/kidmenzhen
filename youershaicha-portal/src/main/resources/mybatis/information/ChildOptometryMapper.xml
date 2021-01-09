@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.youershaicha.information.dao.ChildOptometryDao">
+
+	<select id="get" resultType="com.youershaicha.information.domain.ChildOptometryDO">
+		select `t_optometry_id`,age,check_date,child_idcard,`history_id`,`first_check_vd`,`first_check_rps`,`first_check_lps`,`first_check_rcs`,`first_check_lcs`,`check_date`,`second_check_vd`,`second_check_rps`,`second_check_lps`,`second_check_rcs`,`second_check_lcs`,`delete_flag`,`first_check_pd`,`second_check_pd` from t_child_optometry where t_optometry_id = #{value}
+	</select>
+
+	<select id="getRecentChildOptometryDO" resultType="com.youershaicha.information.domain.ChildOptometryDO">
+		select `t_optometry_id`,age,check_date,child_idcard,`history_id`,`first_check_vd`,`first_check_rps`,`first_check_lps`,`first_check_rcs`,
+		`first_check_lcs`,`check_date`,`second_check_vd`,`second_check_rps`,`second_check_lps`,`second_check_rcs`,`second_check_lcs`,`delete_flag`,
+		`first_check_pd`,`second_check_pd` from t_child_optometry
+
+		<where>
+			<if test="childIdcard != null and childIdcard != ''"> and child_idcard = #{childIdcard} </if>
+			<if test="age!= -1"> and age = #{age} </if>
+		</where>
+
+
+		order by check_date desc limit 1
+	</select>
+	 
+	<insert id="save" parameterType="com.youershaicha.information.domain.ChildOptometryDO" useGeneratedKeys="true" keyProperty="tOptometryId">
+		insert into t_child_optometry
+		(
+			`history_id`, 
+			`first_check_vd`, 
+			`first_check_rps`, 
+			`first_check_lps`, 
+			`first_check_rcs`, 
+			`first_check_lcs`, 
+			`check_date`, 
+			`second_check_vd`, 
+			`second_check_rps`, 
+			`second_check_lps`, 
+			`second_check_rcs`, 
+			`second_check_lcs`, 
+			`delete_flag`, 
+			`first_check_pd`, 
+			`second_check_pd`,
+			age,
+			child_idcard
+		)
+		values
+		(
+			#{historyId}, 
+			#{firstCheckVd}, 
+			#{firstCheckRps}, 
+			#{firstCheckLps}, 
+			#{firstCheckRcs}, 
+			#{firstCheckLcs}, 
+			#{checkDate}, 
+			#{secondCheckVd}, 
+			#{secondCheckRps}, 
+			#{secondCheckLps}, 
+			#{secondCheckRcs}, 
+			#{secondCheckLcs}, 
+			#{deleteFlag}, 
+			#{firstCheckPd}, 
+			#{secondCheckPd},
+			#{age},
+			#{childIdcard}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.youershaicha.information.domain.ChildOptometryDO">
+		update t_child_optometry 
+		<set>
+			<if test="historyId != null">`history_id` = #{historyId}, </if>
+			<if test="firstCheckVd != null">`first_check_vd` = #{firstCheckVd}, </if>
+			<if test="firstCheckRps != null">`first_check_rps` = #{firstCheckRps}, </if>
+			<if test="firstCheckLps != null">`first_check_lps` = #{firstCheckLps}, </if>
+			<if test="firstCheckRcs != null">`first_check_rcs` = #{firstCheckRcs}, </if>
+			<if test="firstCheckLcs != null">`first_check_lcs` = #{firstCheckLcs}, </if>
+			<if test="checkDate != null">`check_date` = #{checkDate}, </if>
+			<if test="secondCheckVd != null">`second_check_vd` = #{secondCheckVd}, </if>
+			<if test="secondCheckRps != null">`second_check_rps` = #{secondCheckRps}, </if>
+			<if test="secondCheckLps != null">`second_check_lps` = #{secondCheckLps}, </if>
+			<if test="secondCheckRcs != null">`second_check_rcs` = #{secondCheckRcs}, </if>
+			<if test="secondCheckLcs != null">`second_check_lcs` = #{secondCheckLcs}, </if>
+			<if test="deleteFlag != null">`delete_flag` = #{deleteFlag}, </if>
+			<if test="firstCheckPd != null">`first_check_pd` = #{firstCheckPd}, </if>
+			<if test="secondCheckPd != null">`second_check_pd` = #{secondCheckPd}</if>
+		</set>
+		where t_optometry_id = #{tOptometryId}
+	</update>
+
+</mapper>

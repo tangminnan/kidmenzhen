@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <head th:include="include :: header"></head>
+    
+    <title>欢迎页</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+   
+</head>
+<body>
+
+<div th:include="include :: footer"></div>
+<input type="hidden" id="didujinshiNumber">
+<input type="hidden" id="zhongdujinshiNumber">
+<input type="hidden" id="gaodujinshiNumber">
+<input type="hidden" id="zhengchang">
+<input type="hidden" id="jinshilv">
+<input type="hidden" id="buliangshiliNumber">
+<input type="hidden" id="buliangshililv">
+<input type="hidden" id="wubuliang">
+<input type="hidden" id="yuanshiNumber">
+<input type="hidden" id="yunshihuanbinglv">
+<input type="hidden" id="wuyuanshi">
+<input type="hidden" id="zhengshiNumber">
+<input type="hidden" id="wuzhengshi">
+<input type="hidden" id="zhengshiyanlv">
+<input type="hidden" id="quguangcenciNumber">
+<input type="hidden" id="quguangcenciNumberLv">
+<input type="hidden" id="wuquguangcenci">
+
+<input type="hidden" id="xiaoyuliusui">
+<input type="hidden" id="liudaoshiersui">
+<input type="hidden" id="shisandaoshiwusui">
+<input type="hidden" id="shiliudaoshibasui">
+<input type="hidden" id="dyushibasui">
+
+					
+				
+				
+<script src="/js/plugins/echarts/echarts.js"></script>
+<script type="text/javascript">
+	
+$.ajax({
+	cache : true,
+	type : "GET",
+  	async:false,  
+	url : "/information/student/shouYeTrueData",
+	error : function(request) {
+		parent.layer.alert("网络超时");
+	},
+	success : function(data) {
+		$(".total").text(data.totalnumber+"人");
+		$("#shifanxiao").text(data.shifanxiaoshaicha+"人");
+		$("#putong").text(data.putongshaicha);
+		$("#gaodujinshiNumber").val(data.gaodujinshiNumber);
+		$("#zhongdujinshiNumber").val(data.zhongdujinshiNumber);
+		$("#didujinshiNumber").val(data.didujinshiNumber);
+		$("#zhengchang").val(data.zhengchang);
+		$("#jinshilv").val(data.jinshilv+'%');
+		$("#buliangshiliNumber").val(data.buliangshiliNumber);
+		$("#buliangshililv").val(data.buliangshililv+'%');
+		$("#wubuliang").val(data.wubuliang);
+		$("#yuanshiNumber").val(data.yuanshiNumber);
+		$("#wuyuanshi").val(data.wuyuanshi);
+		$("#yunshihuanbinglv").val(data.yunshihuanbinglv+'%');
+		$("#zhengshiNumber").val(data.zhengshiNumber);
+		$("#wuzhengshi").val(data.wuzhengshi);
+		$("#zhengshiyanlv").val(data.zhengshiyanlv+'%');
+		$("#wuquguangcenci").val(data.wuquguangcenci);
+		$("#quguangcenciNumberLv").val(data.quguangcenciNumberLv+'%');
+		$("#quguangcenciNumber").val(data.quguangcenciNumber);
+
+		
+		$("#xiaoyuliusui").val(data.nain6);
+		$("#liudaoshiersui").val(data.nain612);
+		$("#shisandaoshiwusui").val(data.nain1315);
+		$("#shiliudaoshibasui").val(data.nain1618);
+		$("#dyushibasui").val(data.nain18);
+
+	}
+});
+	
+	// 基于准备好的dom，初始化echarts实例
+	var myChart =  echarts.init(document.getElementById('pie_charts'));
+	var myChart2 = echarts.init(document.getElementById('pie_charts2'));
+	var myChart3 = echarts.init(document.getElementById('pie_charts3'));
+	var myChart4 = echarts.init(document.getElementById('pie_charts4'));
+	var myChart5 = echarts.init(document.getElementById('pie_charts5'));
+ 	var myChart6 = echarts.init(document.getElementById('pie_charts6'));
+ 	 // 指定图表的配置项和数据
+    var option = {
+    		 title: {
+    	       // text: '正常',
+    	        subtext: $("#buliangshililv").val(),
+    	        textStyle:{
+    	            fontSize:16,
+    	            color: '#666666'
+    	        },
+    	        subtextStyle: {
+    	            fontSize: 16,
+    	            color: '#666666'
+    	        },
+    	        textAlign:"center",
+    	        x: '50%',
+    	        y: '38%',
+    	        
+    	    }, 
+    		tooltip: {
+    	        trigger: 'item',
+    	        formatter: "{b}: {c} <br/> ({d}%)"
+    	    },
+    	    legend: {
+    	       // orient: 'vertical',
+    	        bottom: "2%",
+    	        data:['患病','正常']
+    	    },
+    	    
+    	    series: [
+    	        {
+    	            name:'访问来源',
+    	            type:'pie',
+    	            center: ['50%', '45%'],
+    	            radius: ['50%', '60%'],
+    	            avoidLabelOverlap: false,
+    	            label: {
+    	                normal: {
+    	                    show: false,
+    	                    position: 'center',
+    	                    formatter: "{c}%",
+    	                    textStyle: {
+    	                    	fontSize: 30,
+
+    	                    },
+    	                },
+    	                emphasis: {
+    	                    show: false,
+    	                    /* textStyle: {
+    	                        fontSize: '30',
+    	                        fontWeight: 'bold'
+    	                    } */
+    	                }
+    	            },
+    	            labelLine: {
+    	                normal: {
+    	                    show: false
+    	                }
+    	            },
+    	            data:[
+							{value:$("#wubuliang").val(), name:'正常'},
+							{value:$("#buliangshiliNumber").val(), name:'患病'}
+    	              ]
+    	        },
+    	            
+    	        
+    	    ] 
+	 }
+	 
+    var option1 = {
+   		 title: {
+   	       // text: '正常',
+   	        subtext: $("#yunshihuanbinglv").val(),
+   	        textStyle:{
+   	            fontSize:16,
+   	            color: '#666666'
+   	        },
+   	        subtextStyle: {
+   	            fontSize: 16,
+   	            color: '#666666'
+   	        },
+   	        textAlign:"center",
+   	        x: '50%',
+   	        y: '38%',
+   	        
+   	    }, 
+   		tooltip: {
+   	        trigger: 'item',
+   	        formatter: "{b}: {c} <br/> ({d}%)"
+   	    },
+   	    legend: {
+   	       // orient: 'vertical',
+   	        bottom: "2%",
+   	        data:['患病','正常']
+   	    },
+   	    
+   	    series: [
+   	        {
+   	            name:'访问来源',
+   	            type:'pie',
+   	            center: ['50%', '45%'],
+   	            radius: ['50%', '60%'],
+   	            avoidLabelOverlap: false,
+   	            label: {
+   	                normal: {
+   	                    show: false,
+   	                    position: 'center',
+   	                    formatter: "{c}%",
+   	                    textStyle: {
+   	                    	fontSize: 30,
+
+   	                    },
+   	                },
+   	                emphasis: {
+   	                    show: false,
+   	                    /* textStyle: {
+   	                        fontSize: '30',
+   	                        fontWeight: 'bold'
+   	                    } */
+   	                }
+   	            },
+   	            labelLine: {
+   	                normal: {
+   	                    show: false
+   	                }
+   	            },
+   	            data:[
+							{value:$("#wuyuanshi").val(), name:'正常'},
+							{value:$("#yuanshiNumber").val(), name:'患病'}
+   	              ]
+   	        },
+   	            
+   	        
+   	    ] 
+	 }
+	 
+	 
+    var option6 = {
+   		 title: {
+   	       // text: '正常',
+   	        subtext: $("#quguangcenciNumberLv").val(),
+   	        textStyle:{
+   	            fontSize:16,
+   	            color: '#666666'
+   	        },
+   	        subtextStyle: {
+   	            fontSize: 16,
+   	            color: '#666666'
+   	        },
+   	        textAlign:"center",
+   	        x: '50%',
+   	        y: '38%',
+   	        
+   	    }, 
+   		tooltip: {
+   	        trigger: 'item',
+   	        formatter: "{b}: {c} <br/> ({d}%)"
+   	    },
+   	    legend: {
+   	       // orient: 'vertical',
+   	        bottom: "2%",
+   	        data:['患病','正常']
+   	    },
+   	    
+   	    series: [
+   	        {
+   	            name:'访问来源',
+   	            type:'pie',
+   	            center: ['50%', '45%'],
+   	            radius: ['50%', '60%'],
+   	            avoidLabelOverlap: false,
+   	            label: {
+   	                normal: {
+   	                    show: false,
+   	                    position: 'center',
+   	                    formatter: "{c}%",
+   	                    textStyle: {
+   	                    	fontSize: 30,
+
+   	                    },
+   	                },
+   	                emphasis: {
+   	                    show: false,
+   	                    /* textStyle: {
+   	                        fontSize: '30',
+   	                        fontWeight: 'bold'
+   	                    } */
+   	                }
+   	            },
+   	            labelLine: {
+   	                normal: {
+   	                    show: false
+   	                }
+   	            },
+   	            data:[
+							{value:$("#wuquguangcenci").val(), name:'正常'},
+							{value:$("#quguangcenciNumber").val(), name:'患病'}
+   	              ]
+   	        },
+   	            
+   	        
+   	    ] 
+	 }
+	 
+    var option3 = {
+   		 title: {
+   	       // text: '正常',
+   	        subtext: $("#zhengshiyanlv").val(),
+   	        textStyle:{
+   	            fontSize:16,
+   	            color: '#666666'
+   	        },
+   	        subtextStyle: {
+   	            fontSize: 16,
+   	            color: '#666666'
+   	        },
+   	        textAlign:"center",
+   	        x: '50%',
+   	        y: '38%',
+   	        
+   	    }, 
+   		tooltip: {
+   	        trigger: 'item',
+   	        formatter: "{b}: {c} <br/> ({d}%)"
+   	    },
+   	    legend: {
+   	       // orient: 'vertical',
+   	        bottom: "2%",
+   	        data:['患病','正常']
+   	    },
+   	    
+   	    series: [
+   	        {
+   	            name:'访问来源',
+   	            type:'pie',
+   	            center: ['50%', '45%'],
+   	            radius: ['50%', '60%'],
+   	            avoidLabelOverlap: false,
+   	            label: {
+   	                normal: {
+   	                    show: false,
+   	                    position: 'center',
+   	                    formatter: "{c}%",
+   	                    textStyle: {
+   	                    	fontSize: 30,
+
+   	                    },
+   	                },
+   	                emphasis: {
+   	                    show: false,
+   	                    /* textStyle: {
+   	                        fontSize: '30',
+   	                        fontWeight: 'bold'
+   	                    } */
+   	                }
+   	            },
+   	            labelLine: {
+   	                normal: {
+   	                    show: false
+   	                }
+   	            },
+   	            data:[
+							{value:$("#wuzhengshi").val(), name:'正常'},
+							{value:$("#zhengshiNumber").val(), name:'患病'}
+   	              ]
+   	        },
+   	            
+   	        
+   	    ] 
+	 }
+	 
+    var option4 = {
+   		 title: {
+   	       // text: '正常',
+   	        subtext: '',
+   	        textStyle:{
+   	            fontSize:16,
+   	            color: '#666666'
+   	        },
+   	        subtextStyle: {
+   	            fontSize: 16,
+   	            color: '#666666'
+   	        },
+   	        textAlign:"center",
+   	        x: '50%',
+   	        y: '38%',
+   	        
+   	    }, 
+   		tooltip: {
+   	        trigger: 'item',
+   	        formatter: "{b}: {c} <br/> ({d}%)"
+   	    },
+   	    legend: {
+   	       // orient: 'vertical',
+   	        bottom: "2%",
+   	     data:['<6岁','6—12岁','13-15岁','16-18岁','>18岁']
+   	    },
+   	    
+   	    series: [
+   	        {
+   	            name:'访问来源',
+   	            type:'pie',
+   	            center: ['50%', '45%'],
+   	            radius: ['50%', '60%'],
+   	            avoidLabelOverlap: false,
+   	            label: {
+   	                normal: {
+   	                    show: false,
+   	                    position: 'center',
+   	                    formatter: "{c}%",
+   	                    textStyle: {
+   	                    	fontSize: 30,
+
+   	                    },
+   	                },
+   	                emphasis: {
+   	                    show: false,
+   	                    /* textStyle: {
+   	                        fontSize: '30',
+   	                        fontWeight: 'bold'
+   	                    } */
+   	                }
+   	            },
+   	            labelLine: {
+   	                normal: {
+   	                    show: false
+   	                }
+   	            },
+   	            data:[ 
+					{value:$("#xiaoyuliusui").val(), name:'<6岁'},
+					{value:$("#liudaoshiersui").val(), name:'6—12岁'},
+					{value:$("#shisandaoshiwusui").val(), name:'13-15岁'},
+					{value:$("#shiliudaoshibasui").val(), name:'16-18岁'},
+					{value:$("#dyushibasui").val(), name:'>18岁'}
+   	              ]
+   	        },
+   	            
+   	        
+   	    ] 
+	 }
+	 
+	 // 指定图表的配置项和数据
+    var option2 = {
+    		 title: {
+    	       // text: '正常',
+    	        subtext:$("#jinshilv").val(),
+    	        textStyle:{
+    	            fontSize:16,
+    	            color: '#666666'
+    	        },
+    	        subtextStyle: {
+    	            fontSize: 16,
+    	            color: '#666666'
+    	        },
+    	        textAlign:"center",
+    	        x: '50%',
+    	        y: '38%',
+    	        
+    	    }, 
+    		tooltip: {
+    	        trigger: 'item',
+    	        formatter: "{b}: {c} <br/> ({d}%)"
+    	    },
+    	    legend: {
+    	       // orient: 'vertical',
+    	        bottom: "2%",
+    	        data:['低度','中度','高度','正常']
+    	    },
+    	    
+    	    series: [
+    	        {
+    	            name:'访问来源',
+    	            type:'pie',
+    	            center: ['50%', '45%'],
+    	            radius: ['50%', '60%'],
+    	            avoidLabelOverlap: false,
+    	            label: {
+    	                normal: {
+    	                    show: false,
+    	                    position: 'center',
+    	                    formatter: "{c}%",
+    	                    textStyle: {
+    	                    	fontSize: 30,
+
+    	                    },
+    	                },
+    	                emphasis: {
+    	                    show: false,
+    	                    /* textStyle: {
+    	                        fontSize: '30',
+    	                        fontWeight: 'bold'
+    	                    } */
+    	                }
+    	            },
+    	            labelLine: {
+    	                normal: {
+    	                    show: false
+    	                }
+    	            },
+    	            data:[
+							{value:$("#didujinshiNumber").val(), name:'低度'},
+							{value:$("#zhongdujinshiNumber").val(), name:'中度'},
+							{value:$("#gaodujinshiNumber").val(), name:'高度'},
+							{value:$("#zhengchang").val(), name:'正常'}
+    	              ]
+    	        },
+    	            
+    	        
+    	    ] 
+	 }
+	 
+    myChart.setOption(option);
+    myChart2.setOption(option2);
+    myChart3.setOption(option1);
+    myChart4.setOption(option6);
+    myChart5.setOption(option3);
+	myChart6.setOption(option4);
+
+ </script>
+
+</body>
+</html>

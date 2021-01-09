@@ -1,0 +1,1779 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>筛查</title>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+	<script type="text/javascript" src="/js/plugins/layer/layer.min.js"></script>
+	<script src="/js/jquery.min.js?v=2.1.4" th:src="@{/js/jquery.min.js?v=2.1.4}"></script>
+</head>
+<body>
+   <div class="banner">
+   		<img src="img/banner.jpg" alt=""/>
+   </div>
+   <!--头部-->
+   <div class="main CXtop">
+   		<div class="fl">
+   			<a href="" title="新建"></a>
+   		</div>
+   		<div class="fr">
+   			<input class="INtxt" type="text" placeholder="输入身份证号" id="getChildCard"/>
+   			<input class="INbtn" type="button" value="查询"  onclick="getChildInfo()" />
+   		</div>
+   </div>
+   <!--主体内容-->
+   <div class="main">
+  		<!--左侧内容-->
+   		<div class="fl NewLeft">
+   			<!--左侧基础信息-->
+			<form id="formdatar">
+   			<div class="leftOne">
+   				<div class="box1">
+   					<span>身份证号：</span>
+   					<input type="text" placeholder="输入身份证号" name="childIdcard" />
+   				</div>
+   				<div class="box1">
+   					<span>孩子姓名：</span>
+   					<input type="text" placeholder="输入孩子姓名" name="childName" />
+   				</div>
+   				<div class="box1">
+   					<span>出生年月：</span>
+					<input type="text" id="childBirthday" name="childBirthday" placeholder="输入出生年月">
+   				</div>
+   				<!--单选1-->
+   				<div class="box2">
+   					<span>性     别：</span>                 
+					<label for="nan"><input name="childGender" type="radio" value="0" id="nan" > 男</label>
+					<label for="nv"><input name="childGender"  type="radio" value="1" id="nv"> 女</label>
+   				</div>
+   				<!--多选-->
+   				<div class="box3">
+   					<label><input name="childType" type="checkbox" value="ZAOCHAN" />早产儿 </label>
+					<label><input name="childType" type="checkbox" value="DITIZHONG" />低体重儿 </label>
+					<label><input name="childType" type="checkbox" value="DANTAI" />单胎 </label>
+					<label><input name="childType" type="checkbox" value="SHUANGTAI" />双胎</label>
+					<label><input name="childType" type="checkbox" value="DUOTAI" />多胎</label>
+   				</div>
+   			</div>
+   			<!--左侧父母情况-->
+   			<div class="leftTwo">
+   				<h3>父母情况</h3>
+   				<div class="box box1">
+   					<span>母亲姓名：</span>
+   					<input type="text" name="motherName"/>
+   				</div>
+   				<div class="box box1">
+   					<span>母亲身份证号：</span>
+   					<input type="text" name="motherIdcard"/>
+   				</div>
+   				<!--单选2-->
+   				<div class="box box2">
+   					<span>眼病家族史：</span>  
+   					<label for="wu"><input name="motherEyeHis"  value="0" type="radio" id="wu"> 无</label>
+					<label for="you"><input  name="motherEyeHis" value="1" type="radio" id="you"> 有</label>
+					<div class="inbox" style="display: none">
+						<label for="JS1"><input  name="motherEyeIns" value="JINSHI" type="radio" id="JS1">近视</label>
+						<label for="YS1"><input name="motherEyeIns" value="YUANSHI" type="radio" id="YS1">远视</label>
+						<label for="RS1"><input name="motherEyeIns" value="RUOSHI" type="radio" id="RS1">弱视</label>
+					</div>
+				</div>
+				<div class="cl"></div><!--清除浮动-->
+   				<div class="box box1">
+   					<span>父亲姓名：</span>
+   					<input type="text" name="fatherName"/>
+   				</div>
+   				<!--单选3-->
+   				<div class="box box2">
+   					<span>眼病家族史：</span>  
+   					<label for="Fwu"><input name="fatherEyeHis" value="0" type="radio" id="Fwu"> 无</label>
+					<label for="Fyou"><input  name="fatherEyeHis" value="1" type="radio" id="Fyou"> 有</label>
+					 
+  					<div class="inbox" style="display: none">
+  						<label for="JS"><input  name="fatherEyeIns" value="JINSHI" type="radio" id="JS">近视</label>
+						<label for="YS"><input name="fatherEyeIns" value="YUANSHI" type="radio" id="YS">远视</label>
+						<label for="RS"><input name="fatherEyeIns"   value="RUOSHI" type="radio" id="RS">弱视</label>
+  					</div>   
+   				</div>
+   				<div class="cl"></div><!--清除浮动-->
+   				<div class="box box1">
+   					<span>家庭住址：</span>
+   					<input type="text" name="childAddress"/>
+   				</div>
+   				<div class="box box1">
+   					<span>电话：</span>
+   					<input type="text" name="childPhone"/>
+   				</div>
+   				<!--单选5-->
+   				<div class="box box2">
+   					<span>分娩方式：</span>                 
+					<label for="C1"><input  name="childDelivery" value="SHUNCHAN" type="radio" id="C1"> 顺产</label>
+					<label for="C2"><input name="childDelivery" value="PAOFUCHAN" type="radio" id="C2"> 剖腹产</label>
+					<label for="C3"><input name="childDelivery"  value="TAITOUXIYIN" type="radio" id="C3"> 胎头吸引</label>
+   				</div>
+   				<!--单选6-->
+   				<div class="box box2 box3">
+   					<span>特殊用药史：</span>                 
+					<label for="yao1"><input  name="childMedicineHis" value="0" type="radio" id="yao1"> 无</label>
+					<label for="yao2"><input name="childMedicineHis" value="1" type="radio" id="yao2"> 有 <input type="text" name="childMedicineIns"> </label>
+   				</div>
+   				<div class="box box1">
+   					<span>住院号：</span>
+   					<input type="text" name="childHistoryN"/>
+   				</div>
+   				<div class="box box1">
+   					<span>孕周：</span>
+   					<input style="width:80px;" type="text" name="childGestationalweek"/>
+   					<span>出生体重：</span>
+   					<input style="width:80px;" type="text" name="childWeight"/>kg
+   				</div>
+   				<!--单选7-->
+   				<div class="box box2">
+   					<span>窒息史：</span>                 
+					<label for="SS1"><input  name="childSuffocation" value="0" type="radio" id="SS1"> 无</label>
+					<label for="SS2"><input name="childSuffocation" value="1" type="radio" id="SS2"> 有</label>
+   				</div>
+   				<!--单选8-->
+   				<div class="box box2">
+   					<span>吸氧史：</span>                 
+					<label for="Y1"><input  name="childOxygen" value="0" type="radio" id="Y1"> 无</label>
+					<label for="Y2"><input name="childOxygen" value="1" type="radio" id="Y2"> 有</label>
+   				</div>
+   				<div class="box box4">
+   					<span>其他情况：</span>
+   					<textarea name="childSpec"></textarea>
+   				</div>
+   				
+   			</div>
+			</form>
+   		</div>
+   		<!--右侧内容-->
+   		<div class="fr NewRight">
+   			<div class="rightTop">
+   				<div class="fl txtL">眼保健筛查项目</div>
+   				<div class="fr txtR" id="history">历史记录</div>
+   			</div>
+			<form id="formData">
+   			<div class="rightOld">
+   				<div class="fl">
+   					眼保健年龄段：
+   					<select id="selectAge" name="age">
+						<option value="">-请选择-</option>
+						<option value="0">出生2-7天</option>
+						<option value="1">满月（42天）</option>
+						<option value="2">3月龄</option>
+						<option value="3">6月龄</option>
+						<option value="4">8月龄</option>
+						<option value="5">1周岁</option>
+						<option value="6">1周岁半</option>
+						<option value="7">2周岁</option>
+						<option value="8">2周岁半</option>
+						<option value="9">3周岁</option>
+						<option value="10">4周岁</option>
+						<option value="11">5周岁</option>
+						<option value="12">6周岁</option>
+					</select>
+   				</div>
+   				<div class="fr txtR">
+   					检查日期：
+   					<input type="text" id="checkDate">
+   					<img  src="img/icon-rili.png" alt=""/>
+   				</div>
+   			</div>
+   			<!--保健情况-->
+   				<div class="YBJbox">
+   				<h3>1周岁眼保健情况</h3>
+
+
+   				<!--====视力检查====-->
+   				<div class="box1" name="youer-shilijiancha">
+   					<p>视力检查:</p>
+   					<div class="Reye">
+   						<table class="HjcslB" border="1" cellspacing="0" cellpadding="0">
+						  <tbody>
+							<tr class="greenBD">
+							  <td>
+								<span>裸眼视力：</span>
+							  	<select name="nakedversionType">
+									<option value="0">E字视标</option>
+									<option value="1">图形视标</option>
+								</select>
+							  </td>
+							  <td>
+							  	<span>戴镜视力：</span>
+							  	<select name="glassesversionType">
+									<option value="0">E字视标</option>
+									<option value="1">图形视标</option>
+								</select>
+							  </td>
+							</tr>
+							<tr>
+							  <td>
+							  	<span>右眼：</span>
+							  	<select name="nakedversionRighteye">
+									<option value="">-请选择-</option>
+									<option value="灰板">灰板</option>
+									<option value="0.10">0.10</option>
+									<option value="0.15">0.15</option>
+									<option value="0.20">0.20</option>
+									<option value="0.25">0.25</option>
+									<option value="0.30">0.30</option>
+									<option value="0.40">0.40</option>
+									<option value="0.50">0.50</option>
+									<option value="0.60">0.60</option>
+									<option value="1.10">1.10</option>
+								</select>
+							  </td>
+							  <td>
+							  	<span>右眼：</span>
+							  	<select name="glassesversionRighteye">
+									<option value="">-请选择-</option>
+									<option value="灰板">灰板</option>
+									<option value="0.10">0.10</option>
+									<option value="0.15">0.15</option>
+									<option value="0.20">0.20</option>
+									<option value="0.25">0.25</option>
+									<option value="0.30">0.30</option>
+									<option value="0.40">0.40</option>
+									<option value="0.50">0.50</option>
+									<option value="0.60">0.60</option>
+									<option value="1.10">1.10</option>
+								</select>
+							  </td>
+							</tr>
+							<tr>
+							  <td>
+							  	<span>左眼：</span>
+							  	<select name="nakedversionLefteye">
+									<option value="">-请选择-</option>
+									<option value="灰板">灰板</option>
+									<option value="0.10">0.10</option>
+									<option value="0.15">0.15</option>
+									<option value="0.20">0.20</option>
+									<option value="0.25">0.25</option>
+									<option value="0.30">0.30</option>
+									<option value="0.40">0.40</option>
+									<option value="0.50">0.50</option>
+									<option value="0.60">0.60</option>
+									<option value="1.10">1.10</option>
+								</select>
+							  </td>
+							  <td>
+							  	<span>左眼：</span>
+							  	<select name="glassesversionLefteye">
+									<option value="">-请选择-</option>
+									<option value="灰板">灰板</option>
+									<option value="0.10">0.10</option>
+									<option value="0.15">0.15</option>
+									<option value="0.20">0.20</option>
+									<option value="0.25">0.25</option>
+									<option value="0.30">0.30</option>
+									<option value="0.40">0.40</option>
+									<option value="0.50">0.50</option>
+									<option value="0.60">0.60</option>
+									<option value="1.10">1.10</option>
+								</select>
+							  </td>
+							</tr>
+						  </tbody>
+						</table>
+
+   						
+   					</div>
+   				</div>
+   				<!--====外眼检测====-->
+   				<div class="box1" name="youer-waiyanjiancha">
+   					<p>外眼检查：</p>
+   					<div class="JCinbox">
+   						<!--右眼单选9-->
+						<div class="boxbOLL">
+							<span>右眼：</span>                 
+							<label for="ZC1"><input  name="externalRighteyeExaminationType" value="0" type="radio" id="ZC1"> 正常</label>
+							<label for="YC1"><input name="externalRighteyeExaminationType" value="1" type="radio" id="YC1"> 异常</label>
+							<!--异常多选-->
+							<div class="fr yichang jj"  style="display: none">
+								<label><input name="externalRighteyeExaminationIns" type="checkbox" value="YILEI" />溢泪 </label>
+								<label><input name="externalRighteyeExaminationIns" type="checkbox" value="FENBIWU" />分泌物 </label>
+								<label><input name="externalRighteyeExaminationIns" type="checkbox" value="MAOXIXUEGUANLIU" />毛细血管瘤 </label>
+								<label><input name="externalRighteyeExaminationIns" type="checkbox" value="JIEMOCHUXUE" />结膜出血</label>
+								<label><input name="externalRighteyeExaminationIns" type="checkbox" value="HONGMOMAOXIXUEGUAN" />虹膜毛细血管</label>
+								<label><input name="externalRighteyeExaminationIns" type="checkbox" value="JIAOMOBAIBAN" />角膜白斑</label>
+								<label style="width:100%;"><input name="externalRighteyeExaminationIns" type="checkbox" value="QITA" />其他<input type="text" name="waiyanrightjianchaqita"></label>
+							</div>    
+						</div>
+  						<!--左眼单选10-->
+						<div class="boxbOLL">
+							<span>左眼：</span>                 
+							<label for="ZC2"><input  name="externalLefteyeExaminationType" value="0" type="radio" id="ZC2"> 正常</label>
+							<label for="YC2"><input name="externalLefteyeExaminationType" value="1" type="radio" id="YC2"> 异常</label>
+							<!--异常多选-->
+							<div class="fr yichang jj" style="display: none">
+								<label><input name="externalLefteyeExaminationIns" type="checkbox" value="YILEI" />溢泪 </label>
+								<label><input name="externalLefteyeExaminationIns" type="checkbox" value="FENBIWU" />分泌物 </label>
+								<label><input name="externalLefteyeExaminationIns" type="checkbox" value="MAOXIXUEGUANLIU" />毛细血管瘤 </label>
+								<label><input name="externalLefteyeExaminationIns" type="checkbox" value="JIEMOCHUXUE" />结膜出血</label>
+								<label><input name="externalLefteyeExaminationIns" type="checkbox" value="HONGMOMAOXIXUEGUAN" />虹膜毛细血管</label>
+								<label><input name="externalLefteyeExaminationIns" type="checkbox" value="JIAOMOBAIBAN" />角膜白斑</label>
+								<label style="width:100%;"><input name="externalLefteyeExaminationIns" type="checkbox" value="QITA" />其他<input type="text" name="waiyanleftjianchaqita"></label>
+							</div>
+						</div>
+   					</div>
+   				</div>
+				<!--斜视初窥-->
+				<!--<div class="box1" name="youer-xieshichukui">
+					<p>斜视初窥：</p>
+					<div class="JCinbox">
+						&lt;!&ndash;右眼单选15&ndash;&gt;
+						<div class="boxbOLL">
+							<span class="fl">右眼：</span>
+							<div class="fl Hxx">
+								<div>
+									<label for="00111"><input  name="DD15" type="radio" id="00111"> 正位</label>
+								</div>
+								<div>
+									<label for="00211"><input name="DD15"  type="radio" id="00211"> 斜视</label>
+									&lt;!&ndash;异常多选&ndash;&gt;
+									<div class="fr yichang" style="width:300px">
+										<label style="width: 100%;"><input name="Yic" type="checkbox" value="" />内斜 <input type="text"></label>
+										<label style="width: 100%;"><input name="Yic" type="checkbox" value="" />外斜 <input type="text"></label>
+										<label style="width: 100%;"><input name="Yic" type="checkbox" value="" />垂直斜 <input type="text"></label>
+									</div>
+								</div>
+							</div>
+						</div>
+						&lt;!&ndash;左眼单选16&ndash;&gt;
+						<div class="boxbOLL">
+							<span class="fl">左眼：</span>
+							<div class="fl Hxx">
+								<div><label for="00411"><input  name="DD16" type="radio" id="00411"> 正位</label>  </div>
+								<div><label for="00511"><input name="DD16"  type="radio" id="00511"> 斜视</label>  </div>
+							</div>
+						</div>
+					</div>
+				</div>-->
+   				<!--====红光反射====-->
+   				<div class="box1" name=youer-hongguangfanshe">
+   					<p>红光反射：</p>
+   					<div class="JCinbox">
+   						<!--右眼单选9-->
+						<div class="boxbOLL">
+							<span>右眼：</span>                 
+							<label for="ZC3"><input  name="redlightRighteyeReflexType" value="0" type="radio" id="ZC3"> 正常</label>
+							<label for="YC3"><input name="redlightRighteyeReflexType" value="1" type="radio" id="YC3"> 异常<input type="text" name="redlightRighteyeReflexIns"></label>
+						</div>
+  						<!--左眼单选10-->
+						<div class="boxbOLL">
+							<span>左眼：</span>                 
+							<label for="ZC4"><input  name="redlightLefteyeReflexType" value="0" type="radio" id="ZC4"> 正常</label>
+							<label for="YC4"><input name="redlightLefteyeReflexType" value="1" type="radio" id="YC4"> 异常<input type="text" name="redlightLefteyeReflexIns"></label>
+						</div>
+   					</div>
+   				</div>
+				<!--====瞬目反射====-->
+				<div class="box1" name=youer-shunmufanshe">
+					<p>瞬目反射：</p>
+					<div class="JCinbox">
+						<!--右眼单选9-->
+						<div class="boxbOLL">
+							<span>右眼：</span>
+							<label for="ZC31"><input  name="blinkReflexRighteye" value="0" type="radio" id="ZC31"> 通过</label>
+							<label for="YC31"><input name="blinkReflexRighteye" value="1"  type="radio" id="YC31"> 未通过</label>
+						</div>
+						<!--左眼单选10-->
+						<div class="boxbOLL">
+							<span>左眼：</span>
+							<label for="ZC41"><input  name="blinkReflexLefteye" value="0" type="radio" id="ZC41"> 通过</label>
+							<label for="YC41"><input name="blinkReflexLefteye" value="1" type="radio" id="YC41"> 未通过</label>
+						</div>
+					</div>
+				</div>
+				<!--====红球实验====-->
+				<div class="box1" name=youer-hongqiushiyan">
+					<p>红球实验：</p>
+					<div class="JCinbox">
+						<!--右眼单选9-->
+						<div class="boxbOLL">
+							<span>右眼：</span>
+							<label for="ZC32"><input  name="redballRighteye" value="0" type="radio" id="ZC32"> 通过</label>
+							<label for="YC32"><input name="redballRighteye" value="1" type="radio" id="YC32"> 未通过</label>
+						</div>
+						<!--左眼单选10-->
+						<div class="boxbOLL">
+							<span>左眼：</span>
+							<label for="ZC42"><input  name="redballLefteye" value="0" type="radio" id="ZC42"> 通过</label>
+							<label for="YC42"><input name="redballLefteye" value="1" type="radio" id="YC42"> 未通过</label>
+						</div>
+					</div>
+				</div>
+   				<!--====视觉行为====-->
+   				<div class="box1" name="youer-shijuexingwei">
+   					<p>视觉行为：</p>
+   					<div class="JCinbox">
+   						<!--右眼单选11-->
+						<div class="boxbOLL">
+							<span>右眼：</span>                 
+							<label for="pass"><input  name="visualbehaviorRighteyeType" value="0" type="radio" id="pass"> 通过</label>
+							<label for="passOn"><input name="visualbehaviorRighteyeType" value="1" type="radio" id="passOn"> 未通过</label>
+						</div>
+  						<!--左眼单选12-->
+						<div class="boxbOLL">
+							<span>左眼：</span>                 
+							<label for="passL"><input  name="visualbehaviorLefteyeType" value="0" type="radio" id="passL"> 通过</label>
+							<label for="passOnL"><input name="visualbehaviorLefteyeType" value="1" type="radio" id="passOnL"> 未通过</label>
+						</div>
+   					</div>
+   				</div>
+   				<!--====视力初筛====-->
+   				<div class="box1" name="youer-shilichushai">
+   					<p>视力初筛：</p>
+   					<div class="JCinbox">
+   						<!--右眼单选13-->
+						<div class="boxbOLL">
+							<span>右眼：</span>  
+							<label for="slcs1"><input  name="primaryScreenOfVisionRighteyeType" value="0" type="radio" id="slcs1"> 无</label>
+							<label for="slcs2"><input  name="primaryScreenOfVisionRighteyeType" value="1" type="radio" id="slcs2"> 正常</label>                         <label for="slcs3"><input  name="primaryScreenOfVisionRighteyeType" value="2" type="radio" id="slcs3"> 不配合</label>
+							<label for="slcs4"><input  name="primaryScreenOfVisionRighteyeType" value="3"  type="radio" id="slcs4"> 选择性观看</label>
+						</div>
+  						<!--左眼单选14-->
+						<div class="boxbOLL">
+							<span>左眼：</span>                 
+							<label for="slcs5"><input  name="primaryScreenOfVisionLefrteyeType" value="0" type="radio" id="slcs5"> 无</label>
+							<label for="slcs6"><input  name="primaryScreenOfVisionLefrteyeType" value="1" type="radio" id="slcs6"> 正常</label>                         <label for="slcs7"><input  name="primaryScreenOfVisionLefrteyeType" value="2" type="radio" id="slcs7"> 不配合</label>
+							<label for="slcs8"><input  name="primaryScreenOfVisionLefrteyeType" value="3"  type="radio" id="slcs8"> 选择性观看</label>
+						</div>
+   					</div>
+   				</div>
+				<!--====眼球追随运动====-->
+				<div class="box1" name=youer-yanqiuzhuisuiyundong">
+					<p>眼球追随运动：</p>
+					<div class="JCinbox">
+						<!--右眼单选9-->
+						<div class="boxbOLL">
+							<span>右眼：</span>
+							<label for="ZC33"><input  name="followRighteyeType" value="0" type="radio" id="ZC33"> 正常</label>
+							<label for="YC33"><input name="followRighteyeType" value="1" type="radio" id="YC33"> 异常<input type="text" name="followRighteyeIns"></label>
+						</div>
+						<!--左眼单选10-->
+						<div class="boxbOLL">
+							<span>左眼：</span>
+							<label for="ZC43"><input  name="followLefteyeType" value="0" type="radio" id="ZC43"> 正常</label>
+							<label for="YC43"><input name="followLefteyeType" value="1"  type="radio" id="YC43"> 异常<input type="text" name="followLefteyeIns"></label>
+						</div>
+					</div>
+				</div>
+   				<!--====选择性注视检测====-->
+   				<div class="box1" name="youer-xuanzexingzhushijiance">
+   					<p>选择性注视检测:</p>
+   					<div class="Reye">
+   						右眼：
+   						<select name="selectiveGazeDetectionRighteye">
+							<option value="">-请选择-</option>
+							<option value="灰板">灰板</option>
+							<option value="0.10">0.10</option>
+							<option value="0.15">0.15</option>
+							<option value="0.20">0.20</option>
+							<option value="0.25">0.25</option>
+							<option value="0.30">0.30</option>
+							<option value="0.40">0.40</option>
+							<option value="0.50">0.50</option>
+							<option value="0.60">0.60</option>
+							<option value="1.10">1.10</option>
+						</select>
+  						左眼：
+   						<select name="selectiveGazeDetectionLefteye">
+							<option value="">-请选择-</option>
+							<option value="灰板">灰板</option>
+							<option value="0.10">0.10</option>
+							<option value="0.15">0.15</option>
+							<option value="0.20">0.20</option>
+							<option value="0.25">0.25</option>
+							<option value="0.30">0.30</option>
+							<option value="0.40">0.40</option>
+							<option value="0.50">0.50</option>
+							<option value="0.60">0.60</option>
+							<option value="1.10">1.10</option>
+						</select>
+   					</div>
+   				</div>
+   				<!--====眼位检查====-->
+   				<div class="box1" name="youer-yanweijiancha">
+   					<p id="yanweijianchaxieshichukui">眼位检查：</p>
+   					<div class="JCinbox">
+   						<!--右眼单选15-->
+						<div class="boxbOLL">
+							<span class="fl">右眼：</span>
+							<div class="fl Hxx">
+								<div>
+									<label for="001"><input  name="examinationOfPositionRighteyeType" value="0" type="radio" id="001"> 正位</label>
+								</div>
+								<div>
+									<label for="002"><input name="examinationOfPositionRighteyeType" value="1"  type="radio" id="002"> 斜视</label>
+									<!--异常多选-->
+									<div class="fr yichang" style="width:300px;display: none">
+										<label style="width: 100%;"><input name="examinationOfStrabismusRighteyeType"  type="checkbox" value="NEIXIE" />内斜 <input type="text" name="examinationOfStrabismusRighteyeInsn"></label>
+										<label style="width: 100%;"><input name="examinationOfStrabismusRighteyeType" type="checkbox" value="WAIXIE" />外斜 <input type="text" name="examinationOfStrabismusRighteyeInsw"></label>
+										<label style="width: 100%;"><input name="examinationOfStrabismusRighteyeType" type="checkbox" value="CHUIZHIXIE" />垂直斜 <input type="text" name="examinationOfStrabismusRighteyeInsc"></label>
+									</div>   
+								</div>                                        
+								<div class="yanqiuzhenchan">
+									<label for="003"><input name="examinationOfPositionRighteyeType" value="2"  type="radio" id="003"> 眼球震颤</label>
+								</div>
+							</div>                            
+						</div>
+  						<!--左眼单选16-->
+						<div class="boxbOLL">
+							<span class="fl">左眼：</span> 
+							<div class="fl Hxx">
+								<div><label for="004"><input  name="examinationOfPositionLefteyeType" value="0" type="radio" id="004"> 正位</label>  </div>
+								<div>
+									<label for="005"><input name="examinationOfPositionLefteyeType" value="1"  type="radio" id="005"> 斜视</label>
+									<!--异常多选-->
+									<div class="fr yichang" style="width:300px ;display: none">
+										<label style="width: 100%;"><input name="examinationOfStrabismusLefteyeType"  type="checkbox" value="NEIXIE" />内斜 <input type="text" name="examinationOfStrabismusLefteyeInsn"></label>
+										<label style="width: 100%;"><input name="examinationOfStrabismusLefteyeType" type="checkbox" value="WAIXIE" />外斜 <input type="text" name="examinationOfStrabismusLefteyeInsw"></label>
+										<label style="width: 100%;"><input name="examinationOfStrabismusLefteyeType" type="checkbox" value="CHUIZHIXIE" />垂直斜 <input type="text" name="examinationOfStrabismusLefteyeInsc"></label>
+									</div>
+
+								</div >
+								<div class="yanqiuzhenchan"><label for="006"><input name="examinationOfPositionLefteyeType"  value="2" type="radio" id="006"> 眼球震颤</label></div>
+							</div>                     
+						</div>
+   					</div>
+   				</div>
+
+   				<!--====眼球运动====-->
+   				<div class="box1" name="youer-yanqiuyundong">
+   					<p>眼球运动：</p>
+   					<div class="JCinbox">
+   						<!--右眼单选17-->
+						<div class="boxbOLL">
+							<span>右眼：</span>                 
+							<label for="007"><input  name="eyemovementRighteyeType" value="0" type="radio" id="007"> 正常</label>
+							<label for="008"><input name="eyemovementRighteyeType" value="1" type="radio" id="008"> 异常 <input type="text" name="eyemovementRighteyeIns"></label>
+						</div>
+  						<!--左眼单选18-->
+						<div class="boxbOLL">
+							<span>左眼：</span>                 
+							<label for="009"><input  name="eyemovementLefteyeType" value="0" type="radio" id="009"> 正常</label>
+							<label for="010"><input name="eyemovementLefteyeType"  value="1" type="radio" id="010"> 异常 <input type="text" name="eyemovementLefteyeIns"></label>
+						</div>
+   					</div>
+   				</div>
+				<!--====色觉检查====-->
+				<div class="box1" name="youer-sejuejiancha">
+					<p>色觉检查：</p>
+					<div class="JCinbox">
+						<!--右眼单选17-->
+						<div class="boxbOLL">
+							<span>右眼：</span>
+							<label for="0073"><input  name="colorversionRighteyeType" value="0" type="radio" id="0073"> 正常</label>
+							<label for="0083"><input name="colorversionRighteyeType" value="1" type="radio" id="0083"> 异常 <input type="text" name="colorversionRighteyeIns"></label>
+						</div>
+						<!--左眼单选18-->
+						<div class="boxbOLL">
+							<span>左眼：</span>
+							<label for="0093"><input  name="colorversionLefteyeType" value="0" type="radio" id="0093"> 正常</label>
+							<label for="0103"><input name="colorversionLefteyeType" value="1" type="radio" id="0103"> 异常 <input type="text" name="colorversionLefteyeIns"></label>
+						</div>
+					</div>
+				</div>
+   				<!--====检影检查====-->
+   				<div class="box1" name="youer-jianyingjiancha">
+   					<p>检影检查：</p>
+   					<div class="JCinbox">
+   						<div class="boxbOLL Hjyjc">
+							<label for="011"><input  name="filmExaminationType" value="1" type="radio" id="011"> 否</label>
+							<label for="012"><input  name="filmExaminationType" value="0" type="radio" id="012"> 是</label>
+							<table class="SCA_tab"  border="1" cellspacing="0" cellpadding="0">
+							  <tbody>
+								<tr style="color:#228bf7;">
+								  <td>&nbsp;</td>
+								  <td>S</td>
+								  <td>C</td>
+								  <td>A</td>
+								</tr>
+								<tr>
+								  <td>右：</td>
+								  <td><input type="text" placeholder="输入" name="filmExaminationRighteyeS"></td>
+								  <td><input type="text" placeholder="输入" name="filmExaminationRighteyeC"></td>
+								  <td><input type="text" placeholder="输入" name="filmExaminationRighteyeA"></td>
+								</tr>
+								<tr>
+								  <td>左：</td>
+								  <td><input type="text" placeholder="输入" name="filmExaminationLefteyeS"></td>
+								  <td><input type="text" placeholder="输入" name="filmExaminationLefteyeC"></td>
+								  <td><input type="text" placeholder="输入" name="filmExaminationLefteyeA"></td>
+								</tr>
+							  </tbody>
+							</table>
+						</div>
+   					</div>
+   				</div>
+   				<!--====广域眼底照相====-->
+   				<div class="box box1" name="youer-guangyuyandizhaoxiang">
+   					<p>广域眼底照相：</p>
+					<!--<div >
+						<div style="width: auto;padding: 5%;margin-left:15%;color: #0a6aa1">待检查...</div>
+					</div>-->
+   					<div >
+   					<!--	<a href="">获取数据</a>-->
+   						<br/>右眼：
+   						<ul id="rightPic" >
+   							<li><img src="img/tousu-pic1.jpg" width="169" height="169" alt=""/></li>
+   							<li><img src="img/tousu-pic1.jpg" width="169" height="169" alt=""/></li>
+   							<li><img src="img/tousu-pic1.jpg" width="169" height="169" alt=""/></li>
+   						</ul>
+   						左眼：
+   						<ul id="leftPic">
+   						<li><img src="img/tousu-pic1.jpg" width="169" height="169" alt=""/></li>
+   							<li><img src="img/tousu-pic1.jpg" width="169" height="169"  alt=""/></li>
+   							<li><img src="img/tousu-pic1.jpg" width="169" height="169" alt=""/></li>
+   						</ul>
+   						结论：<textarea id="guangyujielun"></textarea>
+   					</div>
+				</div>
+  				<!--====屈光筛查====-->
+  				<div class="box1" name="youer-quguangshaicha">
+  					<p>屈光筛查：</p>
+  					<div class="Hphoto">
+  						<!--IP: <input type="text" placeholder="输入IP地址"><a href="">获取数据</a>-->
+  						<table class="Qgchaic" border="1" cellspacing="0" cellpadding="0">
+						  <tbody>
+							<tr>
+							  <td>等效球镜</td>
+							  <td>&nbsp;</td>
+								<td><em>OD:</em><span id="righteyeDengxiaoqiujing"></span></td>
+							  <td><em>OS:</em><span id="lefteyeDengxiaoqiujing"></span></td>
+							  
+							</tr>
+							<tr>
+							  <td>球镜</td>
+							  <td>&nbsp;</td>
+							  <td><em>OD:</em><span id="righteyeDiopterS"></span></td>
+							  <td><em>OS:</em><span id="lefteyeDiopterS"></span></td>
+							  
+							</tr>
+							<tr>
+							  <td>柱镜</td>
+							  <td>&nbsp;</td>
+							  <td><em>OD:</em><span id="righteyeDiopterC"></span></td>
+							  <td><em>OS:</em><span id="lefteyeDiopterC"></span></td>
+							  
+							</tr>
+							<tr>
+							  <td>轴位</td>
+							  <td>&nbsp;</td>
+							  <td><em>OD:</em><span id="righteyeDiopterA"></span></td>
+							  <td><em>OS:</em><span id="lefteyeDiopterA"></span></td>
+							  
+							</tr>
+							<tr>
+							  <td>瞳距</td>
+							  <td><em>双眼：</em><span id="ouPd"></span></td>
+							  <td><em>OD:</em><span id="odPd"></span></td>
+								<td><em>OS:</em><span id="osPd"></span></td>
+							</tr>
+						  </tbody>
+						</table>
+ 						
+  						<div class="boxeyes">
+  							<div class="fl boxeyes_txt">
+  								右眼：
+  								<div class="mb-15">
+									<label for="013"><input  name="righteyeResultType" value="0" type="radio" id="013"> 正常</label>
+  								</div>
+  								<div class="mb-15">
+									<label for="014"><input  name="righteyeResultType" value="1" type="radio" id="014"> 可疑</label>
+									<div class="keyi" style="display: none">
+										<label for="0166"><input  name="righteyeResultIns"  value="YUANSHI" type="radio" id="0166"> 远视</label>
+										<label for="0177"><input  name="righteyeResultIns" value="JINSHI" type="radio" id="0177"> 近视</label>
+										<label for="0188"><input  name="righteyeResultIns" value="SANGUANG" type="radio" id="0188"> 散光</label>
+									</div>
+  								</div>
+  								<div class="mb-15">
+									<label for="015"><input  name="righteyeResultType" value="2" type="radio" id="015"> 异常</label>
+									<div class="keyi" style="display: none">
+										<label for="0191"><input  name="righteyeResultIns" value="YUANSHI" type="radio" id="0191"> 远视</label>
+										<label for="0201"><input  name="righteyeResultIns" value="JINSHI" type="radio" id="0201"> 近视</label>
+										<label for="0211"><input  name="righteyeResultIns" value="SANGUANG" type="radio" id="0211"> 散光</label>
+									</div>
+  								</div>
+  							</div>
+  							<div class="fr boxeyes_txt">
+  								左眼：
+  								<div class="mb-15">
+									<label for="022"><input  name="lefteyeResultType" value="0" type="radio" id="022"> 正常</label>
+  								</div>
+  								<div class="mb-15">
+									<label for="023"><input  name="lefteyeResultType" value="1" type="radio" id="023"> 可疑</label>
+									<div class="keyi" style="display: none">
+										<label for="0192"><input  name="lefteyeResultIns" value="YUANSHI" type="radio" id="0192"> 远视</label>
+										<label for="0202"><input  name="lefteyeResultIns" value="JINSHI" type="radio" id="0202"> 近视</label>
+										<label for="0212"><input  name="lefteyeResultIns" value="SANGUANG" type="radio" id="0212"> 散光</label>
+									</div>
+  								</div>
+  								<div class="mb-15">
+									<label for="024"><input  name="lefteyeResultType" value="2" type="radio" id="024"> 异常</label>
+									<div class="keyi" style="display: none">
+										<label for="0193"><input  name="lefteyeResultIns" value="YUANSHI" type="radio" id="0193"> 远视</label>
+										<label for="0204"><input  name="lefteyeResultIns" value="JINSHI" type="radio" id="0204"> 近视</label>
+										<label for="0215"><input  name="lefteyeResultIns" value="SANGUANG" type="radio" id="0215"> 散光</label>
+									</div>
+  								</div>
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+				<!---====散瞳前电脑验光====-->
+				<div class="box1" name="youer-santongqian">
+					<p>散瞳前电脑验光:</p>
+					<div class="fl sanTong">
+					<!--	<a href="">获取数据</a>-->
+						<div class="stsju">
+							<!--右眼数据-->
+							<div class="F18" id="firstCheckVd">
+
+								VD
+
+
+							</div>
+							<table border="1" cellspacing="0" cellpadding="0">
+								<tbody>
+
+								<tr class="F16">
+									<td class="C-blue"> &lt; R &gt;</td>
+									<td>S</td>
+									<td>C</td>
+									<td>A</td>
+									<td> </td>
+								</tr>
+								<tr id="firstcheckr">
+									<td colspan="5" class="F16">L.DATA</td>
+								</tr>
+								<tr>
+									<td colspan="5" class="F16" id="firstCheckRps">PS &nbsp;</td>
+								</tr>
+								<tr class="F16">
+									<td> </td>
+									<td>R</td>
+									<td>D</td>
+									<td>deg</td>
+									<td> </td>
+								</tr>
+								<tr id="firstcheckdegr">
+									<td colspan="5" class="F16" id="firstCheckRcs">CS &nbsp;</td>
+								</tr>
+								<!--<tr>
+									<td colspan="5" class="F16">PD &nbsp; 58.0</td>
+								</tr>-->
+								</tbody>
+								<div  >
+									<td colspan="5"  class="F16" id="firstCheckPd">PD &nbsp;</td>
+								</div>
+							</table>
+
+							<!--左眼数据-->
+							<table border="1" cellspacing="0" cellpadding="0" class="TabLine">
+								<tbody>
+							<!--	<tr>
+									<td colspan="5" class="F18">VD=12.0mm</td>
+								</tr>-->
+								<tr class="F16">
+									<td class="C-blue"> &lt; L &gt;</td>
+									<td>S</td>
+									<td>C</td>
+									<td>A</td>
+									<td> </td>
+								</tr>
+								<tr id="firstcheckl">
+									<td colspan="5" class="F16">L.DATA</td>
+								</tr>
+
+								<tr>
+									<td colspan="5" class="F16" id="firstCheckLps">PS &nbsp;</td>
+								</tr>
+								<tr class="F16">
+									<td> </td>
+									<td>R</td>
+									<td>D</td>
+									<td>deg</td>
+									<td> </td>
+								</tr>
+
+								<tr id="firstcheckdegl">
+									<td colspan="5" class="F16" id="firstCheckLcs">CS &nbsp;</td>
+								</tr>
+								<!--<tr>
+									<td colspan="5" class="F16">PD &nbsp; 58.0</td>
+								</tr>-->
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<!---====散瞳后电脑验光====-->
+				<div class="box1" name="youer-santonghou">
+					<p>散瞳后电脑验光:</p>
+					<div class="fl sanTong">
+					<!--	<a href="">获取数据</a>-->
+						<div class="stsju">
+							<div  id="secondCheckVd">
+								VD
+							</div>
+							<!--右眼数据-->
+							<table border="1" cellspacing="0" cellpadding="0">
+								<tbody>
+
+								<tr class="F16">
+									<td class="C-blue"> &lt; R &gt;</td>
+									<td>S</td>
+									<td>C</td>
+									<td>A</td>
+									<td> </td>
+								</tr>
+								<tr id="secondcheckr">
+									<td colspan="5" class="F16">L.DATA</td>
+								</tr>
+								<tr>
+									<td colspan="5" class="F16" id="secondCheckRps">PS &nbsp;</td>
+								</tr>
+								<tr class="F16">
+									<td> </td>
+									<td>R</td>
+									<td>D</td>
+									<td>deg</td>
+									<td> </td>
+								</tr>
+								<tr id="secondcheckdegr">
+									<td colspan="5" class="F16" id="secondCheckRcs">CS &nbsp;</td>
+								</tr>
+								<!--<tr>
+									<td colspan="5" class="F16">PD &nbsp; 58.0</td>
+								</tr>-->
+								</tbody>
+								<div  >
+									<td colspan="5"  class="F16" id="secondCheckPd">PD &nbsp;</td>
+								</div>
+							</table>
+
+							<!--左眼数据-->
+							<table border="1" cellspacing="0" cellpadding="0" class="TabLine">
+								<tbody>
+								<tr class="F16">
+									<td class="C-blue"> &lt; L &gt;</td>
+									<td>S</td>
+									<td>C</td>
+									<td>A</td>
+									<td> </td>
+								</tr>
+								<tr id="secondcheckl">
+									<td colspan="5" class="F16">L.DATA</td>
+								</tr>
+								<tr>
+									<td colspan="5" class="F16" id="secondCheckLps">PS &nbsp;</td>
+								</tr>
+								<tr class="F16">
+									<td> </td>
+									<td>R</td>
+									<td>D</td>
+									<td>deg</td>
+									<td> </td>
+								</tr>
+								<tr id="secondcheckdegl">
+									<td colspan="5" class="F16" id="secondCheckLcs">CS &nbsp;</td>
+								</tr>
+								<!--<tr>
+									<td colspan="5" class="F16">PD &nbsp; 58.0</td>
+								</tr>-->
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<!--====眼轴长度====-->
+				<div class="box1" name="youer-yanzhouchangdu">
+					<p>眼轴长度:</p>
+					<table class="Yzhouchang" border="1" cellspacing="0" cellpadding="0">
+						<tbody>
+						<tr>
+							<td>OD</td>
+							<td id="firstCheckOd"></td>
+						</tr>
+						<tr>
+							<td>OS</td>
+							<td id="firstCheckOs"></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<!--====角膜曲率====-->
+				<div class="box1" name="youer-jiaomoqulv">
+					<p>角膜曲率:</p>
+					<table class="Yzhouchang" border="1" cellspacing="0" cellpadding="0">
+						<tbody>
+						<tr>
+							<td>右眼</td>
+							<td id="RK1">k1：</td>
+							<td id="RK2">k2：</td>
+						</tr>
+						<tr>
+							<td>左眼</td>
+							<td id="LK1">k1：</td>
+							<td id="LK2">k2：</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+  				<!--====检查结论====-->
+  				<div class="box1">
+  					<p>检查结论：</p>
+  					<div class="JLtxt">
+						<input type="text" name="conclusion" id="cc1">
+						<div class="boxeyes" id="cc2">
+							<div class="fl boxeyestxt" >
+								右眼：
+								<div class="mb-15">
+									<label for="013333"><input  name="ocularArchitectureRighteyeConclusion" value="0" type="radio" id="013333">眼球结构未见异常</label>
+								</div>
+								<div class="mb-15">
+									<label for="014333"><input  name="ocularArchitectureRighteyeConclusion" value="1" type="radio" id="014333">眼前节未见异常</label>
+								</div>
+								<div class="mb-15">
+									<label for="015333"><input  name="ocularArchitectureRighteyeConclusion" value="2" type="radio" id="015333"> 异常<input type="text" name="ocularArchitectureRighteye"></label>
+								</div>
+							</div>
+							<div class="fr boxeyestxt">
+								左眼：
+								<div class="mb-15">
+									<label for="022333"><input  name="ocularArchitectureLefteyeConclusion" value="0" type="radio" id="022333"> 眼球结构未见异常</label>
+								</div>
+								<div class="mb-15">
+									<label for="023333"><input  name="ocularArchitectureLefteyeConclusion" value="1" type="radio" id="023333"> 眼前节未见异常</label>
+								</div>
+								<div class="mb-15">
+									<label for="024333"><input  name="ocularArchitectureLefteyeConclusion" value="2" type="radio" id="024333"> 异常<input type="text" name="ocularArchitectureLefteye"></label>
+								</div>
+							</div>
+						</div>
+					</div>
+  				</div>
+  				<!--====医生建议====-->
+  				<div class="box1">
+  					<p>医生建议：</p>
+  					<div class="JLtxt"><input type="text" name="proposal"></div>
+  				</div>
+  				<!--====下次复查时间====-->
+  				<div class="box1">
+  					<p>下次复查时间：</p>
+  					<div class="JLtxt">
+						<input type="text" id="lastCheckDate"  name="lastCheckDate">
+					</div>
+  				</div>
+  				<!--====检查者签字====-->
+  				<div class="box1">
+  					<p>检查者签字：</p>
+  					<div class="QMtxt"><input type="text" name="chector"></div>
+  				</div>
+  				<input type="button" class="TJbtn" value="提交"/>
+   			</div>
+				<input type="hidden" name="childId"/>
+			</form>
+   			<!--========保健要点提示========-->
+   			<div class="Tipbox">
+   				<div class="blue_bor">
+					<h3>2周岁－2周岁半儿童视功能及保健要点</h3>
+					<p>◆  教孩子分辨简单的图形，认识图形视力表或“E”字视力表，以便孩子3周岁完成视力检查；</p>
+					<p>◆ 教孩子辨别红、黄、绿的颜色，以便孩子完成3周岁的色觉检查；</p>
+					<p>◆ 避免长时间近距离用眼，避免接触手机、电脑、平板，看电视时间每次不能超过半小时，每天不能超过2次；</p>
+					<p>◆ 户外活动每天不能少于2小时。</p>
+					<dl>
+						<dt><b>健康小贴士：</b>您知道“弱视”吗？</dt>
+						<dd>是指在视觉发育期（3岁前）由于斜视、未矫正的屈光不正等引起的最佳矫正视力低于相应年龄的视力，或一眼视力低于另一眼2行以上，并且视功能停留在一个低级水平，长大后即使戴眼镜视力也不能达到正常，对今后的学习、工作、职业选择都有很大的影响。</dd>
+						<dd>弱视应在6岁前治疗，年龄越小疗效越好，所以弱视要早发现早治疗。</dd>
+					</dl>
+				</div>
+   			</div>
+   		</div>
+
+   </div>
+   <!--=================提交按钮弹框===================-->
+   <div class="popSuc" id="success" style="display: none">
+	   <div class="txt">
+		   <p>提交成功</p>
+		   <span id="successConfirm">6s跳过</span>
+	   </div>
+   </div>
+</body>
+<script src="/js/plugins/layer/laydate/laydate.js"></script>
+<script type="text/javascript">
+    laydate.render({
+        elem: '#checkDate',
+        type: 'date'
+    });
+    laydate.render({
+        elem:'#lastCheckDate',
+        type:'date'
+    });
+    laydate.render({
+        elem:'#childBirthday',
+        type:'date'
+    });
+    /**
+	 * 默认2-7天
+     */
+    $(".YBJbox").children("h3").text("出生2-7天眼保健情况");
+    $("[name*='youer']").hide();
+    $("[name*='waiyanjiancha']").show();
+    $("[name*='hongguangfanshe']").show();
+    $("[name*='guangyuyandizhaoxiang']").show();
+    $("#cc1").hide();
+    $("#cc2").show();
+
+
+    $("#selectAge").change(function() {
+        var value = $(this).val();
+        document.getElementById("formData").reset();
+		$(this).val(value);
+        if(value==0){
+            $("#cc1").hide();
+            $("#cc2").show();
+		}else{
+            $("#cc1").show();
+            $("#cc2").hide();
+		}
+
+
+		if(value==9 || value==10 || value==11 || value==12){
+			$("#yanweijianchaxieshichukui").text("斜视初窥：");
+			$(".yanqiuzhenchan").hide();
+		}
+		else{
+		    $("#yanweijianchaxieshichukui").text("眼位检查：");
+            $(".yanqiuzhenchan").show();
+		}
+        switch (value) {
+            case '0':{
+                $(".YBJbox").children("h3").text("出生2-7天眼保健情况");
+				$("[name*='youer']").hide();
+				$("[name*='waiyanjiancha']").show();
+                $("[name*='hongguangfanshe']").show();
+                $("[name*='guangyuyandizhaoxiang']").show();
+                break;
+            }
+            case '1':{
+                $(".YBJbox").children("h3").text("满月（42天）眼保健情况");
+                $("[name*='youer']").hide();
+                $("[name*='waiyanjiancha']").show();
+                $("[name*='hongguangfanshe']").show();
+                $("[name*='shunmufanshe']").show();
+                $("[name*='hongqiushiyan']").show();
+                $("[name*='shilichushai']").show();
+                $("[name*='hongqiushiyan']").show();
+                $("[name*='shilichushai']").show();
+                $("[name*='yanqiuzhuisuiyundong']").show();
+                $("[name*='guangyuyandizhaoxiang']").show();
+                break;
+            }
+            case '2':{
+                $(".YBJbox").children("h3").text("3月龄眼保健情况");
+                $("[name*='youer']").hide();
+                $("[name*='waiyanjiancha']").show();
+                $("[name*='hongguangfanshe']").show();
+                $("[name*='shunmufanshe']").show();
+                $("[name*='hongqiushiyan']").show();
+                $("[name*='shilichushai']").show();
+                $("[name*='hongqiushiyan']").show();
+                $("[name*='shilichushai']").show();
+                $("[name*='yanqiuzhuisuiyundong']").show();
+                $("[name*='guangyuyandizhaoxiang']").show();
+                break;
+            }
+            case '3':{
+                $(".YBJbox").children("h3").text("6月龄眼保健情况");
+                $("[name*='youer']").hide();
+                $("[name*='waiyanjiancha']").show();
+                $("[name*='hongguangfanshe']").show();
+                $("[name*='shilichushai']").show();
+                $("[name*='quguangshaicha']").show();
+                $("[name*='shijuexingwei']").show();
+				$("[name*='xuanzexingzhushijiance']").show();
+                $("[name*='yanweijiancha']").show();
+				$("[name*='guangyuyandizhaoxiang']").show();
+                break;
+            }
+            case '4':{
+                $(".YBJbox").children("h3").text("8月眼保健情况");
+                $("[name*='youer']").hide();
+                $("[name*='waiyanjiancha']").show();
+                $("[name*='hongguangfanshe']").show();
+                $("[name*='shilichushai']").show();
+                $("[name*='quguangshaicha']").show();
+                $("[name*='shijuexingwei']").show();
+                $("[name*='xuanzexingzhushijiance']").show();
+                $("[name*='yanweijiancha']").show();
+                $("[name*='guangyuyandizhaoxiang']").show();
+                $("[name*='jianyingjiancha']").show();
+                break
+            }
+            case '5':{
+                $(".YBJbox").children("h3").text("1周岁眼保健情况");
+                $("[name*='youer']").hide();
+                $("[name*='waiyanjiancha']").show();
+                $("[name*='hongguangfanshe']").show();
+                $("[name*='shilichushai']").show();
+                $("[name*='quguangshaicha']").show();
+                $("[name*='shijuexingwei']").show();
+                $("[name*='xuanzexingzhushijiance']").show();
+                $("[name*='yanweijiancha']").show();
+                $("[name*='guangyuyandizhaoxiang']").show();
+                $("[name*='jianyingjiancha']").show();
+                $("[name*='yanqiuyundong']").show();
+                break;
+            }
+            case '6':{
+                $(".YBJbox").children("h3").text("1周岁半眼保健情况");
+                $("[name*='youer']").hide();
+                $("[name*='waiyanjiancha']").show();
+                $("[name*='hongguangfanshe']").show();
+                $("[name*='shilichushai']").show();
+                $("[name*='quguangshaicha']").show();
+                $("[name*='shijuexingwei']").show();
+                $("[name*='yanweijiancha']").show();
+                $("[name*='guangyuyandizhaoxiang']").show();
+                $("[name*='jianyingjiancha']").show();
+                $("[name*='yanqiuyundong']").show();
+                break;
+            }
+            case '7':{
+                $(".YBJbox").children("h3").text("2周岁眼保健情况");
+                $("[name*='youer']").hide();
+                $("[name*='waiyanjiancha']").show();
+                $("[name*='hongguangfanshe']").show();
+                $("[name*='quguangshaicha']").show();
+                $("[name*='shijuexingwei']").show();
+                $("[name*='yanweijiancha']").show();
+                $("[name*='guangyuyandizhaoxiang']").show();
+                $("[name*='jianyingjiancha']").show();
+                $("[name*='yanqiuyundong']").show();
+                break;
+            }
+            case '8':{
+                $(".YBJbox").children("h3").text("2周岁半眼保健情况");
+                $("[name*='youer']").hide();
+                $("[name*='waiyanjiancha']").show();
+                $("[name*='hongguangfanshe']").show();
+                $("[name*='quguangshaicha']").show();
+                $("[name*='shijuexingwei']").show();
+                $("[name*='yanweijiancha']").show();
+                $("[name*='jianyingjiancha']").show();
+                $("[name*='yanqiuyundong']").show();
+
+                $("[name*='santongqian']").show();
+                $("[name*='santonghou']").show();
+                break;
+            }
+            case '9':{
+                $(".YBJbox").children("h3").text("3周岁眼保健情况");
+                $("[name*='youer']").hide();
+                $("[name*='waiyanjiancha']").show();
+                $("[name*='quguangshaicha']").show();
+                $("[name*='jianyingjiancha']").show();
+                $("[name*='yanqiuyundong']").show();
+
+                $("[name*='santongqian']").show();
+                $("[name*='santonghou']").show();
+
+                $("[name*='shilijiancha']").show();
+                $("[name*='yanzhouchangdu']").show();
+                $("[name*='jiaomoqulv']").show();
+				$("[name*='sejuejiancha']").show();
+                $("[name*='yanweijiancha']").show();
+                break;
+            }
+            case '10':{
+                $(".YBJbox").children("h3").text("4周岁眼保健情况");
+                $("[name*='youer']").hide();
+                $("[name*='waiyanjiancha']").show();
+                $("[name*='quguangshaicha']").show();
+                $("[name*='jianyingjiancha']").show();
+                $("[name*='yanqiuyundong']").show();
+
+                $("[name*='santongqian']").show();
+                $("[name*='santonghou']").show();
+
+                $("[name*='shilijiancha']").show();
+                $("[name*='yanzhouchangdu']").show();
+                $("[name*='jiaomoqulv']").show();
+                $("[name*='sejuejiancha']").show();
+                $("[name*='yanweijiancha']").show();
+                break;
+            }
+            case '11':{
+                $(".YBJbox").children("h3").text("5周岁眼保健情况");
+                $("[name*='youer']").hide();
+                $("[name*='waiyanjiancha']").show();
+                $("[name*='quguangshaicha']").show();
+                $("[name*='jianyingjiancha']").show();
+                $("[name*='yanqiuyundong']").show();
+
+                $("[name*='santongqian']").show();
+                $("[name*='santonghou']").show();
+
+                $("[name*='shilijiancha']").show();
+                $("[name*='yanzhouchangdu']").show();
+                $("[name*='jiaomoqulv']").show();
+                $("[name*='sejuejiancha']").show();
+                $("[name*='yanweijiancha']").show();
+                break;
+            }
+            case '12':{
+                $(".YBJbox").children("h3").text("6周岁眼保健情况");
+                $("[name*='youer']").hide();
+
+                $("[name*='waiyanjiancha']").show();
+                $("[name*='quguangshaicha']").show();
+                $("[name*='jianyingjiancha']").show();
+                $("[name*='yanqiuyundong']").show();
+
+                $("[name*='santongqian']").show();
+                $("[name*='santonghou']").show();
+
+                $("[name*='shilijiancha']").show();
+                $("[name*='yanzhouchangdu']").show();
+                $("[name*='jiaomoqulv']").show();
+                $("[name*='sejuejiancha']").show();
+                $("[name*='yanweijiancha']").show();
+                break;
+            }
+        }
+
+        //获取屈光筛查数据
+        var childIdcard=$("[name='childIdcard']").val();
+        $.ajax({
+            cache : true,
+            type : "GET",
+            url : "/information/child/getChildRefractionScreening",
+            data :{
+                childIdcard:childIdcard,
+                age:value
+            },
+            async : false,
+            success : function(data) {
+				if(data.code==-1){
+					console.info(data.code);
+				}
+				if(data.code==0) {console.info(data.data)
+					$("#righteyeDiopterS").text(data.data.righteyeDiopterS);
+                    $("#righteyeDiopterC").text(data.data.righteyeDiopterC);
+                    $("#righteyeDiopterA").text(data.data.righteyeDiopterA);
+                    $("#lefteyeDiopterS").text(data.data.lefteyeDiopterS);
+                    $("#lefteyeDiopterC").text(data.data.lefteyeDiopterC);
+                    $("#lefteyeDiopterA").text(data.data.lefteyeDiopterA);
+                    $("#righteyeDengxiaoqiujing").text(data.data.righteyeDengxiaoqiujing);
+                    $("#lefteyeDengxiaoqiujing").text(data.data.lefteyeDengxiaoqiujing);
+                    $("#ouPd").text(data.data.ouPd);
+                    $("#osPd").text(data.data.osPd);
+                    $("#odPd").text(data.data.odPd);
+                    $("[name='righteyeResultType']").each(function(){
+                        var value = data.data.righteyeResultType;
+                        if($(this).val()==value) {
+                            $(this).attr("checked", true);
+                            if(value==1 || value==2){
+                                $(this).parent().next().show();
+                                $(this).parent().next().find(":radio").each(function(index,item){
+                                    console.info(index)
+                                    if($(item).val()==data.data.righteyeResultIns)
+                                        $(item).attr("checked", true);
+								})
+							}
+                        }
+                    });
+                    $("[name='lefteyeResultType']").each(function(){
+                        var value=data.data.lefteyeResultType;
+                        if($(this).val()==value)
+                            $(this).attr("checked",true);
+                        if(value==1 || value==2){
+                            $(this).parent().next().show();
+                            $(this).parent().next().find(":radio").each(function(index,item){
+                                if($(item).val()==data.data.lefteyeResultIns)
+                                    $(item).attr("checked", true);
+                            })
+                        }
+                    });
+				}
+
+            }
+        });
+
+        //获取广域眼底照相的数据
+        $.ajax({
+            cache : true,
+            type : "GET",
+            url : "/information/child/getChildChildPhotography",
+            data :{childIdcard:childIdcard, age:value},
+            async : false,
+            success : function(data) {
+                if(data.code==-1){
+                    console.info(data.code);
+                }
+                if(data.code==0) {
+                    console.info(data.data);
+					var li="";
+					if(data.data.leftList!=null){
+                        for(var i=0;i<data.data.leftList.length;i++){
+                            var lpic=data.data.leftList[i];
+							li+=" <li><img src="+lpic+"/></li>"
+						}
+					}
+					$("#leftPic").html(li);
+					li="";
+                    if(data.data.rightList!=null){
+                        for(var i=0;i<data.data.rightList.length;i++){
+                            var rpic = data.data.rightList[i];
+                            li+=" <li><img src="+rpic+"/></li>"
+                        }
+                    }
+                    $("#rightPic").html(li);
+                    $("#guangyujielun").text(data.data.conclusion);
+
+				}
+            }
+        });
+
+
+        //获取电脑验光数据
+        $.ajax({
+            cache : true,
+            type : "GET",
+            url : "/information/child/getChildOptometryDO",
+            data :{
+                childIdcard:childIdcard,
+                age:value
+            },
+            async : false,
+            success : function(data) {
+                if(data.code==-1){
+                    console.info(data.code);
+                }
+                if(data.code==0) {console.info(data.data);
+                    var childDiopterDOS=data.data.childDiopterDOS;
+                    for(var i=0;i<childDiopterDOS.length;i++){
+                        var childDiopterDO=childDiopterDOS[i];
+                        if(childDiopterDO.firstSecond=="FIRST_CHECK"){
+							if(childDiopterDO.ifrl=="R"){
+								if(childDiopterDO.type=="PU_TONG"){
+                                	var tr=	"<tr>"
+                                    		+"<td> </td>"
+                                    		+"<td>"+childDiopterDO.diopterS+"</td>"
+                                    		+"<td>"+childDiopterDO.diopterC+"</td>"
+                                    		+"<td>"+childDiopterDO.diopterA+"</td>"
+                                    		+"<td>"+childDiopterDO.believe+"</td>";
+                                    		+"</tr>";
+									$("#firstcheckr").before(tr);
+								}
+								if(childDiopterDO.type=="AVG"){
+								    var tr=	"<tr>"
+                                    		+"<td> </td>"
+										    +"<td>&lt;"+ childDiopterDO.diopterS+"</td>"
+                                    		+"<td>"+childDiopterDO.diopterC+"</td>"
+                                    		+"<td>"+childDiopterDO.diopterA+" &gt;</td>"
+                                    		+"<td></td>"
+                                    		+"</tr>";
+                                    $("#firstcheckr").before(tr);
+								}
+								if(childDiopterDO.type=="L_DATA"){
+                                    var tr=	"<tr>"
+                                        +"<td> </td>"
+                                        +"<td>"+childDiopterDO.diopterS+"</td>"
+                                        +"<td>"+childDiopterDO.diopterC+"</td>"
+                                        +"<td>"+childDiopterDO.diopterA+"</td>"
+                                        +"<td>"+childDiopterDO.believe+"</td>";
+                                    +"</tr>";
+                                    $("#firstcheckr").after(tr);
+								}
+							}else if(childDiopterDO.ifrl=="L"){
+                                if(childDiopterDO.type=="PU_TONG"){
+                                    var tr=	"<tr>"
+                                        +"<td> </td>"
+                                        +"<td>"+childDiopterDO.diopterS+"</td>"
+                                        +"<td>"+childDiopterDO.diopterC+"</td>"
+                                        +"<td>"+childDiopterDO.diopterA+"</td>"
+                                        +"<td>"+childDiopterDO.believe+"</td>";
+                                    +"</tr>";
+                                    $("#firstcheckl").before(tr);
+                                }
+                                if(childDiopterDO.type=="AVG"){
+                                    var tr=	"<tr>"
+                                        +"<td> </td>"
+                                        +"<td>&lt;"+ childDiopterDO.diopterS+"</td>"
+                                        +"<td>"+childDiopterDO.diopterC+"</td>"
+                                        +"<td>"+childDiopterDO.diopterA+" &gt;</td>"
+                                        +"<td></td>"
+                                        +"</tr>";
+                                    $("#firstcheckl").before(tr);
+                                }
+                                if(childDiopterDO.type=="L_DATA"){
+                                    var tr=	"<tr>"
+                                        +"<td> </td>"
+                                        +"<td>"+childDiopterDO.diopterS+"</td>"
+                                        +"<td>"+childDiopterDO.diopterC+"</td>"
+                                        +"<td>"+childDiopterDO.diopterA+"</td>"
+                                        +"<td>"+childDiopterDO.believe+"</td>";
+                                    +"</tr>";
+                                    $("#firstcheckl").after(tr);
+                                }
+							}
+						}else if(childDiopterDO.firstSecond=="SECOND_CHECK"){
+                            if(childDiopterDO.ifrl=="R"){
+                                if(childDiopterDO.type=="PU_TONG"){
+                                    var tr=	"<tr>"
+                                        +"<td> </td>"
+                                        +"<td>"+childDiopterDO.diopterS+"</td>"
+                                        +"<td>"+childDiopterDO.diopterC+"</td>"
+                                        +"<td>"+childDiopterDO.diopterA+"</td>"
+                                        +"<td>"+childDiopterDO.believe+"</td>";
+                                    +"</tr>";
+                                    $("#secondcheckr").before(tr);
+                                }
+                                if(childDiopterDO.type=="AVG"){
+                                    var tr=	"<tr>"
+                                        +"<td> </td>"
+                                        +"<td>&lt;"+ childDiopterDO.diopterS+"</td>"
+                                        +"<td>"+childDiopterDO.diopterC+"</td>"
+                                        +"<td>"+childDiopterDO.diopterA+" &gt;</td>"
+                                        +"<td></td>"
+                                        +"</tr>";
+                                    $("#secondcheckr").before(tr);
+                                }
+                                if(childDiopterDO.type=="L_DATA"){
+                                    var tr=	"<tr>"
+                                        +"<td> </td>"
+                                        +"<td>"+childDiopterDO.diopterS+"</td>"
+                                        +"<td>"+childDiopterDO.diopterC+"</td>"
+                                        +"<td>"+childDiopterDO.diopterA+"</td>"
+                                        +"<td>"+childDiopterDO.believe+"</td>";
+                                    +"</tr>";
+                                    $("#secondcheckr").after(tr);
+                                }
+                            }else if(childDiopterDO=="L"){
+                                if(childDiopterDO.type=="PU_TONG"){
+                                    var tr=	"<tr>"
+                                        +"<td> </td>"
+                                        +"<td>"+childDiopterDO.diopterS+"</td>"
+                                        +"<td>"+childDiopterDO.diopterC+"</td>"
+                                        +"<td>"+childDiopterDO.diopterA+"</td>"
+                                        +"<td>"+childDiopterDO.believe+"</td>";
+                                    +"</tr>";
+                                    $("#secondcheckl").before(tr);
+                                }
+                                if(childDiopterDO.type=="AVG"){
+                                    var tr=	"<tr>"
+                                        +"<td> </td>"
+                                        +"<td>&lt;"+ childDiopterDO.diopterS+"</td>"
+                                        +"<td>"+childDiopterDO.diopterC+"</td>"
+                                        +"<td>"+childDiopterDO.diopterA+" &gt;</td>"
+                                        +"<td></td>"
+                                        +"</tr>";
+                                    $("#secondcheckl").before(tr);
+                                }
+                                if(childDiopterDO.type=="L_DATA"){
+                                    var tr=	"<tr>"
+                                        +"<td> </td>"
+                                        +"<td>"+childDiopterDO.diopterS+"</td>"
+                                        +"<td>"+childDiopterDO.diopterC+"</td>"
+                                        +"<td>"+childDiopterDO.diopterA+"</td>"
+                                        +"<td>"+childDiopterDO.believe+"</td>";
+                                    +"</tr>";
+                                    $("#secondcheckl").after(tr);
+                                }
+                            }
+						}
+					}
+					var childCornealDOS=data.data.childCornealDOS;
+					for(var i=0;i<childCornealDOS.length;i++){
+					    var childCornealDO=childCornealDOS[i];
+                        var tr="<tr>"
+                            +"<td>&lt;"+childCornealDO.type+"</td>"
+                            +"<td>"+childCornealDO.cornealMm+"</td>"
+                            +"<td>"+childCornealDO.cornealD+"</td>"
+                            +"<td>"+childCornealDO.cornealDeg+"&gt;</td>"
+                            +"<td></td>"
+                            +"</tr>";
+					    if(childCornealDO.firstSecond=="FIRST_CHECK"){
+							if(childCornealDO.ifrl=="R"){
+								$("#firstcheckdegr").before(tr);
+								if(childCornealDO.type=="R1")
+								    $("#RK1").text($("#RK1").text()+childCornealDO.cornealMm);
+                                if(childCornealDO.type=="R2")
+                                    $("#RK2").text($("#RK2").text()+childCornealDO.cornealMm);
+							}else if(childCornealDO.ifrl=="L"){
+                                $("#firstcheckdegl").before(tr);
+                                if(childCornealDO.type=="R1")
+                                    $("#LK1").text($("#LK1").text()+childCornealDO.cornealMm);
+                                if(childCornealDO.type=="R2")
+                                    $("#LK2").text($("#LK2").text()+childCornealDO.cornealMm);
+							}
+						}else if(childCornealDO.firstSecond=="SECOND_CHECK"){
+                            if(childCornealDO.ifrl=="R"){
+                                $("#secondcheckdegr").before(tr);
+                            }else if(childCornealDO.ifrl=="L"){
+                                $("#secondcheckdegl").before(tr);
+                            }
+						}
+					}
+					var childOptometryDO=data.data.childOptometryDO;
+                    if(childOptometryDO.firstCheckLcs!='0') $("#firstCheckLcs").text($("#firstCheckLcs").text()+childOptometryDO.firstCheckLcs);
+					if(childOptometryDO.firstCheckLps!=0) $("#firstCheckLps").text($("#firstCheckLps").text()+childOptometryDO.firstCheckLps);
+                    if(childOptometryDO.firstCheckPd!=0) $("#firstCheckPd").text($("#firstCheckPd").text()+childOptometryDO.firstCheckPd);
+                    if(childOptometryDO.firstCheckRcs!=0) $("#firstCheckRcs").text($("#firstCheckRcs").text()+childOptometryDO.firstCheckRcs);
+                    if(childOptometryDO.firstCheckRps!=0) $("#firstCheckRps").text($("#firstCheckRps").text()+childOptometryDO.firstCheckRps);
+                    if(childOptometryDO.firstCheckVd!=0) $("#firstCheckVd").text($("#firstCheckVd").text()+childOptometryDO.firstCheckVd+"mm");
+
+                    if(childOptometryDO.secondCheckLcs!=0) $("#secondCheckLcs").text($("#secondCheckLcs").text()+childOptometryDO.secondCheckLcs);
+                    if(childOptometryDO.secondCheckLps!=0) $("#secondCheckLps").text($("#secondCheckLps").text()+childOptometryDO.secondCheckLps);
+                    if(childOptometryDO.secondCheckPd!=0) $("#secondCheckPd").text($("#secondCheckPd").text()+childOptometryDO.secondCheckPd);
+
+                    if(childOptometryDO.secondCheckRcs!=0) $("#secondCheckRcs").text($("#secondCheckRcs").text()+childOptometryDO.secondCheckRcs);
+                    if(childOptometryDO.secondCheckRps!=0) $("#secondCheckRps").text($("#secondCheckRps").text()+childOptometryDO.secondCheckRps);
+                    if(childOptometryDO.secondCheckVd!=0) $("#secondCheckVd").text($("#secondCheckVd").text()+childOptometryDO.secondCheckVd+"mm");
+				}
+            }
+        });
+
+		//获取眼轴长度
+        $.ajax({
+            cache : true,
+            type : "GET",
+            url : "/information/child/getChildEyeaxisDO",
+            data :{
+                childIdcard:childIdcard,
+                age:value
+            },
+            async : false,
+            success : function(data) {
+                if(data.code==-1){
+                    console.info(data.code);
+                }
+                if(data.code==0) {console.info(data.data)
+					$("#firstCheckOd").text(data.data.firstCheckOd+"mm");
+                	$("#firstCheckOs").text(data.data.firstCheckOs+"mm");
+                }
+
+            }
+        });
+
+    });
+
+    /**
+	 *  获取基本信息
+     */
+    function getChildInfo() {
+        var childIdcard = $("#getChildCard").val();
+        $.ajax({
+            cache : true,
+            type : "GET",
+            url : "/information/child/getChild",
+            data :{childIdcard:childIdcard},
+            async : false,
+            success : function(data) {
+                if(data.code==-1){
+                    console.info(data.code);
+                }
+                if(data.code==0) {
+					console.info(data.data);
+					var child=data.data;
+					$("[name='childIdcard']").val(child.childIdcard);
+                    $("[name='childAddress']").val(child.childAddress);
+                    $("[name='childBirthday']").val(child.childBirthday);
+                    $("[name='childGestationalweek']").val(child.childGestationalweek);
+
+                    $("[name='childHistoryN']").val(child.childHistoryN);
+                    $("[name='childName']").val(child.childName);
+                    $("[name='childPhone']").val(child.childPhone);
+                    $("[name='childSpec']").val(child.childSpec);
+                    $("[name='childWeight']").val(child.childWeight);
+					$("[name='fatherEyeHis']").val(child.fatherEyeHis);
+                    $("[name='fatherName']").val(child.fatherName);
+                    $("[name='motherEyeHis']").val(child.motherEyeHis);
+                    $("[name='motherEyeIns']").val(child.motherEyeIns);
+                    $("[name='motherIdcard']").val(child.motherIdcard);
+                    $("[name='motherName']").val(child.motherName);
+					$("[name='childGender']").each(function () {
+						if($(this).val()==child.childGender)
+						    $(this).attr("checked",true);
+                    });
+                    $("[name='childSuffocation']").each(function () {
+                        if($(this).val()==child.childSuffocation)
+                            $(this).attr("checked",true);
+                    });
+                    $("[name='childOxygen']").each(function () {
+                        if($(this).val()==child.childOxygen)
+                            $(this).attr("checked",true);
+                    });
+                    $("[name='childDelivery']").each(function () {
+                        if($(this).val()==child.childDelivery)
+                            $(this).attr("checked",true);
+                    });
+                    $("[name='childMedicineHis']").each(function () {
+                        if($(this).val()==child.childMedicineHis)
+                            $(this).attr("checked",true);
+                        if(child.childMedicineHis==1)
+                            $("[name='childMedicineIns']").val(child.childMedicineIns);
+                    });
+                    $("[name='childType']").each(function () {
+                        if(child.childType.indexOf($(this).val())>-1)
+                            $(this).attr("checked",true);
+                    });
+                    $("[name='fatherEyeHis']").each(function () {
+                        if($(this).val()==child.fatherEyeHis)
+                            $(this).attr("checked",true);
+                        if(child.fatherEyeHis==1){
+                            $(this).parent().next().show()
+                            $("[name='fatherEyeIns']").each(function (index,item) {
+								if($(item).val()==child.fatherEyeIns)
+								    $(item).attr("checked",true);
+                            });
+						}
+                    });
+                    $("[name='motherEyeHis']").each(function () {
+                        if($(this).val()==child.motherEyeHis)
+                            $(this).attr("checked",true);
+                        if(child.motherEyeHis==1){
+                            $(this).parent().next().show()
+                            $("[name='motherEyeIns']").each(function (index,item) {
+                                if($(item).val()==child.motherEyeIns)
+                                    $(item).attr("checked",true);
+                            });
+                        }
+                    });
+                }
+            }
+        });
+
+    }
+    $("[name='motherEyeHis']").change(function(){
+        var value=$("[name='motherEyeHis']:checked").val();
+        if(value==1)
+            $(this).parent().nextAll(".inbox").show();
+        else
+            $(this).parent().nextAll(".inbox").hide();
+
+	});
+
+    $("[name='fatherEyeHis']").change(function(){
+        var value=$("[name='fatherEyeHis']:checked").val();
+        if(value==1)
+            $(this).parent().nextAll(".inbox").show();
+        else
+            $(this).parent().nextAll(".inbox").hide();
+
+    });
+
+    $("[name*='ExaminationType']").change(function(){
+        var value=$(this).val();
+        if(value==1)
+        	$(this).parent().nextAll(".jj").show();
+	    else
+			$(this).parent().nextAll(".jj").hide();
+
+	});
+
+    $("[name*='examinationOfPositionRighteyeType']").change(function(){
+		var value=$(this).val();
+		if(value==1)
+            $("[name='examinationOfStrabismusRighteyeType']").parent().parent().show();
+		else
+            $("[name='examinationOfStrabismusRighteyeType']").parent().parent().hide();
+	});
+
+    $("[name*='examinationOfPositionLefteyeType']").change(function(){
+        var value=$(this).val();
+        if(value==1)
+            $("[name='examinationOfStrabismusLefteyeType']").parent().parent().show();
+        else
+            $("[name='examinationOfStrabismusLefteyeType']").parent().parent().hide();
+    });
+
+    $("[name='filmExaminationType']").change(function(){
+		var value=$(this).val();
+		if(value==0)
+		    $(this).parent().nextAll("table").show();
+		else
+            $(this).parent().nextAll("table").hide();
+
+	});
+
+    //查看历史记录
+	$("#history").click(function(){
+        var childIdcard=$("[name='childIdcard']").val();
+        if(childIdcard==""){
+            alert("输入孩子的身份证号后，查看记录");
+            return;
+        }
+        var age=-1;
+		window.location.href="/information/child/getHistory/"+childIdcard+"/"+age;
+	});
+
+    $(".TJbtn").click(function(){
+        var childIdcard=$("[name='childIdcard']").val();
+		if(childIdcard==""){
+            alert("身份证号不能为空");
+            return;
+		}
+		var childBirthday=$("#childBirthday").val();
+		if(childBirthday.trim()==""){
+            alert("孩子的出生日期不能为空");
+            return;
+		}
+		var motherIdcard = $("[name='motherIdcard']").val();
+		if(motherIdcard.trim()==""){
+		    alert("母亲的身份证号不能为空");
+		    return;
+		}
+        $.ajax({
+            cache : true,
+            type : "POST",
+            url : "/information/child/save",
+            data :$('#formdatar').serialize(),
+            async : false,
+            success : function(data) {
+                if (data.code == 0) {
+                  var childId= data.msg;
+                  $("[name='childId']").val(childId);
+					$.ajax({
+                        type: "POST",
+                        url: "/information/child/saveChildBasic",
+                        data: $('#formData').serialize(),
+                        success: function (r) {
+                            if (r.code == 0) {
+								$("#success").show();
+								var s=6;
+                                var interval = window.setInterval(function(){
+									$("#successConfirm").text((--s)+"s跳过");
+                                    if(s<=0){
+                                        $("#success").hide();
+                                        window.clearInterval(interval);
+                                        document.getElementById("formData").reset();
+                                        document.getElementById("formdatar").reset();
+                                    }
+								}, 1000);
+							} else {
+                                layer.msg(r.msg);
+                            }
+                        },
+                    });
+                } else {
+                    parent.layer.alert(data.msg)
+                }
+
+            }
+        });
+
+	});
+</script>
+</html>
+
+
+

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.youershaicha.information.dao.ChildBasicDao">
+
+	<select id="get" resultType="com.youershaicha.information.domain.ChildBasicDO">
+		select `basic_id`,`history_id`,`external_righteye_examination_type`,`external_righteye_examination_ins`,`external_lefteye_examination_type`,`external_lefteye_examination_ins`,`redlight_righteye_reflex_type`,`redlight_righteye_reflex_ins`,`redlight_lefteye_reflex_type`,`redlight_lefteye_reflex_ins`,`visualbehavior_righteye_type`,`visualbehavior_lefteye_type`,`primary_screen_of_vision_righteye_type`,`primary_screen_of_vision_lefrteye_type`,`selective_gaze_detection_righteye`,`selective_gaze_detection_lefteye`,`examination_of_position_righteye_type`,`examination_of_strabismus_righteye_type`,`examination_of_strabismus_righteye_ins`,`examination_of_position_lefteye_type`,`examination_of_strabismus_lefteye_type`,`examination_of_strabismus_lefteye_ins`,`eyemovement_righteye_type`,`eyemovement_righteye_ins`,`eyemovement_lefteye_type`,`eyemovement_lefteye_ins`,`film_examination_type`,`film_examination_righteye_s`,`film_examination_righteye_c`,`film_examination_righteye_a`,`film_examination_lefteye_s`,`film_examination_lefteye_c`,`film_examination_lefteye_a`,`nakedversion_type`,`nakedversion_righteye`,`nakedversion_lefteye`,`glassesversion_type`,`glassesversion_righteye`,`glassesversion_lefteye`,`colorversion_righteye_type`,`colorversion_righteye_ins`,`colorversion_lefteye_type`,`colorversion_lefteye_ins`,`blink_reflex_righteye`,`blink_reflex_lefteye`,`redball_righteye`,`redball_lefteye`,`follow_righteye_type`,`follow_righteye_ins`,`follow_lefteye_type`,`follow_lefteye_ins`,`check_date`,`chector`,`conclusion`,`proposal`,`age`,`last_check_date` from t_child_basic where basic_id = #{value}
+	</select>
+	
+	<select id="getRecentlyBasic" resultType="com.youershaicha.information.domain.ChildBasicDO">
+		SELECT
+	`basic_id`,
+	`history_id`,
+	`child_idcard`,
+	`external_righteye_examination_type`,
+	`external_righteye_examination_ins`,
+	`external_lefteye_examination_type`,
+	`external_lefteye_examination_ins`,
+	`redlight_righteye_reflex_type`,
+	`redlight_righteye_reflex_ins`,
+	`redlight_lefteye_reflex_type`,
+	`redlight_lefteye_reflex_ins`,
+	`visualbehavior_righteye_type`,
+	`visualbehavior_lefteye_type`,
+	`primary_screen_of_vision_righteye_type`,
+	`primary_screen_of_vision_lefrteye_type`,
+	`selective_gaze_detection_righteye`,
+	`selective_gaze_detection_lefteye`,
+	`examination_of_position_righteye_type`,
+	`examination_of_strabismus_righteye_type`,
+	`examination_of_strabismus_righteye_insn`,
+	`examination_of_position_lefteye_type`,
+	`examination_of_strabismus_lefteye_type`,
+	`examination_of_strabismus_lefteye_insn`,
+	`eyemovement_righteye_type`,
+	`eyemovement_righteye_ins`,
+	`eyemovement_lefteye_type`,
+	`eyemovement_lefteye_ins`,
+	`film_examination_type`,
+	`film_examination_righteye_s`,
+	`film_examination_righteye_c`,
+	`film_examination_righteye_a`,
+	`film_examination_lefteye_s`,
+	`film_examination_lefteye_c`,
+	`film_examination_lefteye_a`,
+	`nakedversion_type`,
+	`nakedversion_righteye`,
+	`nakedversion_lefteye`,
+	`glassesversion_type`,
+	`glassesversion_righteye`,
+	`glassesversion_lefteye`,
+	`colorversion_righteye_type`,
+	`colorversion_righteye_ins`,
+	`colorversion_lefteye_type`,
+	`colorversion_lefteye_ins`,
+	`blink_reflex_righteye`,
+	`blink_reflex_lefteye`,
+	`redball_righteye`,
+	`redball_lefteye`,
+	`follow_righteye_type`,
+	`follow_righteye_ins`,
+	`follow_lefteye_type`,
+	`follow_lefteye_ins`,
+	`check_date`,
+	`chector`,
+	`conclusion`,
+	`proposal`,
+	`age`,
+	`last_check_date`,
+	`examination_of_strabismus_righteye_insw`,
+	`examination_of_strabismus_righteye_insc`,
+	`examination_of_strabismus_lefteye_insw`,
+	`examination_of_strabismus_lefteye_insc`,
+	`ocular_architecture_righteye_conclusion`,
+	`ocular_architecture_lefteye_conclusion`,
+	`ocular_architecture_righteye`,
+	`ocular_architecture_lefteye`,
+	`waiyanrightjianchaqita`,
+	`waiyanleftjianchaqita`,
+	`child_id`
+from t_child_basic
+
+		<where>
+			<if test="childIdcard != null and childIdcard != ''"> and child_idcard = #{childIdcard} </if>
+			<if test="age!= -1"> and age = #{age} </if>
+		</where>
+order by check_date desc limit 1
+</select>
+	
+	<select id="getAllCheckedAges" resultType="int">
+		select DISTINCT age from t_child_basic where child_idcard = #{childIdcard}
+	</select>
+
+
+	
+
+	<insert id="save" parameterType="com.youershaicha.information.domain.ChildBasicDO" useGeneratedKeys="true" keyProperty="basicId">
+		insert into t_child_basic
+		(
+			`history_id`,
+			`child_idcard`,
+			`external_righteye_examination_type`,
+			`external_righteye_examination_ins`,
+			`external_lefteye_examination_type`,
+			`external_lefteye_examination_ins`,
+			`redlight_righteye_reflex_type`,
+			`redlight_righteye_reflex_ins`,
+			`redlight_lefteye_reflex_type`,
+			`redlight_lefteye_reflex_ins`,
+			`visualbehavior_righteye_type`,
+			`visualbehavior_lefteye_type`,
+			`primary_screen_of_vision_righteye_type`,
+			`primary_screen_of_vision_lefrteye_type`,
+			`selective_gaze_detection_righteye`,
+			`selective_gaze_detection_lefteye`,
+			`examination_of_position_righteye_type`,
+			`examination_of_strabismus_righteye_type`,
+			`examination_of_strabismus_righteye_insn`,
+			`examination_of_position_lefteye_type`,
+			`examination_of_strabismus_lefteye_type`,
+			`examination_of_strabismus_lefteye_insn`,
+			`eyemovement_righteye_type`,
+			`eyemovement_righteye_ins`,
+			`eyemovement_lefteye_type`,
+			`eyemovement_lefteye_ins`,
+			`film_examination_type`,
+			`film_examination_righteye_s`,
+			`film_examination_righteye_c`,
+			`film_examination_righteye_a`,
+			`film_examination_lefteye_s`,
+			`film_examination_lefteye_c`,
+			`film_examination_lefteye_a`,
+			`nakedversion_type`,
+			`nakedversion_righteye`,
+			`nakedversion_lefteye`,
+			`glassesversion_type`,
+			`glassesversion_righteye`,
+			`glassesversion_lefteye`,
+			`colorversion_righteye_type`,
+			`colorversion_righteye_ins`,
+			`colorversion_lefteye_type`,
+			`colorversion_lefteye_ins`,
+			`blink_reflex_righteye`,
+			`blink_reflex_lefteye`,
+			`redball_righteye`,
+			`redball_lefteye`,
+			`follow_righteye_type`,
+			`follow_righteye_ins`,
+			`follow_lefteye_type`,
+			`follow_lefteye_ins`,
+			`check_date`,
+			`chector`,
+			`conclusion`,
+			`proposal`,
+			`age`,
+			`last_check_date`,
+			`examination_of_strabismus_righteye_insw`,
+			`examination_of_strabismus_righteye_insc`,
+			`examination_of_strabismus_lefteye_insw`,
+			`examination_of_strabismus_lefteye_insc`,
+			`ocular_architecture_righteye_conclusion`,
+			`ocular_architecture_lefteye_conclusion`,
+			`ocular_architecture_righteye`,
+			`ocular_architecture_lefteye`,
+			`waiyanrightjianchaqita`,
+			`waiyanleftjianchaqita`,
+			`child_id`
+		)
+		values
+		(
+			#{historyId},
+			#{childIdcard},
+			#{externalRighteyeExaminationType},
+			#{externalRighteyeExaminationIns},
+			#{externalLefteyeExaminationType},
+			#{externalLefteyeExaminationIns},
+			#{redlightRighteyeReflexType},
+			#{redlightRighteyeReflexIns},
+			#{redlightLefteyeReflexType},
+			#{redlightLefteyeReflexIns},
+			#{visualbehaviorRighteyeType},
+			#{visualbehaviorLefteyeType},
+			#{primaryScreenOfVisionRighteyeType},
+			#{primaryScreenOfVisionLefrteyeType},
+			#{selectiveGazeDetectionRighteye},
+			#{selectiveGazeDetectionLefteye},
+			#{examinationOfPositionRighteyeType},
+			#{examinationOfStrabismusRighteyeType},
+			#{examinationOfStrabismusRighteyeInsn},
+			#{examinationOfPositionLefteyeType},
+			#{examinationOfStrabismusLefteyeType},
+			#{examinationOfStrabismusLefteyeInsn},
+			#{eyemovementRighteyeType},
+			#{eyemovementRighteyeIns},
+			#{eyemovementLefteyeType},
+			#{eyemovementLefteyeIns},
+			#{filmExaminationType},
+			#{filmExaminationRighteyeS},
+			#{filmExaminationRighteyeC},
+			#{filmExaminationRighteyeA},
+			#{filmExaminationLefteyeS},
+			#{filmExaminationLefteyeC},
+			#{filmExaminationLefteyeA},
+			#{nakedversionType},
+			#{nakedversionRighteye},
+			#{nakedversionLefteye},
+			#{glassesversionType},
+			#{glassesversionRighteye},
+			#{glassesversionLefteye},
+			#{colorversionRighteyeType},
+			#{colorversionRighteyeIns},
+			#{colorversionLefteyeType},
+			#{colorversionLefteyeIns},
+			#{blinkReflexRighteye},
+			#{blinkReflexLefteye},
+			#{redballRighteye},
+			#{redballLefteye},
+			#{followRighteyeType},
+			#{followRighteyeIns},
+			#{followLefteyeType},
+			#{followLefteyeIns},
+			#{checkDate},
+			#{chector},
+			#{conclusion},
+			#{proposal},
+			#{age},
+			#{lastCheckDate},
+			#{examinationOfStrabismusRighteyeInsw},
+			#{examinationOfStrabismusRighteyeInsc},
+			#{examinationOfStrabismusLefteyeInsw},
+			#{examinationOfStrabismusLefteyeInsc},
+			#{ocularArchitectureRighteyeConclusion},
+			#{ocularArchitectureLefteyeConclusion},
+			#{ocularArchitectureRighteye},
+			#{ocularArchitectureLefteye},
+			#{waiyanrightjianchaqita},
+			#{waiyanleftjianchaqita},
+			#{childId}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.youershaicha.information.domain.ChildBasicDO">
+		update t_child_basic 
+		<set>
+			<if test="historyId != null">`history_id` = #{historyId}, </if>
+			<if test="externalRighteyeExaminationType != null">`external_righteye_examination_type` = #{externalRighteyeExaminationType}, </if>
+			<if test="externalRighteyeExaminationIns != null">`external_righteye_examination_ins` = #{externalRighteyeExaminationIns}, </if>
+			<if test="externalLefteyeExaminationType != null">`external_lefteye_examination_type` = #{externalLefteyeExaminationType}, </if>
+			<if test="externalLefteyeExaminationIns != null">`external_lefteye_examination_ins` = #{externalLefteyeExaminationIns}, </if>
+			<if test="redlightRighteyeReflexType != null">`redlight_righteye_reflex_type` = #{redlightRighteyeReflexType}, </if>
+			<if test="redlightRighteyeReflexIns != null">`redlight_righteye_reflex_ins` = #{redlightRighteyeReflexIns}, </if>
+			<if test="redlightLefteyeReflexType != null">`redlight_lefteye_reflex_type` = #{redlightLefteyeReflexType}, </if>
+			<if test="redlightLefteyeReflexIns != null">`redlight_lefteye_reflex_ins` = #{redlightLefteyeReflexIns}, </if>
+			<if test="visualbehaviorRighteyeType != null">`visualbehavior_righteye_type` = #{visualbehaviorRighteyeType}, </if>
+			<if test="visualbehaviorLefteyeType != null">`visualbehavior_lefteye_type` = #{visualbehaviorLefteyeType}, </if>
+			<if test="primaryScreenOfVisionRighteyeType != null">`primary_screen_of_vision_righteye_type` = #{primaryScreenOfVisionRighteyeType}, </if>
+			<if test="primaryScreenOfVisionLefrteyeType != null">`primary_screen_of_vision_lefrteye_type` = #{primaryScreenOfVisionLefrteyeType}, </if>
+			<if test="selectiveGazeDetectionRighteye != null">`selective_gaze_detection_righteye` = #{selectiveGazeDetectionRighteye}, </if>
+			<if test="selectiveGazeDetectionLefteye != null">`selective_gaze_detection_lefteye` = #{selectiveGazeDetectionLefteye}, </if>
+			<if test="examinationOfPositionRighteyeType != null">`examination_of_position_righteye_type` = #{examinationOfPositionRighteyeType}, </if>
+			<if test="examinationOfStrabismusRighteyeType != null">`examination_of_strabismus_righteye_type` = #{examinationOfStrabismusRighteyeType}, </if>
+			<if test="examinationOfStrabismusRighteyeIns != null">`examination_of_strabismus_righteye_ins` = #{examinationOfStrabismusRighteyeIns}, </if>
+			<if test="examinationOfPositionLefteyeType != null">`examination_of_position_lefteye_type` = #{examinationOfPositionLefteyeType}, </if>
+			<if test="examinationOfStrabismusLefteyeType != null">`examination_of_strabismus_lefteye_type` = #{examinationOfStrabismusLefteyeType}, </if>
+			<if test="examinationOfStrabismusLefteyeIns != null">`examination_of_strabismus_lefteye_ins` = #{examinationOfStrabismusLefteyeIns}, </if>
+			<if test="eyemovementRighteyeType != null">`eyemovement_righteye_type` = #{eyemovementRighteyeType}, </if>
+			<if test="eyemovementRighteyeIns != null">`eyemovement_righteye_ins` = #{eyemovementRighteyeIns}, </if>
+			<if test="eyemovementLefteyeType != null">`eyemovement_lefteye_type` = #{eyemovementLefteyeType}, </if>
+			<if test="eyemovementLefteyeIns != null">`eyemovement_lefteye_ins` = #{eyemovementLefteyeIns}, </if>
+			<if test="filmExaminationType != null">`film_examination_type` = #{filmExaminationType}, </if>
+			<if test="filmExaminationRighteyeS != null">`film_examination_righteye_s` = #{filmExaminationRighteyeS}, </if>
+			<if test="filmExaminationRighteyeC != null">`film_examination_righteye_c` = #{filmExaminationRighteyeC}, </if>
+			<if test="filmExaminationRighteyeA != null">`film_examination_righteye_a` = #{filmExaminationRighteyeA}, </if>
+			<if test="filmExaminationLefteyeS != null">`film_examination_lefteye_s` = #{filmExaminationLefteyeS}, </if>
+			<if test="filmExaminationLefteyeC != null">`film_examination_lefteye_c` = #{filmExaminationLefteyeC}, </if>
+			<if test="filmExaminationLefteyeA != null">`film_examination_lefteye_a` = #{filmExaminationLefteyeA}, </if>
+			<if test="nakedversionType != null">`nakedversion_type` = #{nakedversionType}, </if>
+			<if test="nakedversionRighteye != null">`nakedversion_righteye` = #{nakedversionRighteye}, </if>
+			<if test="nakedversionLefteye != null">`nakedversion_lefteye` = #{nakedversionLefteye}, </if>
+			<if test="glassesversionType != null">`glassesversion_type` = #{glassesversionType}, </if>
+			<if test="glassesversionRighteye != null">`glassesversion_righteye` = #{glassesversionRighteye}, </if>
+			<if test="glassesversionLefteye != null">`glassesversion_lefteye` = #{glassesversionLefteye}, </if>
+			<if test="colorversionRighteyeType != null">`colorversion_righteye_type` = #{colorversionRighteyeType}, </if>
+			<if test="colorversionRighteyeIns != null">`colorversion_righteye_ins` = #{colorversionRighteyeIns}, </if>
+			<if test="colorversionLefteyeType != null">`colorversion_lefteye_type` = #{colorversionLefteyeType}, </if>
+			<if test="colorversionLefteyeIns != null">`colorversion_lefteye_ins` = #{colorversionLefteyeIns}, </if>
+			<if test="blinkReflexRighteye != null">`blink_reflex_righteye` = #{blinkReflexRighteye}, </if>
+			<if test="blinkReflexLefteye != null">`blink_reflex_lefteye` = #{blinkReflexLefteye}, </if>
+			<if test="redballRighteye != null">`redball_righteye` = #{redballRighteye}, </if>
+			<if test="redballLefteye != null">`redball_lefteye` = #{redballLefteye}, </if>
+			<if test="followRighteyeType != null">`follow_righteye_type` = #{followRighteyeType}, </if>
+			<if test="followRighteyeIns != null">`follow_righteye_ins` = #{followRighteyeIns}, </if>
+			<if test="followLefteyeType != null">`follow_lefteye_type` = #{followLefteyeType}, </if>
+			<if test="followLefteyeIns != null">`follow_lefteye_ins` = #{followLefteyeIns}, </if>
+			<if test="checkDate != null">`check_date` = #{checkDate}, </if>
+			<if test="chector != null">`chector` = #{chector}, </if>
+			<if test="conclusion != null">`conclusion` = #{conclusion}, </if>
+			<if test="proposal != null">`proposal` = #{proposal}, </if>
+			<if test="age != null">`age` = #{age}, </if>
+			<if test="lastCheckDate != null">`last_check_date` = #{lastCheckDate}</if>
+		</set>
+		where basic_id = #{basicId}
+	</update>
+
+</mapper>

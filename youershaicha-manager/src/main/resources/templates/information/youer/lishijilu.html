@@ -1,0 +1,1175 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>历史记录</title>
+<link rel="stylesheet" href="/css/css.css" type="text/css">
+	<script src="/js/jquery.min.js?v=2.1.4" th:src="@{/js/jquery.min.js?v=2.1.4}"></script>
+
+
+</head>
+<body>
+   <div class="banner">
+   		<img src="img/banner.jpg" alt=""/>
+   </div>
+
+   <!--主体内容-->
+   <div class="main">
+ 		<div class="rightOld">
+ 			<div class="fl baseName">
+ 				<p class="F24" th:text="${childDO.childName}"></p>
+ 				<p th:if="${childDO.childGender==1}">女</p>
+				<p th:if="${childDO.childGender==0}">男</p>
+ 				<p id="childIdcard" th:text="${childDO.childIdcard}"></p>
+				<input type="hidden" id="myAge" th:value="${childBasicDO.age}">
+ 			</div>
+			<div class="fr">
+				选择年龄段：
+				<select id="selectAge">
+					<option value="-1">-请选择-</option>
+					<option value="0">出生2-7天</option>
+					<option value="1">满月（42天）</option>
+					<option value="2">3月龄</option>
+					<option value="3">6月龄</option>
+					<option value="4">8月龄</option>
+					<option value="5">1周岁</option>
+					<option value="6">1周岁半</option>
+					<option value="7">2周岁</option>
+					<option value="8">2周岁半</option>
+					<option value="9">3周岁</option>
+					<option value="10">4周岁</option>
+					<option value="11">5周岁</option>
+					<option value="12">6周岁</option>
+				</select>
+			</div>
+
+		</div>
+		
+		<div class="jiluBox">
+			<h3 th:if="${childBasicDO.age==0}">出生2-7天眼病筛查</h3>
+			<h3 th:if="${childBasicDO.age==1}">满月（42天）眼病筛查</h3>
+			<h3 th:if="${childBasicDO.age==2}">3月龄眼病筛查</h3>
+			<h3 th:if="${childBasicDO.age==3}">6月龄眼病筛查</h3>
+			<h3 th:if="${childBasicDO.age==4}">8月龄眼病筛查</h3>
+			<h3 th:if="${childBasicDO.age==5}">1周岁眼病筛查</h3>
+			<h3 th:if="${childBasicDO.age==6}">1周岁半眼病筛查</h3>
+			<h3 th:if="${childBasicDO.age==7}">2周岁眼病筛查</h3>
+			<h3 th:if="${childBasicDO.age==8}">2周岁半眼病筛查</h3>
+			<h3 th:if="${childBasicDO.age==9}">3周岁眼病筛查</h3>
+			<h3 th:if="${childBasicDO.age==10}">4周岁眼病筛查</h3>
+			<h3 th:if="${childBasicDO.age==11}">5周岁眼病筛查</h3>
+			<h3 th:if="${childBasicDO.age==12}">6周岁眼病筛查</h3>
+			<div class="box">
+				<span>检查日期：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+				  <tbody>
+					<tr>
+					  <td th:text="${childBasicDO.checkString}"></td>
+					</tr>
+				  </tbody>
+				</table>
+			</div>
+
+			<div class="box" name="youer-shilijiancha">
+				<span>视力检查：</span>
+				<div class="Hlishibox">
+					<table border="1" cellspacing="0" cellpadding="0">
+						<tbody>
+						<tr>
+							<td><b>裸眼视力：</b></td>
+							<td th:if="${childBasicDO.nakedversionType==0}">E字视标</td>
+							<td th:if="${childBasicDO.nakedversionType==1}">图形视标</td>
+							<td> </td>
+						</tr>
+						<tr>
+							<td> </td>
+							<td>右眼：</td>
+							<td th:text="${childBasicDO.nakedversionRighteye}">1.0</td>
+						</tr>
+						<tr>
+							<td> </td>
+							<td>左眼：</td>
+							<td th:text="${childBasicDO.nakedversionLefteye}">1.0</td>
+						</tr>
+						</tbody>
+					</table>
+					<table border="1" cellspacing="0" cellpadding="0">
+						<tbody>
+						<tr>
+							<td><b>戴镜视力：</b></td>
+							<td th:if="${childBasicDO.glassesversionType==0}">E字视标</td>
+							<td th:if="${childBasicDO.glassesversionType==1}">图形视标</td>
+							<td> </td>
+						</tr>
+						<tr>
+							<td> </td>
+							<td>右眼：</td>
+							<td th:text="${childBasicDO.glassesversionRighteye}">1.0</td>
+
+						</tr>
+						<tr>
+							<td> </td>
+							<td>左眼：</td>
+							<td th:text="${childBasicDO.glassesversionLefteye}">1.0</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="box" name="youer-waiyanjiancha">
+				<span>外眼检查：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+				  <tbody>
+					<tr>
+					  	<td width="85">右眼：</td>
+					  	<td width="85" th:if="${childBasicDO.externalRighteyeExaminationType==0}">正常</td>
+						<td width="85" th:if="${childBasicDO.externalRighteyeExaminationType==1}">异常</td>
+					    <td th:if="${childBasicDO.externalRighteyeExaminationType==1 and childBasicDO.externalRighteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalRighteyeExaminationIns,'YILEI')}">溢泪&nbsp;</td>
+						<td th:if="${childBasicDO.externalRighteyeExaminationType==1 and childBasicDO.externalRighteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalRighteyeExaminationIns,'FENBIWU')}">分泌物&nbsp;</td>
+						<td th:if="${childBasicDO.externalRighteyeExaminationType==1 and childBasicDO.externalRighteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalRighteyeExaminationIns,'MAOXIXUEGUANLIU')}">毛细血管瘤&nbsp;</td>
+						<td th:if="${childBasicDO.externalRighteyeExaminationType==1 and childBasicDO.externalRighteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalRighteyeExaminationIns,'JIEMOCHUXUE')}">结膜出血&nbsp;</td>
+						<td th:if="${childBasicDO.externalRighteyeExaminationType==1 and childBasicDO.externalRighteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalRighteyeExaminationIns,'HONGMOMAOXIXUEGUAN')}">虹膜毛细血管&nbsp;</td>
+						<td th:if="${childBasicDO.externalRighteyeExaminationType==1 and childBasicDO.externalRighteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalRighteyeExaminationIns,'JIAOMOBAIBAN')}">角膜白斑&nbsp;</td>
+						<td th:if="${childBasicDO.externalRighteyeExaminationType==1 and childBasicDO.externalRighteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalRighteyeExaminationIns,'QITA')}">
+							<span th:text="${childBasicDO.waiyanrightjianchaqita}"></span>
+						</td>
+
+
+					</tr>
+					<tr>
+					  <td>左眼：</td>
+						<td width="85" th:if="${childBasicDO.externalLefteyeExaminationType==0}">正常</td>
+						<td width="85" th:if="${childBasicDO.externalLefteyeExaminationType==1}">异常</td>
+						<td th:if="${childBasicDO.externalLefteyeExaminationType==1 and childBasicDO.externalLefteyeExaminationIns!=null  and #strings.containsIgnoreCase(childBasicDO.externalLefteyeExaminationIns,'YILEI')}">溢泪&nbsp;</td>
+						<td th:if="${childBasicDO.externalLefteyeExaminationType==1 and childBasicDO.externalLefteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalLefteyeExaminationIns,'FENBIWU')}">分泌物&nbsp;</td>
+						<td th:if="${childBasicDO.externalLefteyeExaminationType==1 and childBasicDO.externalLefteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalLefteyeExaminationIns,'MAOXIXUEGUANLIU')}">毛细血管瘤&nbsp;</td>
+						<td th:if="${childBasicDO.externalLefteyeExaminationType==1 and childBasicDO.externalLefteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalLefteyeExaminationIns,'JIEMOCHUXUE')}">结膜出血&nbsp;</td>
+						<td th:if="${childBasicDO.externalLefteyeExaminationType==1 and childBasicDO.externalLefteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalLefteyeExaminationIns,'HONGMOMAOXIXUEGUAN')}">虹膜毛细血管&nbsp;</td>
+						<td th:if="${childBasicDO.externalLefteyeExaminationType==1 and childBasicDO.externalLefteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalLefteyeExaminationIns,'JIAOMOBAIBAN')}">角膜白斑&nbsp;</td>
+						<td th:if="${childBasicDO.externalLefteyeExaminationType==1 and childBasicDO.externalLefteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalLefteyeExaminationIns,'QITA')}">
+							<span th:text="${childBasicDO.waiyanleftjianchaqita}"></span>
+						</td>
+					</tr>
+				  </tbody>
+				</table>
+			</div>
+			
+			<div class="box" name=youer-hongguangfanshe">
+				<span>红光反射：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+				  <tbody>
+					<tr>
+						<td width="85">右眼：</td>
+					  	<td width="85" th:if="${childBasicDO.redlightRighteyeReflexType}==0">正常</td>
+						<td width="85" th:if="${childBasicDO.redlightRighteyeReflexType}==1">异常</td>
+					    <td th:if="${childBasicDO.redlightRighteyeReflexType==1}" th:text="${childBasicDO.redlightRighteyeReflexIns}"></td>
+					</tr>
+					<tr>
+					  <td>左眼：</td>
+						<td width="85" th:if="${childBasicDO.redlightLefteyeReflexType}==0">正常</td>
+						<td width="85" th:if="${childBasicDO.redlightLefteyeReflexType}==1">异常</td>
+						<td th:if="${childBasicDO.redlightLefteyeReflexType==1}" th:text="${childBasicDO.redlightLefteyeReflexIns}"></td>
+					</tr>
+				  </tbody>
+				</table>
+			</div>
+
+			<div class="box" name="youer-shijuexingwei">
+				<span>视觉行为：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+					<tr>
+						<td width="85">右眼：</td>
+						<td width="85" th:if="${childBasicDO.visualbehaviorRighteyeType}==0">通过</td>
+						<td width="85" th:if="${childBasicDO.visualbehaviorRighteyeType}==1">未通过</td>
+					</tr>
+					<tr>
+						<td>左眼：</td>
+						<td width="85" th:if="${childBasicDO.visualbehaviorLefteyeType}==0">通过</td>
+						<td width="85" th:if="${childBasicDO.visualbehaviorLefteyeType}==1">未通过</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="box" name=youer-shunmufanshe">
+				<span>瞬目反射：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+					<tr>
+						<td width="85">右眼：</td>
+						<td width="85" th:if="${childBasicDO.blinkReflexRighteye}==0">通过</td>
+						<td width="85" th:if="${childBasicDO.blinkReflexRighteye}==1">未通过</td>
+					</tr>
+					<tr>
+						<td>左眼：</td>
+						<td width="85" th:if="${childBasicDO.blinkReflexLefteye}==0">通过</td>
+						<td width="85" th:if="${childBasicDO.blinkReflexLefteye}==1">未通过</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="box" name=youer-hongqiushiyan">
+				<span>红球实验：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+					<tr>
+						<td width="85">右眼：</td>
+						<td width="85" th:if="${childBasicDO.redballRighteye}==0">通过</td>
+						<td width="85" th:if="${childBasicDO.redballRighteye}==1">未通过</td>
+					</tr>
+					<tr>
+						<td>左眼：</td>
+						<td width="85" th:if="${childBasicDO.redballLefteye}==0">通过</td>
+						<td width="85" th:if="${childBasicDO.redballLefteye}==1">未通过</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="box" name="youer-shilichushai">
+				<span>视力初筛：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+					<tr>
+						<td width="85">右眼：</td>
+						<td width="85" th:if="${childBasicDO.primaryScreenOfVisionRighteyeType}==0">无</td>
+						<td width="85" th:if="${childBasicDO.primaryScreenOfVisionRighteyeType}==1">正常</td>
+						<td width="85" th:if="${childBasicDO.primaryScreenOfVisionRighteyeType}==2">不配合</td>
+						<td width="85" th:if="${childBasicDO.primaryScreenOfVisionRighteyeType}==3">选择性观看</td>
+					</tr>
+					<tr>
+						<td>左眼：</td>
+						<td width="85" th:if="${childBasicDO.primaryScreenOfVisionLefrteyeType}==0">无</td>
+						<td width="85" th:if="${childBasicDO.primaryScreenOfVisionLefrteyeType}==1">正常</td>
+						<td width="85" th:if="${childBasicDO.primaryScreenOfVisionLefrteyeType}==2">不配合</td>
+						<td width="85" th:if="${childBasicDO.primaryScreenOfVisionLefrteyeType}==3">选择性观看</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="box" name=youer-yanqiuzhuisuiyundong">
+				<span>眼球追随运动：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+					<tr>
+						<td width="85">右眼：</td>
+						<td width="85" th:if="${childBasicDO.followRighteyeType}==0">正常</td>
+						<td width="85" th:if="${childBasicDO.followRighteyeType}==1">异常</td>
+						<td th:if="${childBasicDO.followRighteyeType==1}" th:text="${childBasicDO.followRighteyeIns}"></td>
+					</tr>
+					<tr>
+						<td>左眼：</td>
+						<td width="85" th:if="${childBasicDO.followLefteyeType}==0">正常</td>
+						<td width="85" th:if="${childBasicDO.followLefteyeType}==1">异常</td>
+						<td th:if="${childBasicDO.followLefteyeType==1}" th:text="${childBasicDO.followLefteyeIns}"></td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+			
+			<div class="box" name="youer-yanweijiancha">
+				<span th:if="${childBasicDO.age>8}">斜视初窥：</span>
+				<span th:if="${childBasicDO.age<=8}">眼位检查：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+				  <tbody>
+					<tr>
+					  <td width="85">右眼：</td>
+					   <td width="85" th:if="${childBasicDO.examinationOfPositionRighteyeType==0}">正位</td>
+						<td width="85" th:if="${childBasicDO.examinationOfPositionRighteyeType==1}">斜视</td>
+						<td width="85" th:if="${childBasicDO.examinationOfPositionRighteyeType==2}">眼球震颤</td>
+						<td width="85" th:if="${childBasicDO.examinationOfPositionRighteyeType==1 and childBasicDO.examinationOfStrabismusRighteyeType!=null
+						 and #strings.containsIgnoreCase(childBasicDO.examinationOfStrabismusRighteyeType,'NEIXIE')}">内斜
+						</td>
+						<td width="85" th:if="${childBasicDO.examinationOfPositionRighteyeType==1 and childBasicDO.examinationOfStrabismusRighteyeType!=null
+						 and #strings.containsIgnoreCase(childBasicDO.examinationOfStrabismusRighteyeType,'NEIXIE')}" th:text="${childBasicDO.examinationOfStrabismusRighteyeInsn}">
+						</td>
+
+						<td width="85" th:if="${childBasicDO.examinationOfPositionRighteyeType==1 and childBasicDO.examinationOfStrabismusRighteyeType!=null
+						 and #strings.containsIgnoreCase(childBasicDO.examinationOfStrabismusRighteyeType,'WAIXIE')}">外斜
+						</td>
+						<td width="85" th:if="${childBasicDO.examinationOfPositionRighteyeType==1 and childBasicDO.examinationOfStrabismusRighteyeType!=null
+						 and #strings.containsIgnoreCase(childBasicDO.examinationOfStrabismusRighteyeType,'WAIXIE')}" th:text="${childBasicDO.examinationOfStrabismusRighteyeInsw}">
+						</td>
+
+						<td width="85" th:if="${childBasicDO.examinationOfPositionRighteyeType==1 and childBasicDO.examinationOfStrabismusRighteyeType!=null
+						 and #strings.containsIgnoreCase(childBasicDO.examinationOfStrabismusRighteyeType,'CHUIZHIXIE')}">垂直斜						</td>
+						<td width="85" th:if="${childBasicDO.examinationOfPositionRighteyeType==1 and childBasicDO.examinationOfStrabismusRighteyeType!=null
+						 and #strings.containsIgnoreCase(childBasicDO.examinationOfStrabismusRighteyeType,'CHUIZHIXIE')}" th:text="${childBasicDO.examinationOfStrabismusRighteyeInsc}">
+						</td>
+					</tr>
+					<tr>
+					  <td>左眼：</td>
+						<td width="85" th:if="${childBasicDO.examinationOfPositionLefteyeType==0}">正位</td>
+						<td width="85" th:if="${childBasicDO.examinationOfPositionLefteyeType==1}">斜视</td>
+						<td width="85" th:if="${childBasicDO.examinationOfPositionLefteyeType==2}">眼球震颤</td>
+						<td width="85" th:if="${childBasicDO.examinationOfPositionLefteyeType==1 and childBasicDO.examinationOfStrabismusLefteyeType!=null
+						 and #strings.containsIgnoreCase(childBasicDO.examinationOfStrabismusLefteyeType,'NEIXIE')}">内斜
+						</td>
+						<td width="85" th:if="${childBasicDO.examinationOfPositionLefteyeType==1 and childBasicDO.examinationOfStrabismusLefteyeType!=null
+						 and #strings.containsIgnoreCase(childBasicDO.examinationOfStrabismusLefteyeType,'NEIXIE')}" th:text="${childBasicDO.examinationOfStrabismusLefteyeInsn}">
+						</td>
+
+						<td width="85" th:if="${childBasicDO.examinationOfPositionLefteyeType==1 and childBasicDO.examinationOfStrabismusLefteyeType!=null
+						 and #strings.containsIgnoreCase(childBasicDO.examinationOfStrabismusLefteyeType,'WAIXIE')}">外斜
+						</td>
+						<td width="85" th:if="${childBasicDO.examinationOfPositionLefteyeType==1 and childBasicDO.examinationOfStrabismusLefteyeType!=null
+						 and #strings.containsIgnoreCase(childBasicDO.examinationOfStrabismusLefteyeType,'WAIXIE')}" th:text="${childBasicDO.examinationOfStrabismusLefteyeInsw}">
+						</td>
+
+						<td width="85" th:if="${childBasicDO.examinationOfPositionLefteyeType==1 and childBasicDO.examinationOfStrabismusLefteyeType!=null
+						 and #strings.containsIgnoreCase(childBasicDO.examinationOfStrabismusLefteyeType,'CHUIZHIXIE')}">垂直斜						</td>
+						<td width="85" th:if="${childBasicDO.examinationOfPositionLefteyeType==1 and childBasicDO.examinationOfStrabismusLefteyeType!=null
+						 and #strings.containsIgnoreCase(childBasicDO.examinationOfStrabismusLefteyeType,'CHUIZHIXIE')}" th:text="${childBasicDO.examinationOfStrabismusLefteyeInsc}">
+						</td>
+					</tr>
+				  </tbody>
+				</table>
+			</div>
+
+			<div class="box" name="youer-yanqiuyundong">
+				<span>眼球运动：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+					<tr>
+						<td width="85">右眼：</td>
+						<td width="85" th:if="${childBasicDO.eyemovementRighteyeType}==0">正常</td>
+						<td width="85" th:if="${childBasicDO.eyemovementRighteyeType}==1">异常</td>
+						<td th:if="${childBasicDO.eyemovementRighteyeType==1}" th:text="${childBasicDO.eyemovementRighteyeIns}"></td>
+					</tr>
+					<tr>
+						<td>左眼：</td>
+						<td width="85" th:if="${childBasicDO.eyemovementLefteyeType}==0">正常</td>
+						<td width="85" th:if="${childBasicDO.eyemovementLefteyeType}==1">异常</td>
+						<td th:if="${childBasicDO.eyemovementLefteyeType==1}" th:text="${childBasicDO.eyemovementLefteyeIns}"></td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="box" name="youer-sejuejiancha">
+				<span>色觉检查：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+					<tr>
+						<td width="85">右眼：</td>
+						<td width="85" th:if="${childBasicDO.colorversionRighteyeType}==0">正常</td>
+						<td width="85" th:if="${childBasicDO.colorversionRighteyeType}==1">异常</td>
+						<td th:if="${childBasicDO.colorversionRighteyeType==1}" th:text="${childBasicDO.colorversionRighteyeIns}"></td>
+					</tr>
+					<tr>
+						<td>左眼：</td>
+						<td width="85" th:if="${childBasicDO.colorversionLefteyeType}==0">正常</td>
+						<td width="85" th:if="${childBasicDO.colorversionLefteyeType}==1">异常</td>
+						<td th:if="${childBasicDO.eyemovementLefteyeType==1}" th:text="${childBasicDO.colorversionLefteyeType}"></td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="box box3" name="youer-jianyingjiancha">
+				<span>检影检查：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+				  <tbody>
+					<tr>
+					  	<td colspan="4" th:if="${childBasicDO.filmExaminationType==0}">是</td>
+						<td colspan="4" th:if="${childBasicDO.filmExaminationType==1}">否</td>
+					</tr>
+					<tr class="C-blue" th:if="${childBasicDO.filmExaminationType==0}">
+					  <td width="70"> </td>
+					  <td width="110">S</td>
+					  <td width="110">C</td>
+					  <td>A</td>
+					</tr>
+					<tr th:if="${childBasicDO.filmExaminationType==0}">
+					  <td>右眼：</td>
+					  <td th:text="'&lt;'+${childBasicDO.filmExaminationRighteyeS}">&lt;-2.50</td>
+					  <td th:text="${childBasicDO.filmExaminationRighteyeC}">-0.25</td>
+					  <td th:text="${childBasicDO.filmExaminationRighteyeA}+'&gt;'">7.0&gt;</td>
+					</tr>
+					<tr th:if="${childBasicDO.filmExaminationType==0}">
+					  <td>右眼：</td>
+						<td th:text="'&lt;'+${childBasicDO.filmExaminationLefteyeS}">&lt;-2.50</td>
+						<td th:text="${childBasicDO.filmExaminationLefteyeC}">-0.25</td>
+						<td th:text="${childBasicDO.filmExaminationLefteyeA}+'&gt;'">7.0&gt;</td>
+					</tr>
+				  </tbody>
+				</table>
+			</div>
+			
+			<div class="box" name="youer-xuanzexingzhushijiance">
+				<span>选择性注视检测：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+				  <tbody>
+					<tr>
+					  <td width="85">右眼：</td>
+					  <td width="85" th:text="${childBasicDO.selectiveGazeDetectionRighteye}">灰板</td>
+					</tr>
+					<tr>
+					  <td>左眼：</td>
+					  <td th:text="${childBasicDO.selectiveGazeDetectionLefteye}">0.10</td>
+					</tr>
+				  </tbody>
+				</table>
+			</div>
+			
+			<div class="box box1" name="youer-guangyuyandizhaoxiang">
+				<span>广域眼底照相：</span>
+				<table width="80%" border="1" cellspacing="0" cellpadding="0">
+				  <tbody>
+					<tr>
+					  <td>
+					  	右眼：
+					  	<ul>
+					  		<li th:each="rightList: ${childPhotographyDO.rightList}"><img th:src="${rightList}" alt=""/></li>
+					  	</ul>
+					  </td>
+					</tr>
+					<tr>
+					  <td>
+					  	左眼：
+					  	<ul>
+							<li th:each="leftList: ${childPhotographyDO.leftList}"><img th:src="${leftList}" alt=""/></li>
+						</ul>
+					  </td>
+					</tr>
+					<tr>
+					  <td>
+						<b>结论：</b>
+					  	<em th:text="${childPhotographyDO.conclusion}"></em>
+					  </td>
+					</tr>
+				  </tbody>
+				</table>
+			</div>
+			
+			<div class="box box2" name="youer-quguangshaicha">
+				<span>屈光筛查：</span>
+				<div style="float: left;width: 80%;">
+				<table class="tab1" border="1" cellspacing="0" cellpadding="0">
+				  <tbody>
+					<tr>
+					  <td>等效球镜</td>
+					  <td colspan="2"><em>OD:</em><span style="font-size: 17px;float: none; font-weight: normal;" th:text="${childRefractionScreeningDO.righteyeDengxiaoqiujing}"></span></td>
+					  <td><em>OS:</em><span style="font-size: 17px;float: none;font-weight: normal;" th:text="${childRefractionScreeningDO.lefteyeDengxiaoqiujing}"></span></td>
+
+					</tr>
+					<tr>
+					  <td>球镜</td>
+					  <td colspan="2"><em>OD:</em><span style="font-size: 17px;float: none;font-weight: normal;" th:text="${childRefractionScreeningDO.righteyeDiopterS}"></span></td>
+					  <td><em>0S:</em><span style="font-size: 17px;float: none;font-weight: normal;" th:text="${childRefractionScreeningDO.lefteyeDiopterS}"></span></td>
+
+					</tr>
+					<tr>
+					  <td>柱镜</td>
+					  <td colspan="2"><em>OD:</em><span style="font-size: 17px;float: none;font-weight: normal;" th:text="${childRefractionScreeningDO.righteyeDiopterC}"></span></td>
+					  <td><em>0S:</em><span style="font-size: 17px;float: none;font-weight: normal;" th:text="${childRefractionScreeningDO.lefteyeDiopterC}"></span></td>
+
+					</tr>
+					<tr>
+					  <td>轴位</td>
+					  <td colspan="2"><em>OD:</em><span style="font-size: 17px;float: none;font-weight: normal;" th:text="${childRefractionScreeningDO.righteyeDiopterA}"></span></td>
+					  <td><em>OS:</em><span style="font-size: 17px;float: none;font-weight: normal;" th:text="${childRefractionScreeningDO.lefteyeDiopterA}"></span></td>
+
+					</tr>
+					<tr>
+					  <td>瞳距</td>
+					  <td><em>双眼：</em><span style="font-size: 17px;float: none;font-weight: normal;" th:text="${childRefractionScreeningDO.ouPd}+'mm'"></span></td>
+					  <td><em>OD:</em><span style="font-size: 17px;float: none;font-weight: normal;" th:text="${childRefractionScreeningDO.odPd}+'mm'"></span></td>
+					  <td><em>OS:</em><span style="font-size: 17px;float: none;font-weight: normal;" th:text="${childRefractionScreeningDO.osPd}+'mm'"></span></td>
+					</tr>
+				  </tbody>
+				</table>
+				<table class="tab2" border="1" cellspacing="0" cellpadding="0">
+				  <tbody>
+					<tr>
+					  <td width="85">右眼：</td>
+					  <td width="85" th:if="${childRefractionScreeningDO.righteyeResultType==0}">正常</td>
+						<td width="85" th:if="${childRefractionScreeningDO.righteyeResultType==1}">可疑</td>
+						<td width="85" th:if="${childRefractionScreeningDO.righteyeResultType==2}">异常</td>
+						<td th:if="${childRefractionScreeningDO.righteyeResultIns=='JINSHI'}">近视</td>
+						<td  th:if="${childRefractionScreeningDO.righteyeResultIns=='YUANSHI'}">远视</td>
+						<td  th:if="${childRefractionScreeningDO.righteyeResultIns=='SANGUANG'}">散光</td>
+					</tr>
+					<tr>
+					  <td>左眼：</td>
+						<td width="85" th:if="${childRefractionScreeningDO.lefteyeResultType==0}">正常</td>
+						<td width="85" th:if="${childRefractionScreeningDO.lefteyeResultType==1}">可疑</td>
+						<td width="85" th:if="${childRefractionScreeningDO.lefteyeResultType==2}">异常</td>
+						<td  th:if="${childRefractionScreeningDO.lefteyeResultIns=='JINSHI'}">近视</td>
+						<td  th:if="${childRefractionScreeningDO.lefteyeResultIns=='YUANSHI'}">远视</td>
+						<td  th:if="${childRefractionScreeningDO.lefteyeResultIns=='SANGUANG'}">散光</td>
+					</tr>
+				  </tbody>
+				</table>
+				</div>
+			</div>
+
+			<div class="box" name="youer-santongqian">
+				<span>散瞳前电脑验光：</span>
+				<div class="fl sanTong">
+					<!--	<a href="">获取数据</a>-->
+					<div class="stsju">
+						<!--右眼数据-->
+						<div class="F18" id="firstCheckVd">
+
+							VD
+
+
+						</div>
+						<table border="1" cellspacing="0" cellpadding="0">
+							<tbody>
+
+							<tr class="F16">
+								<td class="C-blue"> &lt; R &gt;</td>
+								<td>S</td>
+								<td>C</td>
+								<td>A</td>
+								<td> </td>
+							</tr>
+							<tr id="firstcheckr">
+								<td colspan="5" class="F16">L.DATA</td>
+							</tr>
+							<tr>
+								<td colspan="5" class="F16" id="firstCheckRps">PS &nbsp;</td>
+							</tr>
+							<tr class="F16">
+								<td> </td>
+								<td>R</td>
+								<td>D</td>
+								<td>deg</td>
+								<td> </td>
+							</tr>
+							<tr id="firstcheckdegr">
+								<td colspan="5" class="F16" id="firstCheckRcs">CS &nbsp;</td>
+							</tr>
+							</tbody>
+							<div  >
+								<td colspan="5"  class="F16" id="firstCheckPd">PD &nbsp;</td>
+							</div>
+						</table>
+
+						<!--左眼数据-->
+						<table border="1" cellspacing="0" cellpadding="0" class="TabLine">
+							<tbody>
+							<tr class="F16">
+								<td class="C-blue"> &lt; L &gt;</td>
+								<td>S</td>
+								<td>C</td>
+								<td>A</td>
+								<td> </td>
+							</tr>
+							<tr id="firstcheckl">
+								<td colspan="5" class="F16">L.DATA</td>
+							</tr>
+
+							<tr>
+								<td colspan="5" class="F16" id="firstCheckLps">PS &nbsp;</td>
+							</tr>
+							<tr class="F16">
+								<td> </td>
+								<td>R</td>
+								<td>D</td>
+								<td>deg</td>
+								<td> </td>
+							</tr>
+
+							<tr id="firstcheckdegl">
+								<td colspan="5" class="F16" id="firstCheckLcs">CS &nbsp;</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<!---====散瞳后电脑验光====-->
+			<div class="box" name="youer-santonghou">
+				<span>散瞳后电脑验光:</span>
+				<div class="fl sanTong">
+					<!--	<a href="">获取数据</a>-->
+					<div class="stsju">
+						<div  id="secondCheckVd">
+							VD
+						</div>
+						<!--右眼数据-->
+						<table border="1" cellspacing="0" cellpadding="0">
+							<tbody>
+
+							<tr class="F16">
+								<td class="C-blue"> &lt; R &gt;</td>
+								<td>S</td>
+								<td>C</td>
+								<td>A</td>
+								<td> </td>
+							</tr>
+							<tr id="secondcheckr">
+								<td colspan="5" class="F16">L.DATA</td>
+							</tr>
+							<tr>
+								<td colspan="5" class="F16" id="secondCheckRps">PS &nbsp;</td>
+							</tr>
+							<tr class="F16">
+								<td> </td>
+								<td>R</td>
+								<td>D</td>
+								<td>deg</td>
+								<td> </td>
+							</tr>
+							<tr id="secondcheckdegr">
+								<td colspan="5" class="F16" id="secondCheckRcs">CS &nbsp;</td>
+							</tr>
+							<!--<tr>
+                                <td colspan="5" class="F16">PD &nbsp; 58.0</td>
+                            </tr>-->
+							</tbody>
+							<div  >
+								<td colspan="5"  class="F16" id="secondCheckPd">PD &nbsp;</td>
+							</div>
+						</table>
+
+						<!--左眼数据-->
+						<table border="1" cellspacing="0" cellpadding="0" class="TabLine">
+							<tbody>
+							<tr class="F16">
+								<td class="C-blue"> &lt; L &gt;</td>
+								<td>S</td>
+								<td>C</td>
+								<td>A</td>
+								<td> </td>
+							</tr>
+							<tr id="secondcheckl">
+								<td colspan="5" class="F16">L.DATA</td>
+							</tr>
+							<tr>
+								<td colspan="5" class="F16" id="secondCheckLps">PS &nbsp;</td>
+							</tr>
+							<tr class="F16">
+								<td> </td>
+								<td>R</td>
+								<td>D</td>
+								<td>deg</td>
+								<td> </td>
+							</tr>
+							<tr id="secondcheckdegl">
+								<td colspan="5" class="F16" id="secondCheckLcs">CS &nbsp;</td>
+							</tr>
+							<!--<tr>
+                                <td colspan="5" class="F16">PD &nbsp; 58.0</td>
+                            </tr>-->
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="box" name="youer-yanzhouchangdu">
+				<span>眼轴长度：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+					<tr>
+						<td width="85">右眼：</td>
+						<td width="85" th:text="${childEyeaxisDO.firstCheckOd}"></td>
+					</tr>
+					<tr>
+						<td>左眼：</td>
+						<td th:text="${childEyeaxisDO.firstCheckOs}"></td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="box" name="youer-jiaomoqulv">
+				<span>角膜曲率：</span>
+				<table class="Yzhouchang" border="1" cellspacing="0" cellpadding="0">
+					<tbody>
+					<tr>
+						<td>右眼</td>
+						<td id="RK1">k1：</td>
+						<td id="RK2">k2：</td>
+					</tr>
+					<tr>
+						<td>左眼</td>
+						<td id="LK1">k1：</td>
+						<td id="LK2">k2：</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="box">
+				<span>检查结论：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+				  <tbody>
+					<tr th:if="${childBasicDO.age}>0">
+					  <td th:text="${childBasicDO.conclusion}"></td>
+					</tr>
+					<tr th:if="${childBasicDO.age==0 and childBasicDO.ocularArchitectureRighteyeConclusion==0}">
+						<td>右眼眼球结构未见异常</td>
+					</tr>
+					<tr th:if="${childBasicDO.age==0 and childBasicDO.ocularArchitectureRighteyeConclusion==1}">
+						<td>右眼前节未见异常</td>
+					</tr>
+					<tr th:if="${childBasicDO.age==0 and childBasicDO.ocularArchitectureRighteyeConclusion==2}">
+						<td th:text="'右眼异常   '+${childBasicDO.ocularArchitectureRighteye}"></td>
+
+					<tr th:if="${childBasicDO.age==0 and childBasicDO.ocularArchitectureLefteyeConclusion==0}">
+						<td>左眼眼球结构未见异常</td>
+					</tr>
+					<tr th:if="${childBasicDO.age==0 and childBasicDO.ocularArchitectureLefteyeConclusion==1}">
+						<td>左眼前节未见异常</td>
+					</tr>
+					<tr th:if="${childBasicDO.age==0 and childBasicDO.ocularArchitectureLefteyeConclusion==2}">
+						<td th:text="'左眼异常   '+${childBasicDO.ocularArchitectureLefteye}"></td>
+					</tr>
+				  </tbody>
+				</table>
+			</div>
+			
+			<div class="box">
+				<span>医生建议：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+				  <tbody>
+					<tr>
+					  <td th:text="${childBasicDO.proposal}"></td>
+					</tr>
+				  </tbody>
+				</table>
+			</div>
+			
+			<div class="box">
+				<span>下次复查时间：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+				  <tbody>
+					<tr>
+					  <td th:text="${childBasicDO.lastcheckString}">2021年1月22日</td>
+					</tr>
+				  </tbody>
+				</table>
+			</div>
+			
+			<div class="box">
+				<span>检查者签字：</span>
+				<table border="1" cellspacing="0" cellpadding="0">
+				  <tbody>
+					<tr>
+					  <td th:text="${childBasicDO.chector}">张三</td>
+					</tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+ 		
+   </div>
+   <div th:include="include :: footer"></div>
+<script>
+var age=-1;
+var childIdcard=$("#childIdcard").text();
+    //获取电脑验光数据
+    $.ajax({
+        cache : true,
+        type : "GET",
+        url : "/information/child/getChildOptometryDO",
+        data :{
+            childIdcard:childIdcard,
+            age:age
+        },
+        async : false,
+        success : function(data) {
+            if(data.code==-1){
+                console.info(data.code);
+            }
+            if(data.code==0) {console.info(data.data);
+                var childDiopterDOS=data.data.childDiopterDOS;
+                for(var i=0;i<childDiopterDOS.length;i++){
+                    var childDiopterDO=childDiopterDOS[i];
+                    if(childDiopterDO.firstSecond=="FIRST_CHECK"){
+                        if(childDiopterDO.ifrl=="R"){
+                            if(childDiopterDO.type=="PU_TONG"){
+                                var tr=	"<tr>"
+                                    +"<td> </td>"
+                                    +"<td>"+childDiopterDO.diopterS+"</td>"
+                                    +"<td>"+childDiopterDO.diopterC+"</td>"
+                                    +"<td>"+childDiopterDO.diopterA+"</td>"
+                                    +"<td>"+childDiopterDO.believe+"</td>";
+                                +"</tr>";
+                                $("#firstcheckr").before(tr);
+                            }
+                            if(childDiopterDO.type=="AVG"){
+                                var tr=	"<tr>"
+                                    +"<td> </td>"
+                                    +"<td>&lt;"+ childDiopterDO.diopterS+"</td>"
+                                    +"<td>"+childDiopterDO.diopterC+"</td>"
+                                    +"<td>"+childDiopterDO.diopterA+" &gt;</td>"
+                                    +"<td></td>"
+                                    +"</tr>";
+                                $("#firstcheckr").before(tr);
+                            }
+                            if(childDiopterDO.type=="L_DATA"){
+                                var tr=	"<tr>"
+                                    +"<td> </td>"
+                                    +"<td>"+childDiopterDO.diopterS+"</td>"
+                                    +"<td>"+childDiopterDO.diopterC+"</td>"
+                                    +"<td>"+childDiopterDO.diopterA+"</td>"
+                                    +"<td>"+childDiopterDO.believe+"</td>";
+                                +"</tr>";
+                                $("#firstcheckr").after(tr);
+                            }
+                        }else if(childDiopterDO.ifrl=="L"){
+                            if(childDiopterDO.type=="PU_TONG"){
+                                var tr=	"<tr>"
+                                    +"<td> </td>"
+                                    +"<td>"+childDiopterDO.diopterS+"</td>"
+                                    +"<td>"+childDiopterDO.diopterC+"</td>"
+                                    +"<td>"+childDiopterDO.diopterA+"</td>"
+                                    +"<td>"+childDiopterDO.believe+"</td>";
+                                +"</tr>";
+                                $("#firstcheckl").before(tr);
+                            }
+                            if(childDiopterDO.type=="AVG"){
+                                var tr=	"<tr>"
+                                    +"<td> </td>"
+                                    +"<td>&lt;"+ childDiopterDO.diopterS+"</td>"
+                                    +"<td>"+childDiopterDO.diopterC+"</td>"
+                                    +"<td>"+childDiopterDO.diopterA+" &gt;</td>"
+                                    +"<td></td>"
+                                    +"</tr>";
+                                $("#firstcheckl").before(tr);
+                            }
+                            if(childDiopterDO.type=="L_DATA"){
+                                var tr=	"<tr>"
+                                    +"<td> </td>"
+                                    +"<td>"+childDiopterDO.diopterS+"</td>"
+                                    +"<td>"+childDiopterDO.diopterC+"</td>"
+                                    +"<td>"+childDiopterDO.diopterA+"</td>"
+                                    +"<td>"+childDiopterDO.believe+"</td>";
+                                +"</tr>";
+                                $("#firstcheckl").after(tr);
+                            }
+                        }
+                    }else if(childDiopterDO.firstSecond=="SECOND_CHECK"){
+                        if(childDiopterDO.ifrl=="R"){
+                            if(childDiopterDO.type=="PU_TONG"){
+                                var tr=	"<tr>"
+                                    +"<td> </td>"
+                                    +"<td>"+childDiopterDO.diopterS+"</td>"
+                                    +"<td>"+childDiopterDO.diopterC+"</td>"
+                                    +"<td>"+childDiopterDO.diopterA+"</td>"
+                                    +"<td>"+childDiopterDO.believe+"</td>";
+                                +"</tr>";
+                                $("#secondcheckr").before(tr);
+                            }
+                            if(childDiopterDO.type=="AVG"){
+                                var tr=	"<tr>"
+                                    +"<td> </td>"
+                                    +"<td>&lt;"+ childDiopterDO.diopterS+"</td>"
+                                    +"<td>"+childDiopterDO.diopterC+"</td>"
+                                    +"<td>"+childDiopterDO.diopterA+" &gt;</td>"
+                                    +"<td></td>"
+                                    +"</tr>";
+                                $("#secondcheckr").before(tr);
+                            }
+                            if(childDiopterDO.type=="L_DATA"){
+                                var tr=	"<tr>"
+                                    +"<td> </td>"
+                                    +"<td>"+childDiopterDO.diopterS+"</td>"
+                                    +"<td>"+childDiopterDO.diopterC+"</td>"
+                                    +"<td>"+childDiopterDO.diopterA+"</td>"
+                                    +"<td>"+childDiopterDO.believe+"</td>";
+                                +"</tr>";
+                                $("#secondcheckr").after(tr);
+                            }
+                        }else if(childDiopterDO=="L"){
+                            if(childDiopterDO.type=="PU_TONG"){
+                                var tr=	"<tr>"
+                                    +"<td> </td>"
+                                    +"<td>"+childDiopterDO.diopterS+"</td>"
+                                    +"<td>"+childDiopterDO.diopterC+"</td>"
+                                    +"<td>"+childDiopterDO.diopterA+"</td>"
+                                    +"<td>"+childDiopterDO.believe+"</td>";
+                                +"</tr>";
+                                $("#secondcheckl").before(tr);
+                            }
+                            if(childDiopterDO.type=="AVG"){
+                                var tr=	"<tr>"
+                                    +"<td> </td>"
+                                    +"<td>&lt;"+ childDiopterDO.diopterS+"</td>"
+                                    +"<td>"+childDiopterDO.diopterC+"</td>"
+                                    +"<td>"+childDiopterDO.diopterA+" &gt;</td>"
+                                    +"<td></td>"
+                                    +"</tr>";
+                                $("#secondcheckl").before(tr);
+                            }
+                            if(childDiopterDO.type=="L_DATA"){
+                                var tr=	"<tr>"
+                                    +"<td> </td>"
+                                    +"<td>"+childDiopterDO.diopterS+"</td>"
+                                    +"<td>"+childDiopterDO.diopterC+"</td>"
+                                    +"<td>"+childDiopterDO.diopterA+"</td>"
+                                    +"<td>"+childDiopterDO.believe+"</td>";
+                                +"</tr>";
+                                $("#secondcheckl").after(tr);
+                            }
+                        }
+                    }
+                }
+                var childCornealDOS=data.data.childCornealDOS;
+                for(var i=0;i<childCornealDOS.length;i++){
+                    var childCornealDO=childCornealDOS[i];
+                    var tr="<tr>"
+                        +"<td>&lt;"+childCornealDO.type+"</td>"
+                        +"<td>"+childCornealDO.cornealMm+"</td>"
+                        +"<td>"+childCornealDO.cornealD+"</td>"
+                        +"<td>"+childCornealDO.cornealDeg+"&gt;</td>"
+                        +"<td></td>"
+                        +"</tr>";
+                    if(childCornealDO.firstSecond=="FIRST_CHECK"){
+                        if(childCornealDO.ifrl=="R"){
+                            $("#firstcheckdegr").before(tr);
+                            if(childCornealDO.type=="R1")
+                                $("#RK1").text($("#RK1").text()+childCornealDO.cornealMm);
+                            if(childCornealDO.type=="R2")
+                                $("#RK2").text($("#RK2").text()+childCornealDO.cornealMm);
+                        }else if(childCornealDO.ifrl=="L"){
+                            $("#firstcheckdegl").before(tr);
+                            if(childCornealDO.type=="R1")
+                                $("#LK1").text($("#LK1").text()+childCornealDO.cornealMm);
+                            if(childCornealDO.type=="R2")
+                                $("#LK2").text($("#LK2").text()+childCornealDO.cornealMm);
+                        }
+                    }else if(childCornealDO.firstSecond=="SECOND_CHECK"){
+                        if(childCornealDO.ifrl=="R"){
+                            $("#secondcheckdegr").before(tr);
+                        }else if(childCornealDO.ifrl=="L"){
+                            $("#secondcheckdegl").before(tr);
+                        }
+                    }
+                }
+                var childOptometryDO=data.data.childOptometryDO;
+                if(childOptometryDO.firstCheckLcs!='0') $("#firstCheckLcs").text($("#firstCheckLcs").text()+childOptometryDO.firstCheckLcs);
+                if(childOptometryDO.firstCheckLps!=0) $("#firstCheckLps").text($("#firstCheckLps").text()+childOptometryDO.firstCheckLps);
+                if(childOptometryDO.firstCheckPd!=0) $("#firstCheckPd").text($("#firstCheckPd").text()+childOptometryDO.firstCheckPd);
+                if(childOptometryDO.firstCheckRcs!=0) $("#firstCheckRcs").text($("#firstCheckRcs").text()+childOptometryDO.firstCheckRcs);
+                if(childOptometryDO.firstCheckRps!=0) $("#firstCheckRps").text($("#firstCheckRps").text()+childOptometryDO.firstCheckRps);
+                if(childOptometryDO.firstCheckVd!=0) $("#firstCheckVd").text($("#firstCheckVd").text()+childOptometryDO.firstCheckVd+"mm");
+
+                if(childOptometryDO.secondCheckLcs!=0) $("#secondCheckLcs").text($("#secondCheckLcs").text()+childOptometryDO.secondCheckLcs);
+                if(childOptometryDO.secondCheckLps!=0) $("#secondCheckLps").text($("#secondCheckLps").text()+childOptometryDO.secondCheckLps);
+                if(childOptometryDO.secondCheckPd!=0) $("#secondCheckPd").text($("#secondCheckPd").text()+childOptometryDO.secondCheckPd);
+
+                if(childOptometryDO.secondCheckRcs!=0) $("#secondCheckRcs").text($("#secondCheckRcs").text()+childOptometryDO.secondCheckRcs);
+                if(childOptometryDO.secondCheckRps!=0) $("#secondCheckRps").text($("#secondCheckRps").text()+childOptometryDO.secondCheckRps);
+                if(childOptometryDO.secondCheckVd!=0) $("#secondCheckVd").text($("#secondCheckVd").text()+childOptometryDO.secondCheckVd+"mm");
+            }
+        }
+    });
+
+
+
+$("#selectAge").change(function() {
+    var age = $(this).val();
+    var childIdcard=$("#childIdcard").text();
+    window.location.href="/information/child/getHistory/"+childIdcard+"/"+age;
+});
+
+/**
+ *  过滤不必要的检查项目
+ */
+var age=$("#myAge").val();
+switch (age) {
+    case '0':{
+        $("[name*='youer']").hide();
+        $("[name*='waiyanjiancha']").show();
+        $("[name*='hongguangfanshe']").show();
+        $("[name*='guangyuyandizhaoxiang']").show();
+        break;
+    }
+    case '1':{
+        $("[name*='youer']").hide();
+        $("[name*='waiyanjiancha']").show();
+        $("[name*='hongguangfanshe']").show();
+        $("[name*='shunmufanshe']").show();
+        $("[name*='hongqiushiyan']").show();
+        $("[name*='shilichushai']").show();
+        $("[name*='hongqiushiyan']").show();
+        $("[name*='shilichushai']").show();
+        $("[name*='yanqiuzhuisuiyundong']").show();
+        $("[name*='guangyuyandizhaoxiang']").show();
+        break;
+    }
+    case '2':{
+        $("[name*='youer']").hide();
+        $("[name*='waiyanjiancha']").show();
+        $("[name*='hongguangfanshe']").show();
+        $("[name*='shunmufanshe']").show();
+        $("[name*='hongqiushiyan']").show();
+        $("[name*='shilichushai']").show();
+        $("[name*='hongqiushiyan']").show();
+        $("[name*='shilichushai']").show();
+        $("[name*='yanqiuzhuisuiyundong']").show();
+        $("[name*='guangyuyandizhaoxiang']").show();
+        break;
+    }
+    case '3':{
+        $("[name*='youer']").hide();
+        $("[name*='waiyanjiancha']").show();
+        $("[name*='hongguangfanshe']").show();
+        $("[name*='shilichushai']").show();
+        $("[name*='quguangshaicha']").show();
+        $("[name*='shijuexingwei']").show();
+        $("[name*='xuanzexingzhushijiance']").show();
+        $("[name*='yanweijiancha']").show();
+        $("[name*='guangyuyandizhaoxiang']").show();
+        break;
+    }
+    case '4':{
+        $("[name*='youer']").hide();
+        $("[name*='waiyanjiancha']").show();
+        $("[name*='hongguangfanshe']").show();
+        $("[name*='shilichushai']").show();
+        $("[name*='quguangshaicha']").show();
+        $("[name*='shijuexingwei']").show();
+        $("[name*='xuanzexingzhushijiance']").show();
+        $("[name*='yanweijiancha']").show();
+        $("[name*='guangyuyandizhaoxiang']").show();
+        $("[name*='jianyingjiancha']").show();
+        break
+    }
+    case '5':{
+        $("[name*='youer']").hide();
+        $("[name*='waiyanjiancha']").show();
+        $("[name*='hongguangfanshe']").show();
+        $("[name*='shilichushai']").show();
+        $("[name*='quguangshaicha']").show();
+        $("[name*='shijuexingwei']").show();
+        $("[name*='xuanzexingzhushijiance']").show();
+        $("[name*='yanweijiancha']").show();
+        $("[name*='guangyuyandizhaoxiang']").show();
+        $("[name*='jianyingjiancha']").show();
+        $("[name*='yanqiuyundong']").show();
+        break;
+    }
+    case '6':{
+        $("[name*='youer']").hide();
+        $("[name*='waiyanjiancha']").show();
+        $("[name*='hongguangfanshe']").show();
+        $("[name*='shilichushai']").show();
+        $("[name*='quguangshaicha']").show();
+        $("[name*='shijuexingwei']").show();
+        $("[name*='yanweijiancha']").show();
+        $("[name*='guangyuyandizhaoxiang']").show();
+        $("[name*='jianyingjiancha']").show();
+        $("[name*='yanqiuyundong']").show();
+        break;
+    }
+    case '7':{
+        $("[name*='youer']").hide();
+        $("[name*='waiyanjiancha']").show();
+        $("[name*='hongguangfanshe']").show();
+        $("[name*='quguangshaicha']").show();
+        $("[name*='shijuexingwei']").show();
+        $("[name*='yanweijiancha']").show();
+        $("[name*='guangyuyandizhaoxiang']").show();
+        $("[name*='jianyingjiancha']").show();
+        $("[name*='yanqiuyundong']").show();
+        break;
+    }
+    case '8':{
+        $("[name*='youer']").hide();
+        $("[name*='waiyanjiancha']").show();
+        $("[name*='hongguangfanshe']").show();
+        $("[name*='quguangshaicha']").show();
+        $("[name*='shijuexingwei']").show();
+        $("[name*='yanweijiancha']").show();
+        $("[name*='jianyingjiancha']").show();
+        $("[name*='yanqiuyundong']").show();
+
+        $("[name*='santongqian']").show();
+        $("[name*='santonghou']").show();
+        break;
+    }
+    case '9':{
+        $("[name*='youer']").hide();
+        $("[name*='waiyanjiancha']").show();
+        $("[name*='quguangshaicha']").show();
+        $("[name*='jianyingjiancha']").show();
+        $("[name*='yanqiuyundong']").show();
+
+        $("[name*='santongqian']").show();
+        $("[name*='santonghou']").show();
+
+        $("[name*='shilijiancha']").show();
+        $("[name*='yanzhouchangdu']").show();
+        $("[name*='jiaomoqulv']").show();
+        $("[name*='sejuejiancha']").show();
+        $("[name*='yanweijiancha']").show();
+        break;
+    }
+    case '10':{
+        $("[name*='youer']").hide();
+        $("[name*='waiyanjiancha']").show();
+        $("[name*='quguangshaicha']").show();
+        $("[name*='jianyingjiancha']").show();
+        $("[name*='yanqiuyundong']").show();
+
+        $("[name*='santongqian']").show();
+        $("[name*='santonghou']").show();
+
+        $("[name*='shilijiancha']").show();
+        $("[name*='yanzhouchangdu']").show();
+        $("[name*='jiaomoqulv']").show();
+        $("[name*='sejuejiancha']").show();
+        $("[name*='yanweijiancha']").show();
+        break;
+    }
+    case '11':{
+        $("[name*='youer']").hide();
+        $("[name*='waiyanjiancha']").show();
+        $("[name*='quguangshaicha']").show();
+        $("[name*='jianyingjiancha']").show();
+        $("[name*='yanqiuyundong']").show();
+
+        $("[name*='santongqian']").show();
+        $("[name*='santonghou']").show();
+
+        $("[name*='shilijiancha']").show();
+        $("[name*='yanzhouchangdu']").show();
+        $("[name*='jiaomoqulv']").show();
+        $("[name*='sejuejiancha']").show();
+        $("[name*='yanweijiancha']").show();
+        break;
+    }
+    case '12':{
+        $("[name*='youer']").hide();
+
+        $("[name*='waiyanjiancha']").show();
+        $("[name*='quguangshaicha']").show();
+        $("[name*='jianyingjiancha']").show();
+        $("[name*='yanqiuyundong']").show();
+
+        $("[name*='santongqian']").show();
+        $("[name*='santonghou']").show();
+
+        $("[name*='shilijiancha']").show();
+        $("[name*='yanzhouchangdu']").show();
+        $("[name*='jiaomoqulv']").show();
+        $("[name*='sejuejiancha']").show();
+        $("[name*='yanweijiancha']").show();
+        break;
+    }
+}
+
+</script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,844 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>筛查</title>
+<link rel="stylesheet" href="css.css" type="text/css">
+<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+   <div class="banner">
+   		<img src="img/banner.jpg" alt=""/>
+   </div>
+   <!--头部-->
+   <div class="main CXtop">
+   		<div class="fl">
+   			<a href="" title="新建"></a>
+   		</div>
+   		<div class="fr">
+   			<input class="INtxt" type="text" placeholder="输入身份证号" />
+   			<input class="INbtn" type="button" value="查询" />
+   		</div>
+   </div>
+   <!--主体内容-->
+   <div class="main">
+  		<!--左侧内容-->
+   		<div class="fl NewLeft">
+   			<!--左侧基础信息-->
+   			<div class="leftOne">
+   				<div class="box1">
+   					<span>身份证号：</span>
+   					<input type="text" placeholder="输入身份证号" />
+   				</div>
+   				<div class="box1">
+   					<span>孩子姓名：</span>
+   					<input type="text" placeholder="输入孩子姓名" />
+   				</div>
+   				<div class="box1">
+   					<span>出生年月：</span>
+   					<input type="text" placeholder="输入出生年月" />
+   				</div>
+   				<!--单选1-->
+   				<div class="box2">
+   					<span>性     别：</span>                 
+					<label for="nan"><input name="DD1" type="radio" id="nan"> 男</label>                                   
+					<label for="nv"><input name="DD1"  type="radio" id="nv"> 女</label>    
+   				</div>
+   				<!--多选-->
+   				<div class="box3">
+   					<label><input name="Fruit" type="checkbox" value="" />早产儿 </label> 
+					<label><input name="Fruit" type="checkbox" value="" />低体重儿 </label> 
+					<label><input name="Fruit" type="checkbox" value="" />单胎 </label> 
+					<label><input name="Fruit" type="checkbox" value="" />双胎</label> 
+					<label><input name="Fruit" type="checkbox" value="" />多胎</label> 
+   				</div>
+   			</div>
+   			<!--左侧父母情况-->
+   			<div class="leftTwo">
+   				<h3>父母情况</h3>
+   				<div class="box box1">
+   					<span>母亲姓名：</span>
+   					<input type="text"/>
+   				</div>
+   				<div class="box box1">
+   					<span>母亲身份证号：</span>
+   					<input type="text"/>
+   				</div>
+   				<!--单选2-->
+   				<div class="box box2">
+   					<span>眼病家族史：</span>  
+   					<label for="wu"><input name="DD2"  type="radio" id="wu"> 无</label>                
+					<label for="you"><input  name="DD2" type="radio" id="you"> 有</label>                                   
+   				</div>
+   				<div class="box box1">
+   					<span>父亲姓名：</span>
+   					<input type="text"/>
+   				</div>
+   				<!--单选3-->
+   				<div class="box box2">
+   					<span>眼病家族史：</span>  
+   					<label for="Fwu"><input name="DD3"  type="radio" id="Fwu"> 无</label>               
+					<label for="Fyou"><input  name="DD3" type="radio" id="Fyou"> 有</label>                                   
+					 
+  					<div class="inbox">
+  						<label for="JS"><input  name="DD4" type="radio" id="JS">近视</label>                                
+						<label for="YS"><input name="DD4"  type="radio" id="YS">远视</label>    
+						<label for="RS"><input name="DD4"  type="radio" id="RS">弱视</label>    
+  					</div>   
+   				</div>
+   				<div class="cl"></div><!--清除浮动-->
+   				<div class="box box1">
+   					<span>家庭住址：</span>
+   					<input type="text"/>
+   				</div>
+   				<div class="box box1">
+   					<span>电话：</span>
+   					<input type="text"/>
+   				</div>
+   				<!--单选5-->
+   				<div class="box box2">
+   					<span>分娩方式：</span>                 
+					<label for="C1"><input  name="DD5" type="radio" id="C1"> 顺产</label>                                   
+					<label for="C2"><input name="DD5"  type="radio" id="C2"> 剖腹产</label>    
+					<label for="C3"><input name="DD5"  type="radio" id="C3"> 胎头吸引</label>    
+   				</div>
+   				<!--单选6-->
+   				<div class="box box2 box3">
+   					<span>特殊用药史：</span>                 
+					<label for="yao1"><input  name="DD6" type="radio" id="yao1"> 无</label>                                   
+					<label for="yao2"><input name="DD6"  type="radio" id="yao2"> 有 <input type="text"> </label>      
+   				</div>
+   				<div class="box box1">
+   					<span>住院号：</span>
+   					<input type="text"/>
+   				</div>
+   				<div class="box box1">
+   					<span>孕周：</span>
+   					<input style="width:80px;" type="text"/>
+   					<span>出生体重：</span>
+   					<input style="width:80px;" type="text"/>kg
+   				</div>
+   				<!--单选7-->
+   				<div class="box box2">
+   					<span>窒息史：</span>                 
+					<label for="SS1"><input  name="DD7" type="radio" id="SS1"> 无</label>                                   
+					<label for="SS2"><input name="DD7"  type="radio" id="SS2"> 有</label>      
+   				</div>
+   				<!--单选8-->
+   				<div class="box box2">
+   					<span>吸氧史：</span>                 
+					<label for="Y1"><input  name="DD8" type="radio" id="Y1"> 无</label>                                   
+					<label for="Y2"><input name="DD8"  type="radio" id="Y2"> 有</label>      
+   				</div>
+   				<div class="box box4">
+   					<span>其他情况：</span>
+   					<textarea></textarea>
+   				</div>
+   				
+   			</div>
+   			
+   		</div>
+   		<!--右侧内容-->
+   		<div class="fr NewRight">
+   			<div class="rightTop">
+   				<div class="fl txtL">眼保健筛查项目</div>
+   				<div class="fr txtR">历史记录</div>
+   			</div>
+   			<div class="rightOld">
+   				<div class="fl">
+   					眼保健年龄段：
+   					<select>
+						<option>-请选择-</option>
+						<option>2周岁</option>
+						<option>3周岁</option>
+						<option>4周岁</option>
+					</select>
+   				</div>
+   				<div class="fr txtR">
+   					检查日期：
+   					<input type="text" placeholder="2020年12月10日">
+   					<img src="img/icon-rili.png" alt=""/>
+   				</div>
+   			</div>
+   			<!--保健情况-->
+   			<div class="YBJbox">
+   				<h3>1周岁眼保健情况</h3>
+   				<!---====散瞳前电脑验光====-->
+   				<div class="box1">
+   					<p>散瞳前电脑验光:</p>
+   					<div class="fl sanTong">
+   						<a href="">获取数据</a>
+   						<div class="stsju">
+   						<!--右眼数据-->
+   						<table border="1" cellspacing="0" cellpadding="0">
+						  <tbody>
+							<tr>
+							  <td colspan="5" class="F18">VD=12.0mm</td>
+							</tr>
+							<tr class="F16">
+							  <td class="C-blue"> &lt; R &gt;</td>
+							  <td>S</td>
+							  <td>C</td>
+							  <td>A</td>
+							  <td> </td>
+							</tr>
+							<tr>
+							  <td> </td>
+							  <td>-2.25</td>
+							  <td>-0.5</td>
+							  <td>174.0</td>
+							  <td>9</td>
+							</tr>
+							<tr>
+							  <td> </td>
+							  <td>-2.75</td>
+							  <td>-0.25</td>
+							  <td>15.0</td>
+							  <td>8</td>
+							</tr>
+							<tr>
+							  <td> </td>
+							  <td>-2.75</td>
+							  <td>-0.25</td>
+							  <td>7.0</td>
+							  <td>8</td>
+							</tr>
+							<tr>
+							  <td> </td>
+							  <td>&lt; -2.50</td>
+							  <td>-0.25</td>
+							  <td>7.0 &gt;</td>
+							  <td> </td>
+							</tr>
+							<tr>
+							  <td colspan="5" class="F16">L.DATA</td>
+							</tr>
+							<tr>
+							  <td> </td>
+							   <td>-2.50</td>
+							  <td>-0.25</td>
+							  <td>2.0</td>
+							  <td> </td>
+							</tr>
+							<tr>
+							  <td colspan="5" class="F16">PS &nbsp; 5.3</td>
+							</tr>
+							<tr class="F16">
+							  <td> </td>
+							  <td>R</td>
+							  <td>D</td>
+							  <td>deg</td>
+							  <td> </td>
+							</tr>
+							<tr>
+							  <td>&lt;R1</td>
+							  <td>8.18</td>
+							  <td>41.25</td>
+							  <td>24&gt;</td>
+							  <td></td>
+							</tr>
+							<tr>
+							  <td>&lt;R2</td>
+							  <td>8.18</td>
+							  <td>41.25</td>
+							  <td>114&gt;</td>
+							  <td></td>
+							</tr>
+							<tr>
+							  <td>&lt;AVG</td>
+							  <td>8.18</td>
+							  <td>41.25</td>
+							  <td>&gt;</td>
+							  <td></td>
+							</tr>
+							<tr>
+							  <td>&lt;CYL</td>
+							  <td> </td>
+							  <td>-1.25</td>
+							  <td>24&gt;</td>
+							  <td></td>
+							</tr>
+							<tr>
+							  <td colspan="5" class="F16">CS &nbsp; 12.0</td>
+							</tr>
+							<tr>
+							  <td colspan="5" class="F16">PD &nbsp; 58.0</td>
+							</tr>
+						  </tbody>
+						</table>
+   						<!--左眼数据-->
+   						<table border="1" cellspacing="0" cellpadding="0" class="TabLine">
+						  <tbody>
+							<tr>
+							  <td colspan="5" class="F18">VD=12.0mm</td>
+							</tr>
+							<tr class="F16">
+							  <td class="C-blue"> &lt; L &gt;</td>
+							  <td>S</td>
+							  <td>C</td>
+							  <td>A</td>
+							  <td> </td>
+							</tr>
+							<tr>
+							  <td> </td>
+							  <td>-2.25</td>
+							  <td>-0.5</td>
+							  <td>174.0</td>
+							  <td>9</td>
+							</tr>
+							<tr>
+							  <td> </td>
+							  <td>-2.75</td>
+							  <td>-0.25</td>
+							  <td>15.0</td>
+							  <td>8</td>
+							</tr>
+							<tr>
+							  <td> </td>
+							  <td>-2.75</td>
+							  <td>-0.25</td>
+							  <td>7.0</td>
+							  <td>8</td>
+							</tr>
+							<tr>
+							  <td> </td>
+							  <td>&lt; -2.50</td>
+							  <td>-0.25</td>
+							  <td>7.0 &gt;</td>
+							  <td> </td>
+							</tr>
+							<tr>
+							  <td colspan="5" class="F16">L.DATA</td>
+							</tr>
+							<tr>
+							  <td> </td>
+							   <td>-2.50</td>
+							  <td>-0.25</td>
+							  <td>2.0</td>
+							  <td> </td>
+							</tr>
+							<tr>
+							  <td colspan="5" class="F16">PS &nbsp; 5.3</td>
+							</tr>
+							<tr class="F16">
+							  <td> </td>
+							  <td>R</td>
+							  <td>D</td>
+							  <td>deg</td>
+							  <td> </td>
+							</tr>
+							<tr>
+							  <td>&lt;R1</td>
+							  <td>8.18</td>
+							  <td>41.25</td>
+							  <td>24&gt;</td>
+							  <td></td>
+							</tr>
+							<tr>
+							  <td>&lt;R2</td>
+							  <td>8.18</td>
+							  <td>41.25</td>
+							  <td>114&gt;</td>
+							  <td></td>
+							</tr>
+							<tr>
+							  <td>&lt;AVG</td>
+							  <td>8.18</td>
+							  <td>41.25</td>
+							  <td>&gt;</td>
+							  <td></td>
+							</tr>
+							<tr>
+							  <td>&lt;CYL</td>
+							  <td> </td>
+							  <td>-1.25</td>
+							  <td>24&gt;</td>
+							  <td></td>
+							</tr>
+							<tr>
+							  <td colspan="5" class="F16">CS &nbsp; 12.0</td>
+							</tr>
+							<tr>
+							  <td colspan="5" class="F16">PD &nbsp; 58.0</td>
+							</tr>
+						  </tbody>
+						</table>
+						</div>
+   					</div>
+				</div>
+  				<!--====眼轴长度====-->
+  				<div class="box1">
+   					<p>眼轴长度:</p>
+   					<table class="Yzhouchang" border="1" cellspacing="0" cellpadding="0">
+					  <tbody>
+						<tr>
+						  <td>OD</td>
+						  <td>24.90 mm</td>
+						</tr>
+						<tr>
+						  <td>OS</td>
+						  <td>22.50 mm</td>
+						</tr>
+					  </tbody>
+					</table>
+				</div>
+  				<!--====角膜曲率====-->
+  				<div class="box1">
+   					<p>角膜曲率:</p>
+   					<table class="Yzhouchang" border="1" cellspacing="0" cellpadding="0">
+					  <tbody>
+						<tr>
+						  <td>右眼</td>
+						  <td>k1：8.1</td>
+						  <td>k2：8.6</td>
+						</tr>
+						<tr>
+						  <td>左眼</td>
+						  <td>k1：0</td>
+						  <td>k2：0</td>
+						</tr>
+					  </tbody>
+					</table>
+				</div>
+   				<!--====视力检查====-->
+   				<div class="box1">
+   					<p>视力检查:</p>
+   					<div class="Reye">
+   						<table class="HjcslB" border="1" cellspacing="0" cellpadding="0">
+						  <tbody>
+							<tr class="greenBD">
+							  <td>
+								<span>裸眼视力：</span>
+							  	<select>
+									<option>E字视标</option>
+									<option>灰板1</option>
+									<option>灰板2</option>
+									<option>灰板3</option>
+								</select>
+							  </td>
+							  <td>
+							  	<span>戴镜视力：</span>
+							  	<select>
+									<option>图形视标</option>
+									<option>灰板1</option>
+									<option>灰板2</option>
+									<option>灰板3</option>
+								</select>
+							  </td>
+							</tr>
+							<tr>
+							  <td>
+							  	<span>右眼：</span>
+							  	<select>
+									<option>1.0</option>
+									<option>灰板1</option>
+									<option>灰板2</option>
+									<option>灰板3</option>
+								</select>
+							  </td>
+							  <td>
+							  	<span>右眼：</span>
+							  	<select>
+									<option>1.0</option>
+									<option>灰板1</option>
+									<option>灰板2</option>
+									<option>灰板3</option>
+								</select>
+							  </td>
+							</tr>
+							<tr>
+							  <td>
+							  	<span>左眼：</span>
+							  	<select>
+									<option>1.0</option>
+									<option>灰板1</option>
+									<option>灰板2</option>
+									<option>灰板3</option>
+								</select>
+							  </td>
+							  <td>
+							  	<span>左眼：</span>
+							  	<select>
+									<option>1.0</option>
+									<option>灰板1</option>
+									<option>灰板2</option>
+									<option>灰板3</option>
+								</select>
+							  </td>
+							</tr>
+						  </tbody>
+						</table>
+
+   						
+   					</div>
+   				</div>
+   				<!--====外眼检测====-->
+   				<div class="box1">
+   					<p>外眼检查：</p>
+   					<div class="JCinbox">
+   						<!--右眼单选9-->
+						<div class="boxbOLL">
+							<span>右眼：</span>                 
+							<label for="ZC1"><input  name="DD9" type="radio" id="ZC1"> 正常</label>                            
+							<label for="YC1"><input name="DD9"  type="radio" id="YC1"> 异常</label>  
+							<!--异常多选-->
+							<div class="fr yichang">
+								<label><input name="Yic" type="checkbox" value="" />溢泪 </label> 
+								<label><input name="Yic" type="checkbox" value="" />分泌物 </label> 
+								<label><input name="Yic" type="checkbox" value="" />毛细血管瘤 </label> 
+								<label><input name="Yic" type="checkbox" value="" />结膜出血</label> 
+								<label><input name="Yic" type="checkbox" value="" />虹膜毛细血管</label> 
+								<label><input name="Yic" type="checkbox" value="" />角膜白斑</label> 
+								<label style="width:100%;"><input name="Yic" type="checkbox" value="" />其他<input type="text"></label> 
+							</div>    
+						</div>
+  						<!--左眼单选10-->
+						<div class="boxbOLL">
+							<span>左眼：</span>                 
+							<label for="ZC2"><input  name="DD10" type="radio" id="ZC2"> 正常</label>                            
+							<label for="YC2"><input name="DD10"  type="radio" id="YC2"> 异常</label>      
+						</div>
+   					</div>
+   				</div>
+   				<!--====红光反射====-->
+   				<div class="box1">
+   					<p>红光反射：</p>
+   					<div class="JCinbox">
+   						<!--右眼单选9-->
+						<div class="boxbOLL">
+							<span>右眼：</span>                 
+							<label for="ZC3"><input  name="DD9" type="radio" id="ZC3"> 正常</label>                            
+							<label for="YC3"><input name="DD9"  type="radio" id="YC3"> 异常<input type="text"></label>     
+						</div>
+  						<!--左眼单选10-->
+						<div class="boxbOLL">
+							<span>左眼：</span>                 
+							<label for="ZC4"><input  name="DD10" type="radio" id="ZC4"> 正常</label>                            
+							<label for="YC4"><input name="DD10"  type="radio" id="YC4"> 异常<input type="text"></label>      
+						</div>
+   					</div>
+   				</div>
+   				<!--====视觉行为====-->
+   				<div class="box1">
+   					<p>视觉行为：</p>
+   					<div class="JCinbox">
+   						<!--右眼单选11-->
+						<div class="boxbOLL">
+							<span>右眼：</span>                 
+							<label for="pass"><input  name="DD11" type="radio" id="pass"> 通过</label>                           
+							<label for="passOn"><input name="DD11"  type="radio" id="passOn"> 未通过</label>     
+						</div>
+  						<!--左眼单选12-->
+						<div class="boxbOLL">
+							<span>左眼：</span>                 
+							<label for="passL"><input  name="DD12" type="radio" id="passL"> 通过</label>                         
+							<label for="passOnL"><input name="DD12"  type="radio" id="passOnL"> 未通过</label>      
+						</div>
+   					</div>
+   				</div>
+   				<!--====视力初筛====-->
+   				<div class="box1">
+   					<p>视力初筛：</p>
+   					<div class="JCinbox">
+   						<!--右眼单选13-->
+						<div class="boxbOLL">
+							<span>右眼：</span>  
+							<label for="slcs1"><input  name="DD13" type="radio" id="slcs1"> 无</label>                  
+							<label for="slcs2"><input  name="DD13" type="radio" id="slcs2"> 正常</label>                         <label for="slcs3"><input  name="DD13" type="radio" id="slcs3"> 不配合</label>   
+							<label for="slcs4"><input  name="DD13"  type="radio" id="slcs4"> 选择性观看</label>     
+						</div>
+  						<!--左眼单选14-->
+						<div class="boxbOLL">
+							<span>左眼：</span>                 
+							<label for="slcs5"><input  name="DD14" type="radio" id="slcs5"> 无</label>                  
+							<label for="slcs6"><input  name="DD14" type="radio" id="slcs6"> 正常</label>                         <label for="slcs7"><input  name="DD14" type="radio" id="slcs7"> 不配合</label>   
+							<label for="slcs8"><input  name="DD14"  type="radio" id="slcs8"> 选择性观看</label>     
+						</div>
+   					</div>
+   				</div>
+   				<!--====选择性注视检测====-->
+   				<div class="box1">
+   					<p>选择性注视检测:</p>
+   					<div class="Reye">
+   						右眼：
+   						<select>
+							<option>-请选择-</option>
+							<option>灰板1</option>
+							<option>灰板2</option>
+							<option>灰板3</option>
+						</select>
+  						左眼：
+   						<select>
+							<option>-请选择-</option>
+							<option>0.10</option>
+							<option>0.20</option>
+							<option>0.30</option>
+						</select>
+   					</div>
+   				</div>
+   				<!--====眼位检查====-->
+   				<div class="box1">
+   					<p>眼位检查：</p>
+   					<div class="JCinbox">
+   						<!--右眼单选15-->
+						<div class="boxbOLL">
+							<span class="fl">右眼：</span>
+							<div class="fl Hxx">
+								<div>
+									<label for="001"><input  name="DD15" type="radio" id="001"> 正位</label>
+								</div>
+								<div>
+									<label for="002"><input name="DD15"  type="radio" id="002"> 斜视</label>
+									<!--异常多选-->
+									<div class="fr yichang" style="width:300px">
+										<label style="width: 100%;"><input name="Yic" type="checkbox" value="" />内斜 <input type="text"></label> 
+										<label style="width: 100%;"><input name="Yic" type="checkbox" value="" />外斜 <input type="text"></label> 
+										<label style="width: 100%;"><input name="Yic" type="checkbox" value="" />垂直斜 <input type="text"></label> 
+									</div>   
+								</div>                                        
+								<div>
+									<label for="003"><input name="DD15"  type="radio" id="003"> 眼球震颤</label>
+								</div>
+							</div>                            
+						</div>
+  						<!--左眼单选16-->
+						<div class="boxbOLL">
+							<span class="fl">左眼：</span> 
+							<div class="fl Hxx">
+								<div><label for="004"><input  name="DD16" type="radio" id="004"> 正位</label>  </div>
+								<div><label for="005"><input name="DD16"  type="radio" id="005"> 斜视</label>  </div>
+								<div><label for="006"><input name="DD16"  type="radio" id="006"> 眼球震颤</label></div>
+							</div>                     
+						</div>
+   					</div>
+   				</div>
+   				<!--====眼球运动====-->
+   				<div class="box1">
+   					<p>眼球运动：</p>
+   					<div class="JCinbox">
+   						<!--右眼单选17-->
+						<div class="boxbOLL">
+							<span>右眼：</span>                 
+							<label for="007"><input  name="DD17" type="radio" id="007"> 正常</label>                            
+							<label for="008"><input name="DD17"  type="radio" id="008"> 异常 <input type="text"></label>     
+						</div>
+  						<!--左眼单选18-->
+						<div class="boxbOLL">
+							<span>左眼：</span>                 
+							<label for="009"><input  name="DD18" type="radio" id="009"> 正常</label>                            
+							<label for="010"><input name="DD18"  type="radio" id="010"> 异常 <input type="text"></label>      
+						</div>
+   					</div>
+   				</div>
+   				<!--====检影检查====-->
+   				<div class="box1">
+   					<p>检影检查：</p>
+   					<div class="JCinbox">
+   						<div class="boxbOLL Hjyjc">
+							<label for="011"><input  name="DD19" type="radio" id="011"> 否</label>                            
+							<label for="012"><input  name="DD19" type="radio" id="012"> 是</label>  
+							<table class="SCA_tab"  border="1" cellspacing="0" cellpadding="0">
+							  <tbody>
+								<tr style="color:#228bf7;">
+								  <td>&nbsp;</td>
+								  <td>S</td>
+								  <td>C</td>
+								  <td>A</td>
+								</tr>
+								<tr>
+								  <td>右：</td>
+								  <td><input type="text" placeholder="输入"></td>
+								  <td><input type="text" placeholder="输入"></td>
+								  <td><input type="text" placeholder="输入"></td>
+								</tr>
+								<tr>
+								  <td>左：</td>
+								  <td><input type="text" placeholder="输入"></td>
+								  <td><input type="text" placeholder="输入"></td>
+								  <td><input type="text" placeholder="输入"></td>
+								</tr>
+							  </tbody>
+							</table>
+						</div>
+   					</div>
+   				</div>
+   				<!--====广域眼底照相====-->
+   				<div class="box1">
+   					<p>广域眼底照相：</p>
+   					<div class="Hphoto">
+   						<a href="">获取数据</a>
+   						<br/>右眼：
+   						<ul>
+   							<li><img src="img/eyeBoll-1.jpg" alt=""/></li>
+   							<li><img src="img/eyeBoll-2.jpg" alt=""/></li>
+   							<li><img src="img/eyeBoll-3.jpg" alt=""/></li>
+   						</ul>
+   						左眼：
+   						<ul>
+   							<li><img src="img/eyeBoll-1.jpg" alt=""/></li>
+   							<li><img src="img/eyeBoll-2.jpg" alt=""/></li>
+   							<li><img src="img/eyeBoll-3.jpg" alt=""/></li>
+   						</ul>
+   						结论：<textarea></textarea>
+   					</div>
+				</div>
+  				<!--====屈光筛查====-->
+  				<div class="box1">
+  					<p>屈光筛查：</p>
+  					<div class="Hphoto">
+  						IP: <input type="text" placeholder="输入IP地址"><a href="">获取数据</a>
+  						<table class="Qgchaic" border="1" cellspacing="0" cellpadding="0">
+						  <tbody>
+							<tr>
+							  <td>等效球镜</td>
+							  <td>&nbsp;</td>
+							  <td><em>OD:</em>-5.00</td>
+							  <td><em>OS:</em>-4.75</td>
+							  
+							</tr>
+							<tr>
+							  <td>球镜</td>
+							  <td>&nbsp;</td>
+							  <td><em>OD:</em>-4.75</td>
+							  <td><em>0S:</em>-4.5</td>
+							  
+							</tr>
+							<tr>
+							  <td>柱镜</td>
+							  <td>&nbsp;</td>
+							  <td><em>OD:</em>-4.75</td>
+							  <td><em>0S:</em>-4.5</td>
+							  
+							</tr>
+							<tr>
+							  <td>轴位</td>
+							  <td>&nbsp;</td>
+							  <td><em>OD:</em>@36°</td>
+							  <td><em>OS:</em>@2°</td>
+							  
+							</tr>
+							<tr>
+							  <td>瞳距</td>
+							  <td><em>双眼：</em>66mm</td>
+							  <td><em>OD:</em>5.4mm</td>
+							  <td><em>OS:</em>5.4mm</td>
+							</tr>
+						  </tbody>
+						</table>
+ 						
+  						<div class="boxeyes">
+  							<div class="fl boxeyes_txt">
+  								右眼：
+  								<div class="mb-15">
+									<label for="013"><input  name="DD20" type="radio" id="013"> 正常</label>
+  								</div>
+  								<div class="mb-15">
+									<label for="014"><input  name="DD20" type="radio" id="014"> 可疑</label>
+									<div class="keyi">
+										<label for="016"><input  name="DD21" type="radio" id="016"> 远视</label>
+										<label for="017"><input  name="DD21" type="radio" id="017"> 近视</label>
+										<label for="018"><input  name="DD21" type="radio" id="018"> 散光</label>
+									</div>
+  								</div>
+  								<div class="mb-15">
+									<label for="015"><input  name="DD20" type="radio" id="015"> 异常</label>
+  								</div>
+  							</div>
+  							<div class="fr boxeyes_txt">
+  								左眼：
+  								<div class="mb-15">
+									<label for="022"><input  name="DD22" type="radio" id="022"> 正常</label>
+  								</div>
+  								<div class="mb-15">
+									<label for="023"><input  name="DD22" type="radio" id="023"> 可疑</label>
+  								</div>
+  								<div class="mb-15">
+									<label for="024"><input  name="DD22" type="radio" id="024"> 异常</label>
+									<div class="keyi">
+										<label for="019"><input  name="DD23" type="radio" id="019"> 远视</label>
+										<label for="020"><input  name="DD23" type="radio" id="020"> 近视</label>
+										<label for="021"><input  name="DD23" type="radio" id="021"> 散光</label>
+									</div>
+  								</div>
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+  				<!--====检查结论2单选====-->
+  				<div class="box1">
+  					<p>检查结论：</p>
+  					<div class="jielunBox">
+						<table border="1" cellspacing="0" cellpadding="0">
+						  <tbody>
+							<tr>
+							  <td width="340">右眼：</td>
+							  <td width="280">左眼：</td>
+							</tr>
+							<tr>
+							  <td><label for="025"><input  name="DD24" type="radio" id="025"> 眼球结构未见异常</label></td>
+							  <td><label for="026"><input  name="DD25" type="radio" id="026"> 眼球结构未见异常</label></td>
+							</tr>
+							<tr>
+							  <td><label for="027"><input  name="DD24" type="radio" id="027"> 眼前节未见异常</label></td>
+							  <td><label for="028"><input  name="DD25" type="radio" id="028"> 眼前节未见异常</label></td>
+							</tr>
+							<tr>
+							  <td><label for="029"><input name="DD24" type="radio" id="029"> 异常 <input type="text"/></label></td>
+							  <td><label for="030"><input name="DD25" type="radio" id="030"> 异常 <input type="text"/></label></td>
+							</tr>
+						  </tbody>
+						</table>
+					</div>
+  				</div>
+  				<!--====医生建议====-->
+  				<div class="box1">
+  					<p>医生建议：</p>
+  					<div class="JLtxt"><input type="text"></div>
+  				</div>
+  				<!--====下次复查时间====-->
+  				<div class="box1">
+  					<p>下次复查时间：</p>
+  					<div class="JLtxt"><input type="text"></div>
+  				</div>
+  				<!--====检查者签字====-->
+  				<div class="box1">
+  					<p>检查者签字：</p>
+  					<div class="QMtxt"><input type="text"></div>
+  				</div>
+  				<input type="button" class="TJbtn" value="提交"/>
+   			</div>
+   			
+   			<!--=================提交按钮弹框===================-->
+   			<div class="popSuc">
+   				<div class="txt">
+					<p>提交成功</p>
+  					<span>2s跳过</span>
+   				</div>
+   			</div>
+   			
+   			
+   			<!--========保健要点提示========-->
+   			<div class="Tipbox">
+   				<div class="blue_bor">
+					<h3>2周岁－2周岁半儿童视功能及保健要点</h3>
+					<p>◆  教孩子分辨简单的图形，认识图形视力表或“E”字视力表，以便孩子3周岁完成视力检查；</p>
+					<p>◆ 教孩子辨别红、黄、绿的颜色，以便孩子完成3周岁的色觉检查；</p>
+					<p>◆ 避免长时间近距离用眼，避免接触手机、电脑、平板，看电视时间每次不能超过半小时，每天不能超过2次；</p>
+					<p>◆ 户外活动每天不能少于2小时。</p>
+					<dl>
+						<dt><b>健康小贴士：</b>您知道“弱视”吗？</dt>
+						<dd>是指在视觉发育期（3岁前）由于斜视、未矫正的屈光不正等引起的最佳矫正视力低于相应年龄的视力，或一眼视力低于另一眼2行以上，并且视功能停留在一个低级水平，长大后即使戴眼镜视力也不能达到正常，对今后的学习、工作、职业选择都有很大的影响。</dd>
+						<dd>弱视应在6岁前治疗，年龄越小疗效越好，所以弱视要早发现早治疗。</dd>
+					</dl>
+				</div>
+   			</div>
+   		</div>
+   </div>  
+</body>
+</html>
+
+
+

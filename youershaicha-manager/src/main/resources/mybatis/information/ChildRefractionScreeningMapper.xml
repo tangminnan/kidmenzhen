@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.youershaicha.information.dao.ChildRefractionScreeningDao">
+
+	<select id="get" resultType="com.youershaicha.information.domain.ChildRefractionScreeningDO">
+		select `screening_id`,age,check_date,child_idcard,`history_id`,`righteye_diopter_s`,`righteye_diopter_c`,`righteye_diopter_a`,`lefteye_diopter_s`,`lefteye_diopter_c`,`lefteye_diopter_a`,`righteye_dengxiaoqiujing`,`lefteye_dengxiaoqiujing`,`ou_pd`,`os_pd`,`od_pd`,`righteye_result_type`,`righteye_result_ins`,`lefteye_result_type`,`lefteye_result_ins` from t_child_refraction_screening where screening_id = #{value}
+	</select>
+	 
+	<insert id="save" parameterType="com.youershaicha.information.domain.ChildRefractionScreeningDO" useGeneratedKeys="true" keyProperty="screeningId">
+		insert into t_child_refraction_screening
+		(
+			`history_id`, 
+			`righteye_diopter_s`, 
+			`righteye_diopter_c`, 
+			`righteye_diopter_a`, 
+			`lefteye_diopter_s`, 
+			`lefteye_diopter_c`, 
+			`lefteye_diopter_a`, 
+			`righteye_dengxiaoqiujing`, 
+			`lefteye_dengxiaoqiujing`, 
+			`ou_pd`, 
+			`os_pd`, 
+			`od_pd`, 
+			`righteye_result_type`, 
+			`righteye_result_ins`,
+			`lefteye_result_type`,
+			`lefteye_result_ins`,
+			age,
+			check_date,
+			child_idcard
+		)
+		values
+		(
+			#{historyId}, 
+			#{righteyeDiopterS}, 
+			#{righteyeDiopterC}, 
+			#{righteyeDiopterA}, 
+			#{lefteyeDiopterS}, 
+			#{lefteyeDiopterC}, 
+			#{lefteyeDiopterA}, 
+			#{righteyeDengxiaoqiujing}, 
+			#{lefteyeDengxiaoqiujing}, 
+			#{ouPd}, 
+			#{osPd}, 
+			#{odPd}, 
+			#{righteyeResultType}, 
+			#{righteyeResultIns},
+			#{lefteyeResultType},
+			#{lefteyeResultIns},
+			#{age},
+			#{checkDate},
+			#{childIdcard}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.youershaicha.information.domain.ChildRefractionScreeningDO">
+		update t_child_refraction_screening 
+		<set>
+			<if test="historyId != null">`history_id` = #{historyId}, </if>
+			<if test="righteyeDiopterS != null">`righteye_diopter_s` = #{righteyeDiopterS}, </if>
+			<if test="righteyeDiopterC != null">`righteye_diopter_c` = #{righteyeDiopterC}, </if>
+			<if test="righteyeDiopterA != null">`righteye_diopter_a` = #{righteyeDiopterA}, </if>
+			<if test="lefteyeDiopterS != null">`lefteye_diopter_s` = #{lefteyeDiopterS}, </if>
+			<if test="lefteyeDiopterC != null">`lefteye_diopter_c` = #{lefteyeDiopterC}, </if>
+			<if test="lefteyeDiopterA != null">`lefteye_diopter_a` = #{lefteyeDiopterA}, </if>
+			<if test="righteyeDengxiaoqiujing != null">`righteye_dengxiaoqiujing` = #{righteyeDengxiaoqiujing}, </if>
+			<if test="lefteyeDengxiaoqiujing != null">`lefteye_dengxiaoqiujing` = #{lefteyeDengxiaoqiujing}, </if>
+			<if test="ouPd != null">`ou_pd` = #{ouPd}, </if>
+			<if test="osPd != null">`os_pd` = #{osPd}, </if>
+			<if test="odPd != null">`od_pd` = #{odPd}, </if>
+			<if test="righteyeResultType != null">`righteye_result_type` = #{righteyeResultType}, </if>
+			<if test="righteyeResultIns != null">`righteye_result_ins` = #{righteyeResultIns},</if>
+			<if test="lefteyeResultType != null">`lefteye_result_type` = #{lefteyeResultType}, </if>
+			<if test="lefteyeResultIns != null">`lefteye_result_ins` = #{lefteyeResultIns}</if>
+		</set>
+		where screening_id = #{screeningId}
+	</update>
+	
+	<select id="getRecentChildRefractionScreeningDO" resultType="com.youershaicha.information.domain.ChildRefractionScreeningDO">
+		select `screening_id`,age,check_date,child_idcard,`history_id`,
+		`righteye_diopter_s`,`righteye_diopter_c`,`righteye_diopter_a`,
+		`lefteye_diopter_s`,`lefteye_diopter_c`,`lefteye_diopter_a`,`righteye_dengxiaoqiujing`,
+		`lefteye_dengxiaoqiujing`,`ou_pd`,`os_pd`,`od_pd`,`righteye_result_type`,`righteye_result_ins`,
+		`lefteye_result_type`,`lefteye_result_ins` from t_child_refraction_screening
+
+		<where>
+			<if test="childIdcard != null and childIdcard != ''"> and child_idcard = #{childIdcard} </if>
+			<if test="age!= -1"> and age = #{age} </if>
+		</where>
+
+		order by check_date desc limit 1
+	</select>
+
+</mapper>

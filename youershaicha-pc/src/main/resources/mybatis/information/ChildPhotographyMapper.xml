@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.youershaicha.information.dao.ChildPhotographyDao">
+
+	<select id="get" resultType="com.youershaicha.information.domain.ChildPhotographyDO">
+		select `photography_id`,age,check_date,child_idcard,`history_id`,`pic_righteye`,`pic_lefteye`,`conclusion` from t_child_photography where photography_id = #{value}
+	</select>
+	
+	<select id="getRecentChildPhotographyDO" resultType="com.youershaicha.information.domain.ChildPhotographyDO">
+		select `photography_id`,age,check_date,child_idcard,`history_id`,`pic_righteye`,`pic_lefteye`,`conclusion`
+		from t_child_photography
+		<where>
+			<if test="childIdcard != null and childIdcard != ''"> and child_idcard = #{childIdcard} </if>
+			<if test="age!= -1"> and age = #{age} </if>
+		</where>
+order by check_date desc limit 1
+	</select>
+	 
+	<insert id="save" parameterType="com.youershaicha.information.domain.ChildPhotographyDO" useGeneratedKeys="true" keyProperty="photographyId">
+		insert into t_child_photography
+		(
+			`history_id`, 
+			`pic_righteye`, 
+			`pic_lefteye`, 
+			`conclusion`,
+			 age,
+			 check_date,
+			 child_idcard
+		)
+		values
+		(
+			#{historyId}, 
+			#{picRighteye}, 
+			#{picLefteye}, 
+			#{conclusion},
+			#{age},
+			#{checkDate},
+			#{childIdcard}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.youershaicha.information.domain.ChildPhotographyDO">
+		update t_child_photography 
+		<set>
+			<if test="historyId != null">`history_id` = #{historyId}, </if>
+			<if test="picRighteye != null">`pic_righteye` = #{picRighteye}, </if>
+			<if test="picLefteye != null">`pic_lefteye` = #{picLefteye}, </if>
+			<if test="conclusion != null">`conclusion` = #{conclusion}</if>
+		</set>
+		where photography_id = #{photographyId}
+	</update>
+
+</mapper>
