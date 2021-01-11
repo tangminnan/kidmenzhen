@@ -1,41 +1,32 @@
 package com.youershaicha.common.utils;
 
-import java.awt.BasicStroke;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Shape;
+import com.google.zxing.*;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.common.HybridBinarizer;
+import com.google.zxing.oned.Code128Writer;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import sun.misc.BASE64Encoder;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.Random;
 
-import javax.imageio.ImageIO;
-
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.BinaryBitmap;
-import com.google.zxing.DecodeHintType;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.MultiFormatReader;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.Result;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.common.HybridBinarizer;
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-
-import sun.misc.BASE64Encoder;
 /**
  * 
  * 二维码生成工具
  * @author EDZ
  *
  */
-@SuppressWarnings("restriction")
 public class QRCodeUtil {
 
 	private static final String CHARSET = "utf-8";
@@ -169,61 +160,7 @@ public class QRCodeUtil {
 		return QRCodeUtil.decode(new File(path));
 	}	
 	
-	//64
-    public static String creatRrCode(String contents, int width, int height) {
-        String binary = null;
-        Hashtable hints = new Hashtable();
-        hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
-        hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
-        try {
-            BitMatrix bitMatrix = new MultiFormatWriter().encode(
-                    contents, BarcodeFormat.QR_CODE, width, height, hints);
-            // 1、读取文件转换为字节数组
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            BufferedImage image = toBufferedImage(bitMatrix);
-            //转换成png格式的IO流
-            ImageIO.write(image, "png", out);
-            byte[] bytes = out.toByteArray();
-
-            // 2、将字节数组转为二进制
-            BASE64Encoder encoder = new BASE64Encoder();
-            binary = encoder.encodeBuffer(bytes).trim();
-        } catch (WriterException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return binary;
-    }
-
-    /**
-     * image流数据处理
-     *
-     * @author ianly
-     */
-    public static BufferedImage toBufferedImage(BitMatrix matrix) {
-        int width = matrix.getWidth();
-        int height = matrix.getHeight();
-        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                image.setRGB(x, y, matrix.get(x, y) ? 0xFF000000 : 0xFFFFFFFF);
-            }
-        }
-        return image;
-    }
-
-
-    //64码图像
-    public static void main(String[] args) {
-        String binary = QRCodeUtil.creatRrCode("764877777764864", 200,200);
-        System.out.println(binary);
-    }
-
-    //图像
-	/*public static void main(String[] args)throws Exception {
+	public static void main(String[] args)throws Exception {
 		
 		// 存放在二维码中的内容
 		String text = "123456789";
@@ -236,6 +173,101 @@ public class QRCodeUtil {
 		QRCodeUtil.encode(text, null, destPath+"/"+file, true);			
 		System.out.println("/files/"+file);
 
-	}*/
-	
+	}
+
+
+	//64
+	public static String creatRrCode(String contents, int width, int height) {
+		String binary = null;
+		Hashtable hints = new Hashtable();
+		hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
+		hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
+		hints.put(EncodeHintType.MARGIN, 1);
+		try {
+			BitMatrix bitMatrix = new MultiFormatWriter().encode(
+					contents, BarcodeFormat.QR_CODE, width, height, hints);
+			// 1、读取文件转换为字节数组
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			BufferedImage image = toBufferedImage(bitMatrix);
+			//转换成png格式的IO流
+			ImageIO.write(image, "png", out);
+			byte[] bytes = out.toByteArray();
+
+			// 2、将字节数组转为二进制
+			BASE64Encoder encoder = new BASE64Encoder();
+			binary = encoder.encodeBuffer(bytes).trim();
+		} catch (WriterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return binary;
+	}
+
+	/**
+	 * image流数据处理
+	 *
+	 * @author ianly
+	 */
+	public static BufferedImage toBufferedImage(BitMatrix matrix) {
+		int width = matrix.getWidth();
+		int height = matrix.getHeight();
+		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				image.setRGB(x, y, matrix.get(x, y) ? 0xFF000000 : 0xFFFFFFFF);
+			}
+		}
+		return image;
+	}
+
+	public static String getBarCode(String content, int width, int height) {
+		try {
+			Map<EncodeHintType, Object> hints = new HashMap<>();
+			hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
+			hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
+			hints.put(EncodeHintType.MARGIN, 1);
+
+			int realWidth = getBarCodeNoPaddingWidth(width, content, width);
+
+			BitMatrix bitMatrix = new MultiFormatWriter().encode(content, BarcodeFormat.CODE_128, width, height, hints);
+
+			BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
+			ByteArrayOutputStream os = new ByteArrayOutputStream();
+			ImageIO.write(bufferedImage, "png", os);
+
+			BASE64Encoder encoder = new BASE64Encoder();
+			String resultImage = new String(encoder.encode(os.toByteArray()));
+			return resultImage;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+
+
+	private static int getBarCodeNoPaddingWidth(int expectWidth, String contents, int maxWidth) {
+		boolean[] code = new Code128Writer().encode(contents);
+
+		int inputWidth = code.length;
+
+		double outputWidth = (double) Math.max(expectWidth, inputWidth);
+		double multiple = outputWidth / inputWidth;
+
+		//优先取大的
+		int returnVal = 0;
+		int ceil = (int) Math.ceil(multiple);
+		if (inputWidth * ceil <= maxWidth) {
+			returnVal = inputWidth * ceil;
+		} else {
+			int floor = (int) Math.floor(multiple);
+			returnVal = inputWidth * floor;
+		}
+
+		return returnVal;
+	}
+
+
 }

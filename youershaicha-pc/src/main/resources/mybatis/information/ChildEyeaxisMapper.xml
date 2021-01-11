@@ -12,13 +12,12 @@
 		`second_check_os`,`delete_flag`,`history_id` from t_child_eyeaxis
 
 
-		<where>
-			<if test="childIdcard != null and childIdcard != ''"> and child_idcard = #{childIdcard} </if>
-			<if test="age!= -1"> and age = #{age} </if>
-		</where>
+		where
+		child_idcard = #{childIdcard}
+		<if test="age!= -1"> and age = #{age} </if>
 
 
-		order by check_date desc limit 1
+		order by t_eyeaxis_id desc limit 1
 	</select>
 
 	<insert id="save" parameterType="com.youershaicha.information.domain.ChildEyeaxisDO" useGeneratedKeys="true" keyProperty="tEyeaxisId">

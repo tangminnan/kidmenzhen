@@ -72,6 +72,8 @@ public class ChildController {
 	@PostMapping("/saveChildBasic")
 	@ResponseBody
 	public R saveChildBasic(ChildBasicDO childBasicDO){
+		if(childBasicDO.getAge()==null)
+			return R.ok();
 		ChildDO childDO = childService.get(childBasicDO.getChildId());
 		if(childDO!=null){
 			childBasicDO.setChildIdcard(childDO.getChildIdcard());
@@ -255,5 +257,13 @@ public class ChildController {
 		model.addAttribute("childRefractionScreeningDO",childRefractionScreeningDO);
 		model.addAttribute("childEyeaxisDO",childEyeaxisDO);
 		return "/information/youer/lishijilu";
+	}
+
+	/**
+	 * 返回主页
+	 */
+	@GetMapping("/reback")
+	public String reback(){
+		return "/information/youer/index";
 	}
 }

@@ -12,13 +12,12 @@
 		`first_check_lcs`,`check_date`,`second_check_vd`,`second_check_rps`,`second_check_lps`,`second_check_rcs`,`second_check_lcs`,`delete_flag`,
 		`first_check_pd`,`second_check_pd` from t_child_optometry
 
-		<where>
-			<if test="childIdcard != null and childIdcard != ''"> and child_idcard = #{childIdcard} </if>
-			<if test="age!= -1"> and age = #{age} </if>
-		</where>
+		where
+		child_idcard = #{childIdcard}
+		<if test="age!= -1"> and age = #{age} </if>
 
 
-		 order by check_date desc limit 1
+		 order by t_optometry_id desc limit 1
 	</select>
 	 
 	<insert id="save" parameterType="com.youershaicha.information.domain.ChildOptometryDO" useGeneratedKeys="true" keyProperty="tOptometryId">

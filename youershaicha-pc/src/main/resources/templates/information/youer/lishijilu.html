@@ -9,11 +9,13 @@
 <link rel="stylesheet" href="/css/css.css" type="text/css">
 	<script src="/js/jquery.min.js?v=2.1.4" th:src="@{/js/jquery.min.js?v=2.1.4}"></script>
 
+	<link href="/css/bootstrap.min.css?v=3.3.6" th:href="@{/css/bootstrap.min.css?v=3.3.6}" rel="stylesheet">
 
+	<script src="/js/bootstrap.min.js"></script>
 </head>
 <body>
    <div class="banner">
-   		<img src="img/banner.jpg" alt=""/>
+   		<img src="/img/banner.jpg" alt=""/>
    </div>
 
    <!--主体内容-->
@@ -30,20 +32,24 @@
 				选择年龄段：
 				<select id="selectAge">
 					<option value="-1">-请选择-</option>
-					<option value="0">出生2-7天</option>
-					<option value="1">满月（42天）</option>
-					<option value="2">3月龄</option>
-					<option value="3">6月龄</option>
-					<option value="4">8月龄</option>
-					<option value="5">1周岁</option>
-					<option value="6">1周岁半</option>
-					<option value="7">2周岁</option>
-					<option value="8">2周岁半</option>
-					<option value="9">3周岁</option>
-					<option value="10">4周岁</option>
-					<option value="11">5周岁</option>
-					<option value="12">6周岁</option>
+					<option th:selected="${childBasicDO.age==0}" value="0">出生2-7天</option>
+					<option th:selected="${childBasicDO.age==1}"  value="1">满月（42天）</option>
+					<option th:selected="${childBasicDO.age==2}"  value="2">3月龄</option>
+					<option th:selected="${childBasicDO.age==3}"  value="3">6月龄</option>
+					<option th:selected="${childBasicDO.age==4}"  value="4">8月龄</option>
+					<option th:selected="${childBasicDO.age==5}"  value="5">1周岁</option>
+					<option th:selected="${childBasicDO.age==6}"  value="6">1周岁半</option>
+					<option th:selected="${childBasicDO.age==7}"  value="7">2周岁</option>
+					<option th:selected="${childBasicDO.age==8}"  value="8">2周岁半</option>
+					<option th:selected="${childBasicDO.age==9}"  value="9">3周岁</option>
+					<option th:selected="${childBasicDO.age==10}"  value="10">4周岁</option>
+					<option th:selected="${childBasicDO.age==11}"  value="11">5周岁</option>
+					<option th:selected="${childBasicDO.age==12}"  value="12">6周岁</option>
 				</select>
+				<a class="btn btn-success" href="#" title="返回"
+
+				   style="text-decoration: none;" onclick="reback()">返回</a>
+
 			</div>
 
 		</div>
@@ -709,7 +715,7 @@
 				<span>检查结论：</span>
 				<table border="1" cellspacing="0" cellpadding="0">
 				  <tbody>
-					<tr th:if="${childBasicDO.age}>0">
+					<tr th:if="${childBasicDO.age}!=0">
 					  <td th:text="${childBasicDO.conclusion}"></td>
 					</tr>
 					<tr th:if="${childBasicDO.age==0 and childBasicDO.ocularArchitectureRighteyeConclusion==0}">
@@ -1167,6 +1173,13 @@ switch (age) {
     }
 }
 
+
+/**
+ *  返回
+ */
+function reback(){
+    window.location.href="/information/child/reback"
+}
 </script>
 </body>
 </html>

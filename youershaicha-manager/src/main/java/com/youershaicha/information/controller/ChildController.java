@@ -5,10 +5,7 @@ import java.util.*;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.youershaicha.common.utils.PageUtils;
-import com.youershaicha.common.utils.Query;
-import com.youershaicha.common.utils.R;
-import com.youershaicha.common.utils.StringUtils;
+import com.youershaicha.common.utils.*;
 import com.youershaicha.information.dao.ChildBasicDao;
 import com.youershaicha.information.domain.*;
 import com.youershaicha.information.service.ChildService;
@@ -56,41 +53,43 @@ public class ChildController {
 		return pageUtils;
 	}
 
-	@GetMapping("/add")
-	@RequiresPermissions("information:child:add")
-	String add(){
-		return "information/child/add";
-	}
 
-	@GetMapping("/edit/{childId}")
-	@RequiresPermissions("information:child:edit")
-	String edit(@PathVariable("childId") Long childId,Model model){
-		ChildDO child = childService.get(childId);
-		model.addAttribute("child", child);
-		return "information/child/edit";
+
+	/**
+	 * 二维码查看
+	 * @param childId
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/txcode/{childId}")
+	String txcode(@PathVariable("childId") Long childId,Model model){
+		ChildDO childDO = childService.get(childId);
+		String identityCard = childDO.getChildIdcard();
+		String code = QRCodeUtil.creatRrCode(identityCard+"JOIN"+childId, 200,200);
+		model.addAttribute("code", "data:image/png;base64,"+code);
+		model.addAttribute("childDO", childDO);
+		return "/information/child/TxCode";
 	}
 
 	/**
-	 * 保存
+	 * 批量打印二维码
 	 */
-	@ResponseBody
-	@PostMapping("/save")
-	@RequiresPermissions("information:child:add")
-	public R save( ChildDO child){
-		if(childService.save(child)>0){
-			return R.ok();
+	@GetMapping("/batchdayinerweima")
+	public String batchdayinerweima(Long[] childIds,Model model){
+		List<ChildDO> list = new ArrayList<>();
+		for (Long childId : childIds) {
+			ChildDO childDO = Optional.ofNullable(childService.get(childId)).orElseGet(ChildDO::new);
+			String identityCard = childDO.getChildIdcard();
+			String code = QRCodeUtil.creatRrCode(identityCard+"JOIN"+childId, 100,100);
+			childDO.setQRCode("data:image/png;base64,"+code);
+			Optional.ofNullable(childDO.getChildBirthday()).ifPresent(
+				c->	childDO.setCheckString(new SimpleDateFormat("YYYY年MM月dd日").format(c))
+			);
+			list.add(childDO);
 		}
-		return R.error();
-	}
-	/**
-	 * 修改
-	 */
-	@ResponseBody
-	@RequestMapping("/update")
-	@RequiresPermissions("information:child:edit")
-	public R update( ChildDO child){
-		childService.update(child);
-		return R.ok();
+		model.addAttribute("childDO", list);
+		return "information/child/batchdayinerweima";
+
 	}
 
 

@@ -80,11 +80,11 @@
 	`child_id`
 from t_child_basic
 
-		<where>
-			<if test="childIdcard != null and childIdcard != ''"> and child_idcard = #{childIdcard} </if>
+		where
+			child_idcard = #{childIdcard}
 			<if test="age!= -1"> and age = #{age} </if>
-		</where>
-order by check_date desc limit 1
+
+order by basic_id desc limit 1
 </select>
 	
 	<select id="getAllCheckedAges" resultType="int">

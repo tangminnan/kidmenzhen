@@ -54,7 +54,7 @@ select{
 .leftTwo .box4 textarea{border:1px solid #bfbfbf;resize: none;outline: none;vertical-align: top;width:75%;height:100px;padding: 10px;font-size: 16px;}
 
 /*右侧*/
-.NewRight{width: 65%;}
+.NewRight{width: 67%;}
 .rightTop{background: #22a1f7;color:#fff;overflow: hidden;height: 60px;line-height: 60px;padding:0 15px;border-top-left-radius:6px;border-top-right-radius:6px;margin-bottom: 4px;}
 .rightTop .txtL{font-size: 20px;padding-left: 50px;background:url(/img/icon-1.png) no-repeat left center;}
 .rightTop .txtR{color:#0392df;background:#fff url(/img/icon-3.png) no-repeat 20px center;border-radius:30px;padding-left: 60px;height: 40px;line-height: 40px;width: 145px;margin-top:10px;}

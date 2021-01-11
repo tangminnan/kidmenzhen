@@ -65,6 +65,8 @@ public class ChildDO implements Serializable {
 	private String fatherName;
 	//最近一次的检查信息
 	private String checkString;
+	//二维码url
+	private String QRCode;
 	/**
 	 * 设置：主键
 	 */
@@ -358,6 +360,14 @@ public class ChildDO implements Serializable {
 
 	public void setCheckString(String checkString) {
 		this.checkString = checkString;
+	}
+
+	public String getQRCode() {
+		return QRCode;
+	}
+
+	public void setQRCode(String QRCode) {
+		this.QRCode = QRCode;
 	}
 
 	@Override

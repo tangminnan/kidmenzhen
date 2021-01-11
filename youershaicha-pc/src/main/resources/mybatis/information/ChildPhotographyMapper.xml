@@ -10,11 +10,10 @@
 	<select id="getRecentChildPhotographyDO" resultType="com.youershaicha.information.domain.ChildPhotographyDO">
 		select `photography_id`,age,check_date,child_idcard,`history_id`,`pic_righteye`,`pic_lefteye`,`conclusion`
 		from t_child_photography
-		<where>
-			<if test="childIdcard != null and childIdcard != ''"> and child_idcard = #{childIdcard} </if>
-			<if test="age!= -1"> and age = #{age} </if>
-		</where>
-order by check_date desc limit 1
+		where
+		child_idcard = #{childIdcard}
+		<if test="age!= -1"> and age = #{age} </if>
+order by photography_id desc limit 1
 	</select>
 	 
 	<insert id="save" parameterType="com.youershaicha.information.domain.ChildPhotographyDO" useGeneratedKeys="true" keyProperty="photographyId">

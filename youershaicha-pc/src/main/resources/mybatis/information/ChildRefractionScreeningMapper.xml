@@ -84,12 +84,11 @@
 		`lefteye_dengxiaoqiujing`,`ou_pd`,`os_pd`,`od_pd`,`righteye_result_type`,`righteye_result_ins`,
 		`lefteye_result_type`,`lefteye_result_ins` from t_child_refraction_screening
 
-		<where>
-			<if test="childIdcard != null and childIdcard != ''"> and child_idcard = #{childIdcard} </if>
-			<if test="age!= -1"> and age = #{age} </if>
-		</where>
+		where
+		child_idcard = #{childIdcard}
+		<if test="age!= -1"> and age = #{age} </if>
 
-		order by check_date desc limit 1
+		order by screening_id desc limit 1
 	</select>
 
 </mapper>
