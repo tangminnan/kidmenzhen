@@ -27,7 +27,7 @@ select{
 .CXtop .fr .INbtn{width: 30%;float:right;height: 45px;color:#fff;background: #0cc59c;}
 /*左侧*/
 .NewLeft{width: 32%;}
-.leftOne{background: #22a1f7;color:#fff;border-radius:4px;box-shadow:0 0 13px #135892;margin-bottom: 12px;padding:30px 15px;}
+.leftOne{background: #22a1f7;color:#fff;border-radius:4px;box-shadow:0 0 6px #135892;margin-bottom: 12px;padding:30px 15px;}
 .leftOne span{font-size: 18px;letter-spacing: 1px;}
 .leftOne .box1 input{height: 45px;line-height: 45px;width:70%;padding:0 10px;}
 .leftOne .box1{margin-bottom: 20px;line-height: 45px;}

@@ -225,9 +225,9 @@
 									<option value="0.8">0.8</option>
 									<option value="1.0">1.0</option>
 									<option value="FC">FC</option>
-									<option value="其他">其他</option>
 									<option value="光感">光感</option>
 									<option value="无光感">无光感</option>
+									<option value="其他">其他</option>
 								</select>
 							  </td>
 							  <td>
@@ -245,9 +245,9 @@
 									<option value="0.8">0.8</option>
 									<option value="1.0">1.0</option>
 									<option value="FC">FC</option>
-									<option value="其他">其他</option>
 									<option value="光感">光感</option>
 									<option value="无光感">无光感</option>
+									<option value="其他">其他</option>
 								</select>
 							  </td>
 							</tr>
@@ -267,9 +267,9 @@
 									<option value="0.8">0.8</option>
 									<option value="1.0">1.0</option>
 									<option value="FC">FC</option>
-									<option value="其他">其他</option>
 									<option value="光感">光感</option>
 									<option value="无光感">无光感</option>
+									<option value="其他">其他</option>
 								</select>
 							  </td>
 							  <td>
@@ -287,9 +287,9 @@
 									<option value="0.8">0.8</option>
 									<option value="1.0">1.0</option>
 									<option value="FC">FC</option>
-									<option value="其他">其他</option>
 									<option value="光感">光感</option>
 									<option value="无光感">无光感</option>
+									<option value="其他">其他</option>
 								</select>
 							  </td>
 							</tr>
@@ -316,6 +316,7 @@
 								<label><input name="externalRighteyeExaminationIns" type="checkbox" value="JIEMOCHUXUE" />结膜出血</label>
 								<label><input name="externalRighteyeExaminationIns" type="checkbox" value="HONGMOMAOXIXUEGUAN" />虹膜毛细血管</label>
 								<label><input name="externalRighteyeExaminationIns" type="checkbox" value="JIAOMOBAIBAN" />角膜白斑</label>
+								<label name="leinangyan" style="display: none"><input name="externalRighteyeExaminationIns" type="checkbox" value="LEINANGYAN" />泪囊炎</label>
 								<label style="width:100%;"><input name="externalRighteyeExaminationIns" type="checkbox" value="QITA" />其他<input type="text" name="waiyanrightjianchaqita"></label>
 							</div>    
 						</div>
@@ -332,6 +333,7 @@
 								<label><input name="externalLefteyeExaminationIns" type="checkbox" value="JIEMOCHUXUE" />结膜出血</label>
 								<label><input name="externalLefteyeExaminationIns" type="checkbox" value="HONGMOMAOXIXUEGUAN" />虹膜毛细血管</label>
 								<label><input name="externalLefteyeExaminationIns" type="checkbox" value="JIAOMOBAIBAN" />角膜白斑</label>
+								<label name="leinangyan" style="display: none"><input name="externalRighteyeExaminationIns" type="checkbox" value="LEINANGYAN" />泪囊炎</label>
 								<label style="width:100%;"><input name="externalLefteyeExaminationIns" type="checkbox" value="QITA" />其他<input type="text" name="waiyanleftjianchaqita"></label>
 							</div>
 						</div>
@@ -450,14 +452,14 @@
 							<span>右眼：</span>  
 							<label for="slcs1"><input  name="primaryScreenOfVisionRighteyeType" value="0" type="radio" id="slcs1"> 无</label>
 							<label for="slcs2"><input  name="primaryScreenOfVisionRighteyeType" value="1" type="radio" id="slcs2"> 正常</label>                         <label for="slcs3"><input  name="primaryScreenOfVisionRighteyeType" value="2" type="radio" id="slcs3"> 不配合</label>
-							<label for="slcs4"><input  name="primaryScreenOfVisionRighteyeType" value="3"  type="radio" id="slcs4"> 选择性观看</label>
+							<label for="slcs4" name="xuanzexingguankan"><input  name="primaryScreenOfVisionRighteyeType" value="3"  type="radio" id="slcs4"> 选择性观看</label>
 						</div>
   						<!--左眼单选14-->
 						<div class="boxbOLL">
 							<span>左眼：</span>                 
 							<label for="slcs5"><input  name="primaryScreenOfVisionLefrteyeType" value="0" type="radio" id="slcs5"> 无</label>
 							<label for="slcs6"><input  name="primaryScreenOfVisionLefrteyeType" value="1" type="radio" id="slcs6"> 正常</label>                         <label for="slcs7"><input  name="primaryScreenOfVisionLefrteyeType" value="2" type="radio" id="slcs7"> 不配合</label>
-							<label for="slcs8"><input  name="primaryScreenOfVisionLefrteyeType" value="3"  type="radio" id="slcs8"> 选择性观看</label>
+							<label for="slcs8" name="xuanzexingguankan"><input  name="primaryScreenOfVisionLefrteyeType" value="3"  type="radio" id="slcs8"> 选择性观看</label>
 						</div>
    					</div>
    				</div>
@@ -495,7 +497,6 @@
 							<option value="0.40">0.40</option>
 							<option value="0.50">0.50</option>
 							<option value="0.60">0.60</option>
-							<option value="1.10">1.10</option>
 						</select>
   						左眼：
    						<select name="selectiveGazeDetectionLefteye">
@@ -509,7 +510,6 @@
 							<option value="0.40">0.40</option>
 							<option value="0.50">0.50</option>
 							<option value="0.60">0.60</option>
-							<option value="1.10">1.10</option>
 						</select>
    					</div>
    				</div>
@@ -1156,6 +1156,12 @@
 		    $("#yanweijianchaxieshichukui").text("眼位检查：");
             $(".yanqiuzhenchan").show();
 		}
+		if(value==0){
+		    $("[name='leinangyan']").hide();
+		}
+		else{
+            $("[name='leinangyan']").show();
+		}
         switch (value) {
             case '0':{
                 $(".YBJbox").children("h3").text("出生2-7天眼保健情况");
@@ -1179,6 +1185,7 @@
                 $("[name*='shilichushai']").show();
                 $("[name*='yanqiuzhuisuiyundong']").show();
                 $("[name*='guangyuyandizhaoxiang']").show();
+                $("[name='xuanzexingguankan']").hide();
                 break;
             }
             case '2':{
@@ -1194,6 +1201,7 @@
                 $("[name*='shilichushai']").show();
                 $("[name*='yanqiuzhuisuiyundong']").show();
                 $("[name*='guangyuyandizhaoxiang']").show();
+                $("[name='xuanzexingguankan']").hide();
                 break;
             }
             case '3':{
@@ -1208,6 +1216,7 @@
 				$("[name*='xuanzexingzhushijiance']").show();
                 $("[name*='yanweijiancha']").show();
 				$("[name*='guangyuyandizhaoxiang']").show();
+                $("[name='xuanzexingguankan']").show();
                 break;
             }
             case '4':{
@@ -1223,6 +1232,7 @@
                 $("[name*='yanweijiancha']").show();
                 $("[name*='guangyuyandizhaoxiang']").show();
                 $("[name*='jianyingjiancha']").show();
+                $("[name='xuanzexingguankan']").show();
                 break
             }
             case '5':{
@@ -1239,6 +1249,7 @@
                 $("[name*='guangyuyandizhaoxiang']").show();
                 $("[name*='jianyingjiancha']").show();
                 $("[name*='yanqiuyundong']").show();
+                $("[name='xuanzexingguankan']").show();
                 break;
             }
             case '6':{
@@ -1254,6 +1265,8 @@
                 $("[name*='guangyuyandizhaoxiang']").show();
                 $("[name*='jianyingjiancha']").show();
                 $("[name*='yanqiuyundong']").show();
+                $("[name='xuanzexingguankan']").show();
+
                 break;
             }
             case '7':{
@@ -1838,6 +1851,20 @@
 		window.location.href="/information/child/getHistory/"+childIdcard+"/"+age;
 	});
 
+   /* $("[name='childIdcard']").blur(function () {
+        var childIdcard=$("[name='childIdcard']").val();
+        if(childIdcard==""){
+            alert("身份证号不能为空");
+            return;
+        }
+        if(!validateCard(childIdcard)){
+            alert("输入的身份证号不合法");
+            $(this).val('');
+            return ;
+        }
+    })
+*/
+
     $(".TJbtn").click(function(){
         var childIdcard=$("[name='childIdcard']").val();
 		if(childIdcard==""){
@@ -1911,6 +1938,26 @@
         });
 
 	});
+
+
+    /**
+	 * 身份证号验证
+     */
+    function validateCard(childIdcard){
+        var flag = true;
+        // 校检身份证18位数字，最后一位数字可为'X'字符;前两位数字不能以0（零）开头
+        var regcard = /^([1-9]{2}\d{15})(\d|[x,X])$/;
+        if(!regcard.test(childIdcard))
+        {
+            flag = false;
+        }
+        // 校检生日日期
+        var _birthday = childIdcard.substring(6,14);
+        var regbirthday =/^((19|20)\d{2})((0[13578]|1[02])(0[1-9]|[12][0-9]|3[0-1])|((02)(0[1-9]|1[0-9]|2[0-8]))|((0[469]|11)(0[1-9]|[12][0-9]|30)))$/;
+        //既验证日期格式，生日年份为19**年到20**年，也验证具体月份中的天数
+        flag = regbirthday.test(_birthday);
+        return flag;
+    }
 </script>
 </html>
 
