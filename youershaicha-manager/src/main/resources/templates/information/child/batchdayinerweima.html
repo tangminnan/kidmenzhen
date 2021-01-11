@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head></head>
+<body style="width: 220px; border:1px solid #000000;">
+
+	<div th:each="child:${childDO}" style="float: left;width:50%; margin-left: 8px; margin-top: 15px;position: relative;border:2px solid #000000;"">
+		<img alt="" th:src="${child.QRCode}" style="width: 100% !important; height: auto !important;">
+		<table cellspacing="0" cellpadding="0" style=" width: 100%;border-top: 1px solid #000000;">
+			<tbody style="font-size: small">
+				<tr>
+					<td>孩子id：<span th:text="${child.childId}" ></span></td>
+				</tr>
+				<tr>
+					<td>孩子姓名：<span th:text="${child.childName}" ></span></td>
+				</tr>
+				<tr>
+					<td>孩子出生日期：<span th:text="${child.checkString}" ></span></td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+					
+	<!-- <div style="float: left;width:30%; margin-left: 18px; margin-top: 50px;position: relative;">
+		<img alt="" src="/img/tousu-pic1.jpg" style="width: 100% !important; height: auto !important;">
+		<table cellspacing="0" cellpadding="0" style=" width: 100%;border: 1px solid #000000;">
+			<tbody>
+				<tr>
+					<td>姓名：张三</td>
+				</tr>
+				<tr>
+					<td>年级：一年级</td>
+				</tr>
+				<tr>
+					<td>姓名：班级</td>
+				</tr>
+			</tbody>
+		</table>
+	</div> -->
+
+
+</body>
+</html>
