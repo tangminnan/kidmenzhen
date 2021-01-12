@@ -11,21 +11,23 @@
 	<script src="/js/jquery.min.js?v=2.1.4" th:src="@{/js/jquery.min.js?v=2.1.4}"></script>
 </head>
 <body>
-   <div class="banner">
-   		<img src="/img/banner.jpg" alt=""/>
-   </div>
-   <!--头部-->
-   <div class="main CXtop">
-   		<div class="fl">
-   			<a href="" title="新建"></a>
-   		</div>
-   		<div class="fr">
-   			<input class="INtxt" type="text" placeholder="输入身份证号" id="getChildCard"/>
-   			<input class="INbtn" type="button" value="查询"  onclick="getChildInfo()" />
-   		</div>
-   </div>
+<div class="fixTop">
+	   <div class="banner">
+			<img src="/img/banner.jpg" alt=""/>
+	   </div>
+	   <!--头部-->
+	   <div class="main CXtop">
+			<div class="fl">
+				<a href="" title="新建"></a>
+			</div>
+			<div class="fr">
+				<input class="INtxt" type="text" placeholder="输入身份证号" id="getChildCard"/>
+				<input class="INbtn" type="button" value="查询"  onclick="getChildInfo()" />
+			</div>
+	   </div>
+</div>
    <!--主体内容-->
-   <div class="main">
+   <div class="main HdownCon">
   		<!--左侧内容-->
    		<div class="fl NewLeft">
    			<!--左侧基础信息-->
@@ -179,7 +181,7 @@
    				<div class="fr txtR">
    					检查日期：
    					<input type="text" id="checkDate">
-   					<img id="checkImg"  src="img/icon-rili.png" alt=""/>
+   					<img id="checkImg"  src="/img/icon-rili.png" alt=""/>
    				</div>
    			</div>
    			<!--保健情况-->
@@ -628,24 +630,21 @@
    					</div>
    				</div>
    				<!--====广域眼底照相====-->
-   				<div class="box box1" name="youer-guangyuyandizhaoxiang">
+   				<div class="box1" name="youer-guangyuyandizhaoxiang">
    					<p>广域眼底照相：</p>
-					<!--<div >
-						<div style="width: auto;padding: 5%;margin-left:15%;color: #0a6aa1">待检查...</div>
-					</div>-->
-   					<div >
+   					<div class="Hphoto">
    					<!--	<a href="">获取数据</a>-->
    						<br/>右眼：
    						<ul id="rightPic" >
-   							<li><img src="img/tousu-pic1.jpg" width="169" height="169" alt=""/></li>
-   							<li><img src="img/tousu-pic1.jpg" width="169" height="169" alt=""/></li>
-   							<li><img src="img/tousu-pic1.jpg" width="169" height="169" alt=""/></li>
+
+   							<li><img src="/img/tousu-pic1.jpg"  alt=""/></li>
+   							<li><img src="/img/tousu-pic1.jpg"  alt=""/></li>
    						</ul>
    						左眼：
    						<ul id="leftPic">
-   						<li><img src="img/tousu-pic1.jpg" width="169" height="169" alt=""/></li>
-   							<li><img src="img/tousu-pic1.jpg" width="169" height="169"  alt=""/></li>
-   							<li><img src="img/tousu-pic1.jpg" width="169" height="169" alt=""/></li>
+   						<li><img src="/img/tousu-pic1.jpg"  alt=""/></li>
+   							<li><img src="/img/tousu-pic1.jpg"   alt=""/></li>
+   							<li><img src="/img/tousu-pic1.jpg"  alt=""/></li>
    						</ul>
    						结论：<textarea id="guangyujielun"></textarea>
    					</div>
@@ -1149,7 +1148,7 @@
 
 
 		if(value==9 || value==10 || value==11 || value==12){
-			$("#yanweijianchaxieshichukui").text("斜视初窥：");
+			$("#yanweijianchaxieshichukui").text("斜视初筛：");
 			$(".yanqiuzhenchan").hide();
 		}
 		else{
@@ -1165,6 +1164,7 @@
         switch (value) {
             case '0':{
                 $(".YBJbox").children("h3").text("出生2-7天眼保健情况");
+                $("#baojianyaodian").show();
                 $("#baojianyaodian").html($("#two-seven").html());
 				$("[name*='youer']").hide();
 				$("[name*='waiyanjiancha']").show();
@@ -1174,6 +1174,7 @@
             }
             case '1':{
                 $(".YBJbox").children("h3").text("满月（42天）眼保健情况");
+                $("#baojianyaodian").show();
                 $("#baojianyaodian").html($("#three-month").html());
                 $("[name*='youer']").hide();
                 $("[name*='waiyanjiancha']").show();
@@ -1190,6 +1191,7 @@
             }
             case '2':{
                 $(".YBJbox").children("h3").text("3月龄眼保健情况");
+                $("#baojianyaodian").show();
                 $("#baojianyaodian").html($("#three-month").html());
                 $("[name*='youer']").hide();
                 $("[name*='waiyanjiancha']").show();
@@ -1206,6 +1208,7 @@
             }
             case '3':{
                 $(".YBJbox").children("h3").text("6月龄眼保健情况");
+                $("#baojianyaodian").show();
                 $("#baojianyaodian").html($("#six-ninemonth").html());
                 $("[name*='youer']").hide();
                 $("[name*='waiyanjiancha']").show();
@@ -1221,6 +1224,7 @@
             }
             case '4':{
                 $(".YBJbox").children("h3").text("8月眼保健情况");
+                $("#baojianyaodian").show();
                 $("#baojianyaodian").html($("#six-ninemonth").html());
                 $("[name*='youer']").hide();
                 $("[name*='waiyanjiancha']").show();
@@ -1237,6 +1241,7 @@
             }
             case '5':{
                 $(".YBJbox").children("h3").text("1周岁眼保健情况");
+                $("#baojianyaodian").show();
                 $("#baojianyaodian").html($("#one-year").html());
                 $("[name*='youer']").hide();
                 $("[name*='waiyanjiancha']").show();
@@ -1254,6 +1259,7 @@
             }
             case '6':{
                 $(".YBJbox").children("h3").text("1周岁半眼保健情况");
+                $("#baojianyaodian").show();
                 $("#baojianyaodian").html($("#one-year").html());
                 $("[name*='youer']").hide();
                 $("[name*='waiyanjiancha']").show();
@@ -1271,6 +1277,7 @@
             }
             case '7':{
                 $(".YBJbox").children("h3").text("2周岁眼保健情况");
+                $("#baojianyaodian").show();
                 $("#baojianyaodian").html($("#two-year").html());
                 $("[name*='youer']").hide();
                 $("[name*='waiyanjiancha']").show();
@@ -1285,6 +1292,7 @@
             }
             case '8':{
                 $(".YBJbox").children("h3").text("2周岁半眼保健情况");
+                $("#baojianyaodian").show();
                 $("#baojianyaodian").html($("#two-year").html());
                 $("[name*='youer']").hide();
                 $("[name*='waiyanjiancha']").show();
@@ -1301,7 +1309,7 @@
             }
             case '9':{
                 $(".YBJbox").children("h3").text("3周岁眼保健情况");
-                $("#baojianyaodian").html('');
+                $("#baojianyaodian").hide();
                 $("[name*='youer']").hide();
                 $("[name*='waiyanjiancha']").show();
                 $("[name*='quguangshaicha']").show();
@@ -1320,7 +1328,7 @@
             }
             case '10':{
                 $(".YBJbox").children("h3").text("4周岁眼保健情况");
-                $("#baojianyaodian").html('');
+                $("#baojianyaodian").hide();
                 $("[name*='youer']").hide();
                 $("[name*='waiyanjiancha']").show();
                 $("[name*='quguangshaicha']").show();
@@ -1339,7 +1347,7 @@
             }
             case '11':{
                 $(".YBJbox").children("h3").text("5周岁眼保健情况");
-                $("#baojianyaodian").html('');
+                $("#baojianyaodian").hide();
                 $("[name*='youer']").hide();
                 $("[name*='waiyanjiancha']").show();
                 $("[name*='quguangshaicha']").show();
@@ -1358,7 +1366,7 @@
             }
             case '12':{
                 $(".YBJbox").children("h3").text("6周岁眼保健情况");
-                $("#baojianyaodian").html('');
+                $("#baojianyaodian").hide();
                 $("[name*='youer']").hide();
 
                 $("[name*='waiyanjiancha']").show();

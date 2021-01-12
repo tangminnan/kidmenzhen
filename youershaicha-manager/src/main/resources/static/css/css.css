@@ -9,7 +9,7 @@ h1,h2,h3,h4,h5,h6{font-weight: normal;}
 body{color:#333;background: #eaeaea;font-family:"Microsoft YaHei";box-sizing:border-box;font-size: 16px;}
 input{font-size: 16px;-webkit-appearance: none;outline: none;border-radius:4px;}
 select{
-	appearance: none;
+    appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
 }
@@ -19,6 +19,8 @@ select{
 .main{width: 1300px;margin:0 auto;}
 
 
+.fixTop{width: 100%;position: fixed;top: 0;left: 0;height:20vh;overflow: hidden;background: #fff;}
+.HdownCon{margin-top:20vh;}
 .banner{text-align: center;}
 .CXtop{background: #fff;overflow: hidden;padding: 12px 35px;margin-bottom: 15px;}
 .CXtop .fl a{width: 160px;height: 45px;background:url(/img/icon-new.png);display: block;}
@@ -27,13 +29,13 @@ select{
 .CXtop .fr .INbtn{width: 30%;float:right;height: 45px;color:#fff;background: #0cc59c;}
 /*左侧*/
 .NewLeft{width: 32%;}
-.leftOne{background: #22a1f7;color:#fff;border-radius:4px;box-shadow:0 0 13px #135892;margin-bottom: 12px;padding:30px 15px;}
+.leftOne{background: #22a1f7;color:#fff;border-radius:4px;box-shadow:0 0 6px #135892;margin-bottom: 12px;padding:30px 15px;}
 .leftOne span{font-size: 18px;letter-spacing: 1px;}
 .leftOne .box1 input{height: 45px;line-height: 45px;width:70%;padding:0 10px;}
 .leftOne .box1{margin-bottom: 20px;line-height: 45px;}
 .leftOne .box2{margin:40px 0;}
 .leftOne .box2 span{letter-spacing:12px;}
-.leftOne .box2 input, 
+.leftOne .box2 input,
 .leftOne .box3 input{background:url(/img/CB-F1.png);width: 16px;height: 16px;vertical-align:middle;cursor: pointer;margin-top: -3px;margin-right:5px;}
 .leftOne .box2 input:checked,
 .leftOne .box3 input:checked{background-image: url(/img/CB-F2.png);}
@@ -54,7 +56,7 @@ select{
 .leftTwo .box4 textarea{border:1px solid #bfbfbf;resize: none;outline: none;vertical-align: top;width:75%;height:100px;padding: 10px;font-size: 16px;}
 
 /*右侧*/
-.NewRight{width: 65%;}
+.NewRight{width:67%;}
 .rightTop{background: #22a1f7;color:#fff;overflow: hidden;height: 60px;line-height: 60px;padding:0 15px;border-top-left-radius:6px;border-top-right-radius:6px;margin-bottom: 4px;}
 .rightTop .txtL{font-size: 20px;padding-left: 50px;background:url(/img/icon-1.png) no-repeat left center;}
 .rightTop .txtR{color:#0392df;background:#fff url(/img/icon-3.png) no-repeat 20px center;border-radius:30px;padding-left: 60px;height: 40px;line-height: 40px;width: 145px;margin-top:10px;}
@@ -82,7 +84,8 @@ select{
 .SCA_tab{width: 350px;background: #f5f5f5;border-radius:6px;display: inline-block;text-align: center;padding:10px;vertical-align: top;}
 .SCA_tab input[type="text"]{width:68px;text-align: center;margin:0 20px 10px;}
 .SCA_tab td{padding:8px 0;}
-.Hphoto{float: left;}
+.Hphoto{float: left;width: 620px;}
+.Hphoto ul{overflow: hidden;}
 .Hphoto a,.sanTong a{display:inline-block;width: 100px;height: 30px;line-height: 30px;text-align: center;color:#fff;background: #0cc59c;border-radius:30px;margin-bottom: 30px;}
 .Hphoto li{float: left;width: 33.33%;padding-right:2%;margin:15px 0 30px;}
 .Hphoto textarea{border:1px solid #bfbfbf;resize: none;outline: none;vertical-align: top;width:90%;height:100px;padding:10px;font-size: 16px;}
@@ -90,7 +93,7 @@ select{
 .Qgchaic{width: 98%;border-left:1px solid #bfbfbf;border-top: 1px solid #bfbfbf;margin-bottom:20px;}
 .Qgchaic td{border-right:1px solid #bfbfbf;border-bottom: 1px solid #bfbfbf;height: 50px;padding:0 15px;}
 .Qgchaic td em{color:#999;padding-right:10px;}
-.boxeyes_txt{width:315px;overflow: hidden;background: #f5f5f5;padding:15px 15px 30px;margin-right:10px;}
+.boxeyes_txt{width:300px;overflow: hidden;background: #f5f5f5;padding:15px 15px 30px;margin-right:10px;}
 .boxeyes_txt input[type="radio"], .jielunBox table input[type="radio"]{background:url(/img/CB-wF1.png);width: 16px;height: 16px;vertical-align:middle;cursor: pointer;margin-top: -3px;margin-right:5px;}
 .boxeyes_txt input:checked, .jielunBox table input[type="radio"]:checked{background-image: url(/img/CB-wF2.png);}
 .boxeyes_txt label{cursor: pointer;margin-right:20px;}
@@ -118,7 +121,7 @@ select{
 .sanTong table td.F18{font-size: 18px;color:#333;padding-bottom: 20px;text-align: left;font-weight: bold;}
 .sanTong table .F16{font-size: 16px;color:#333;text-align: left;font-weight: bold;}
 .sanTong table td.C-blue{color:#228bf7;font-weight: bold;}
-.sanTong .stsju{width: 640px;overflow: hidden;}
+.sanTong .stsju{width: 620px;overflow: hidden;}
 .TabLine{border-left:1px solid #dcdcdc;padding-left:25px;}
 .Yzhouchang{width: 310px;}
 .Yzhouchang td{height: 42px;}
@@ -132,7 +135,7 @@ select{
 
 
 .DLbig{background:#fff url(/img/bigBG.jpg) no-repeat;-webkit-background-size:100% 100%;
-background-size:100% 100%;height: 100vh;}
+    background-size:100% 100%;height: 100vh;}
 .DLbig h3{text-align: center;font-size: 48px;color:#fff;text-shadow:2px 1px 4px #05385e;padding:50px 0;}
 .DLbig .loginBox{width: 650px;height: 500px;background:url(/img/loginBG.png);margin:0 auto;color:#fff;}
 .DLbig .loginBox P{text-align: center;font-size: 24px;padding:100px 0 50px;}
@@ -168,28 +171,4 @@ background-size:100% 100%;height: 100vh;}
 .boxeyestxt label{cursor: pointer;margin-right:20px;}
 .boxeyestxt .mb-15{margin-top: 15px;}
 .boxeyestxt input{width: auto;}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

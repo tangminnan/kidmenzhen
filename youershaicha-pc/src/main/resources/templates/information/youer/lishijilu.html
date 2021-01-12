@@ -6,54 +6,55 @@
 <meta name="description" content="" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>历史记录</title>
-<link rel="stylesheet" href="/css/css.css" type="text/css">
+
 	<script src="/js/jquery.min.js?v=2.1.4" th:src="@{/js/jquery.min.js?v=2.1.4}"></script>
 
 	<link href="/css/bootstrap.min.css?v=3.3.6" th:href="@{/css/bootstrap.min.css?v=3.3.6}" rel="stylesheet">
-
 	<script src="/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/css/css.css" type="text/css">
 </head>
 <body>
-   <div class="banner">
-   		<img src="/img/banner.jpg" alt=""/>
-   </div>
+	<div class="fixTop">
+	   <div class="banner">
+			<img src="/img/banner.jpg" alt=""/>
+	</div>
+	<div class="main rightOld">
+		<div class="fl baseName">
+			<p class="F24" th:text="${childDO.childName}"></p>
+			<p th:if="${childDO.childGender==1}">女</p>
+			<p th:if="${childDO.childGender==0}">男</p>
+			<p id="childIdcard" th:text="${childDO.childIdcard}"></p>
+			<input type="hidden" id="myAge" th:value="${childBasicDO.age}">
+		</div>
+		<div class="fr">
+			选择年龄段：
+			<select id="selectAge">
+				<option value="-1">-请选择-</option>
+				<option th:selected="${childBasicDO.age==0}" value="0">出生2-7天</option>
+				<option th:selected="${childBasicDO.age==1}"  value="1">满月（42天）</option>
+				<option th:selected="${childBasicDO.age==2}"  value="2">3月龄</option>
+				<option th:selected="${childBasicDO.age==3}"  value="3">6月龄</option>
+				<option th:selected="${childBasicDO.age==4}"  value="4">8月龄</option>
+				<option th:selected="${childBasicDO.age==5}"  value="5">1周岁</option>
+				<option th:selected="${childBasicDO.age==6}"  value="6">1周岁半</option>
+				<option th:selected="${childBasicDO.age==7}"  value="7">2周岁</option>
+				<option th:selected="${childBasicDO.age==8}"  value="8">2周岁半</option>
+				<option th:selected="${childBasicDO.age==9}"  value="9">3周岁</option>
+				<option th:selected="${childBasicDO.age==10}"  value="10">4周岁</option>
+				<option th:selected="${childBasicDO.age==11}"  value="11">5周岁</option>
+				<option th:selected="${childBasicDO.age==12}"  value="12">6周岁</option>
+			</select>
+			<a class="btn btn-success" href="#" title="返回"
 
-   <!--主体内容-->
-   <div class="main">
- 		<div class="rightOld">
- 			<div class="fl baseName">
- 				<p class="F24" th:text="${childDO.childName}"></p>
- 				<p th:if="${childDO.childGender==1}">女</p>
-				<p th:if="${childDO.childGender==0}">男</p>
- 				<p id="childIdcard" th:text="${childDO.childIdcard}"></p>
-				<input type="hidden" id="myAge" th:value="${childBasicDO.age}">
- 			</div>
-			<div class="fr">
-				选择年龄段：
-				<select id="selectAge">
-					<option value="-1">-请选择-</option>
-					<option th:selected="${childBasicDO.age==0}" value="0">出生2-7天</option>
-					<option th:selected="${childBasicDO.age==1}"  value="1">满月（42天）</option>
-					<option th:selected="${childBasicDO.age==2}"  value="2">3月龄</option>
-					<option th:selected="${childBasicDO.age==3}"  value="3">6月龄</option>
-					<option th:selected="${childBasicDO.age==4}"  value="4">8月龄</option>
-					<option th:selected="${childBasicDO.age==5}"  value="5">1周岁</option>
-					<option th:selected="${childBasicDO.age==6}"  value="6">1周岁半</option>
-					<option th:selected="${childBasicDO.age==7}"  value="7">2周岁</option>
-					<option th:selected="${childBasicDO.age==8}"  value="8">2周岁半</option>
-					<option th:selected="${childBasicDO.age==9}"  value="9">3周岁</option>
-					<option th:selected="${childBasicDO.age==10}"  value="10">4周岁</option>
-					<option th:selected="${childBasicDO.age==11}"  value="11">5周岁</option>
-					<option th:selected="${childBasicDO.age==12}"  value="12">6周岁</option>
-				</select>
-				<a class="btn btn-success" href="#" title="返回"
-
-				   style="text-decoration: none;" onclick="reback()">返回</a>
-
-			</div>
+			   style="text-decoration: none;" onclick="reback()">返回</a>
 
 		</div>
-		
+	</div>
+	</div>
+   <!--主体内容-->
+   <div class="main HdownCon">
+
+
 		<div class="jiluBox">
 			<h3 th:if="${childBasicDO.age==0}">出生2-7天眼病筛查</h3>
 			<h3 th:if="${childBasicDO.age==1}">满月（42天）眼病筛查</h3>
@@ -140,6 +141,7 @@
 						<td th:if="${childBasicDO.externalRighteyeExaminationType==1 and childBasicDO.externalRighteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalRighteyeExaminationIns,'JIEMOCHUXUE')}">结膜出血&nbsp;</td>
 						<td th:if="${childBasicDO.externalRighteyeExaminationType==1 and childBasicDO.externalRighteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalRighteyeExaminationIns,'HONGMOMAOXIXUEGUAN')}">虹膜毛细血管&nbsp;</td>
 						<td th:if="${childBasicDO.externalRighteyeExaminationType==1 and childBasicDO.externalRighteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalRighteyeExaminationIns,'JIAOMOBAIBAN')}">角膜白斑&nbsp;</td>
+						<td th:if="${childBasicDO.externalRighteyeExaminationType==1 and childBasicDO.externalRighteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalRighteyeExaminationIns,'LEINANGYAN')}">泪囊炎&nbsp;</td>
 						<td th:if="${childBasicDO.externalRighteyeExaminationType==1 and childBasicDO.externalRighteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalRighteyeExaminationIns,'QITA')}">
 							<span th:text="${childBasicDO.waiyanrightjianchaqita}"></span>
 						</td>
@@ -156,6 +158,7 @@
 						<td th:if="${childBasicDO.externalLefteyeExaminationType==1 and childBasicDO.externalLefteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalLefteyeExaminationIns,'JIEMOCHUXUE')}">结膜出血&nbsp;</td>
 						<td th:if="${childBasicDO.externalLefteyeExaminationType==1 and childBasicDO.externalLefteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalLefteyeExaminationIns,'HONGMOMAOXIXUEGUAN')}">虹膜毛细血管&nbsp;</td>
 						<td th:if="${childBasicDO.externalLefteyeExaminationType==1 and childBasicDO.externalLefteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalLefteyeExaminationIns,'JIAOMOBAIBAN')}">角膜白斑&nbsp;</td>
+						<td th:if="${childBasicDO.externalLefteyeExaminationType==1 and childBasicDO.externalLefteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalLefteyeExaminationIns,'LEINANGYAN')}">泪囊炎&nbsp;</td>
 						<td th:if="${childBasicDO.externalLefteyeExaminationType==1 and childBasicDO.externalLefteyeExaminationIns!=null and #strings.containsIgnoreCase(childBasicDO.externalLefteyeExaminationIns,'QITA')}">
 							<span th:text="${childBasicDO.waiyanleftjianchaqita}"></span>
 						</td>
@@ -282,7 +285,7 @@
 
 			
 			<div class="box" name="youer-yanweijiancha">
-				<span th:if="${childBasicDO.age>8}">斜视初窥：</span>
+				<span th:if="${childBasicDO.age>8}">斜视初筛：</span>
 				<span th:if="${childBasicDO.age<=8}">眼位检查：</span>
 				<table border="1" cellspacing="0" cellpadding="0">
 				  <tbody>
@@ -530,7 +533,7 @@
 
 
 						</div>
-						<table border="1" cellspacing="0" cellpadding="0">
+						<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: revert;">
 							<tbody>
 
 							<tr class="F16">
@@ -563,7 +566,7 @@
 						</table>
 
 						<!--左眼数据-->
-						<table border="1" cellspacing="0" cellpadding="0" class="TabLine">
+						<table border="1" cellspacing="0" cellpadding="0" class="TabLine" style="border-collapse: revert;">
 							<tbody>
 							<tr class="F16">
 								<td class="C-blue"> &lt; L &gt;</td>
@@ -606,7 +609,7 @@
 							VD
 						</div>
 						<!--右眼数据-->
-						<table border="1" cellspacing="0" cellpadding="0">
+						<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: revert;">
 							<tbody>
 
 							<tr class="F16">
@@ -642,7 +645,7 @@
 						</table>
 
 						<!--左眼数据-->
-						<table border="1" cellspacing="0" cellpadding="0" class="TabLine">
+						<table border="1" cellspacing="0" cellpadding="0" class="TabLine" style="border-collapse: revert;">
 							<tbody>
 							<tr class="F16">
 								<td class="C-blue"> &lt; L &gt;</td>
