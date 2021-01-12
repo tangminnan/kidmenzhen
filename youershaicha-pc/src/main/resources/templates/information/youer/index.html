@@ -1118,7 +1118,7 @@
     });
 
     $("#checkImg").click(function(){
-        alert("图片点击");
+       /* alert("图片点击");*/
         $(this).prev().trigger('click');
 
 	});
@@ -1859,7 +1859,7 @@
 		window.location.href="/information/child/getHistory/"+childIdcard+"/"+age;
 	});
 
-   /* $("[name='childIdcard']").blur(function () {
+    $("[name='childIdcard']").blur(function () {
         var childIdcard=$("[name='childIdcard']").val();
         if(childIdcard==""){
             alert("身份证号不能为空");
@@ -1871,7 +1871,7 @@
             return ;
         }
     })
-*/
+
 
     $(".TJbtn").click(function(){
         var childIdcard=$("[name='childIdcard']").val();
@@ -1958,6 +1958,7 @@
         if(!regcard.test(childIdcard))
         {
             flag = false;
+            return flag;
         }
         // 校检生日日期
         var _birthday = childIdcard.substring(6,14);

@@ -47,6 +47,7 @@ public class ChildController {
 	@ResponseBody
 	@PostMapping("/save")
 	public R save( ChildDO child){
+		child.setChildIdcard(child.getChildIdcard().trim());
 		String childIdcard=child.getChildIdcard();
 		if(StringUtils.isBlank(childIdcard)){
 			return R.error("宝宝的身份证号不能为空");
