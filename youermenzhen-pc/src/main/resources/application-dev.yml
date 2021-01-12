@@ -1,14 +1,18 @@
 youershaicha:
-  uploadPath: /www/uploaded_files/
+  uploadPath: /var/uploaded_files/
+  poiword: /var/poiword/
 logging:
   level:
     root: info
-    com.zhenjiu: debug
+    com.dingshi: debug
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://119.3.238.84:3306/youershaicha?useUnicode=true&characterEncoding=utf8
+    driverClassName: com.mysql.jdbc.Driver  
+    #url: jdbc:mysql://rm-2zee8021e2232hhbcqo.mysql.rds.aliyuncs.com:3306/youershaicha?useUnicode=true&characterEncoding=utf8
+    #username: root
+    #password: Tmn521hjj
+    url: jdbc:mysql://119.3.238.84:3306/youermenzhen?useUnicode=true&characterEncoding=utf8
     username: root
     password: Dm202003
     initialSize: 1
@@ -48,3 +52,4 @@ spring:
         max-active: 100
         # 连接池最大阻塞等待时间（使用负值表示没有限制）
         max-wait: -1
+  

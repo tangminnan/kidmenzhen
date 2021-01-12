@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.shaicha</groupId>
-    <artifactId>youershaicha-portal</artifactId>
+    <groupId>com.youermenzhen</groupId>
+    <artifactId>youermenzhen-portal</artifactId>
     <version>1.6.9</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>youershaicha-portal</name>
     <description>Demo project for Spring Boot</description>
@@ -238,7 +238,7 @@
         <!--war包部署需要-->
             <!--&lt;!&ndash; 移除嵌入式tomcat插件 &ndash;&gt;-->
 
-            <dependency>
+           <!-- <dependency>
 	            <groupId>org.springframework.boot</groupId>
 	            <artifactId>spring-boot-starter-web</artifactId>
 	            <exclusions>
@@ -253,7 +253,7 @@
 	            <artifactId>javax.servlet-api</artifactId>
 	            <version>3.1.0</version>
 	            <scope>provided</scope>
-	        </dependency>
+	        </dependency>-->
     </dependencies>
     <build>
     	<finalName>ROOT</finalName>
