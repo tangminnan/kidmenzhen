@@ -200,7 +200,7 @@ public class ChildController {
 	@ResponseBody
 	public Map<String,Object> getChild(String childIdcard){
 		Map<String,Object> resultMap = new HashMap<String,Object>();
-		ChildDO childDO = childService.getByChildIdcard(childIdcard);
+		ChildDO childDO = childService.getByChildIdcard(childIdcard.trim());
 		if(childDO!=null){
 			resultMap.put("data",childDO);
 			resultMap.put("code",0);
@@ -220,7 +220,7 @@ public class ChildController {
 	@GetMapping("/getHistory/{childIdcard}/{age}")
 	public String getHistory(@PathVariable("childIdcard") String childIdcard,@PathVariable("age") Integer age, Model model){
 		Map<String,Object> paramsMap = new HashMap<String,Object>();
-		paramsMap.put("childIdcard",childIdcard);
+		paramsMap.put("childIdcard",childIdcard.trim());
 		paramsMap.put("age",age);
 		ChildDO childDO = childService.getByChildIdcard(childIdcard);//基本信息
 		if(childDO==null) childDO=new ChildDO();

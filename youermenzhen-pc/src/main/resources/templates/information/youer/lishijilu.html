@@ -490,9 +490,9 @@
 					</tr>
 					<tr>
 					  <td>瞳距</td>
-					  <td><em>双眼：</em><span style="font-size: 17px;float: none;font-weight: normal;" th:text="${childRefractionScreeningDO.ouPd}+'mm'"></span></td>
-					  <td><em>OD:</em><span style="font-size: 17px;float: none;font-weight: normal;" th:text="${childRefractionScreeningDO.odPd}+'mm'"></span></td>
-					  <td><em>OS:</em><span style="font-size: 17px;float: none;font-weight: normal;" th:text="${childRefractionScreeningDO.osPd}+'mm'"></span></td>
+					  <td><em>双眼：</em><span style="font-size: 17px;float: none;font-weight: normal;" th:text="${childRefractionScreeningDO.ouPd}"></span></td>
+					  <td><em>OD:</em><span style="font-size: 17px;float: none;font-weight: normal;" th:text="${childRefractionScreeningDO.odPd}"></span></td>
+					  <td><em>OS:</em><span style="font-size: 17px;float: none;font-weight: normal;" th:text="${childRefractionScreeningDO.osPd}"></span></td>
 					</tr>
 				  </tbody>
 				</table>
@@ -619,7 +619,10 @@
 								<td>A</td>
 								<td> </td>
 							</tr>
-							<tr id="secondcheckr">
+							<div id="secondcheckr">
+
+							</div>
+							<tr >
 								<td colspan="5" class="F16">L.DATA</td>
 							</tr>
 							<tr>
@@ -632,7 +635,10 @@
 								<td>deg</td>
 								<td> </td>
 							</tr>
-							<tr id="secondcheckdegr">
+							<div id="secondcheckdegr">
+
+							</div>
+							<tr>
 								<td colspan="5" class="F16" id="secondCheckRcs">CS &nbsp;</td>
 							</tr>
 							<!--<tr>
@@ -654,7 +660,10 @@
 								<td>A</td>
 								<td> </td>
 							</tr>
-							<tr id="secondcheckl">
+							<div id="secondcheckl">
+
+							</div>
+							<tr >
 								<td colspan="5" class="F16">L.DATA</td>
 							</tr>
 							<tr>
@@ -667,7 +676,10 @@
 								<td>deg</td>
 								<td> </td>
 							</tr>
-							<tr id="secondcheckdegl">
+							<div id="secondcheckdegl">
+
+							</div>
+							<tr>
 								<td colspan="5" class="F16" id="secondCheckLcs">CS &nbsp;</td>
 							</tr>
 							<!--<tr>
@@ -780,7 +792,8 @@
    </div>
    <div th:include="include :: footer"></div>
 <script>
-var age=-1;
+var age=$("#myAge").val();
+if(age=="") age=-1;
 var childIdcard=$("#childIdcard").text();
     //获取电脑验光数据
     $.ajax({

@@ -848,9 +848,11 @@
 									<td>A</td>
 									<td> </td>
 								</tr>
+
 								<tr id="secondcheckr">
 									<td colspan="5" class="F16">L.DATA</td>
 								</tr>
+
 								<tr>
 									<td colspan="5" class="F16" id="secondCheckRps">PS &nbsp;</td>
 								</tr>
@@ -1101,9 +1103,155 @@
 		   </dl>
 	   </div>
    </div>
+
+
 </body>
 <script src="/js/plugins/layer/laydate/laydate.js"></script>
 <script type="text/javascript">
+
+
+
+
+    var div1='<p>散瞳前电脑验光:</p>'
+			+'<div class="fl sanTong">'
+			+'<div class="stsju">'
+			+'<div class="F18" id="firstCheckVd">'
+			+'VD'
+			+'</div>'
+        	+'<table border="1" cellspacing="0" cellpadding="0">'
+        	+'<tbody>'
+			+'<tr class="F16">'
+        	+'<td class="C-blue"> &lt; R &gt;</td>'
+        	+'<td>S</td>'
+        	+'<td>C</td>'
+        	+'<td>A</td>'
+        	+'<td> </td>'
+        	+'</tr>'
+        	+'<tr id="firstcheckr">'
+        	+'<td colspan="5" class="F16">L.DATA</td>'
+        	+'</tr>'
+        	+'<tr>'
+        	+'<td colspan="5" class="F16" id="secondCheckRps">PS &nbsp;</td>'
+    		+'</tr>'
+    		+'<tr class="F16">'
+        	+'<td> </td>'
+        	+'<td>R</td>'
+        	+'<td>D</td>'
+        	+'<td>deg</td>'
+        	+'<td> </td>'
+       		+' </tr>'
+        	+'<tr id="firstcheckdegr">'
+        	+'<td colspan="5" class="F16" id="firstCheckRcs">CS &nbsp;</td>'
+    		+'</tr>'
+   			+'</tbody>'
+
+    	+'<div  >'
+    	+'<td colspan="5"  class="F16" id="firstCheckPd">PD &nbsp;</td>'
+    	+'</div>'
+    	+'</table>'
+
+    	+'<table border="1" cellspacing="0" cellpadding="0" class="TabLine">'
+        +'<tbody>'
+   		+' <tr class="F16">'
+        +'<td class="C-blue"> &lt; L &gt;</td>'
+       +' <td>S</td>'
+       +'<td>C</td>'
+       +'<td>A</td>'
+       +'<td> </td>'
+       +' </tr>'
+       +' <tr id="firstcheckl">'
+       +' <td colspan="5" class="F16">L.DATA</td>'
+       +'</tr>'
+		+'<tr>'
+       +'<td colspan="5" class="F16" id="firstCheckLps">PS &nbsp;</td>'
+    	+'</tr>'
+    	+'<tr class="F16">'
+     	+'   <td> </td>'
+      	+'  <td>R</td>'
+     	+'   <td>D</td>'
+     +'  <td>deg</td>'
+     +'   <td> </td>'
+      +'  </tr>'
+
+      +'  <tr id="firstcheckdegl">'
+     +'   <td colspan="5" class="F16" id="firstCheckLcs">CS &nbsp;</td>'
+    +'</tr>'
+   +'</tbody>'
+   +' </table>'
+    +'</div>'
+   +' </div>';
+
+    var div2='<p>散瞳后电脑验光:</p>'
+        +'<div class="fl sanTong">'
+        +'<div class="stsju">'
+        +'<div class="F18" id="secondCheckVd">'
+        +'VD'
+        +'</div>'
+        +'<table border="1" cellspacing="0" cellpadding="0">'
+        +'<tbody>'
+        +'<tr class="F16">'
+        +'<td class="C-blue"> &lt; R &gt;</td>'
+        +'<td>S</td>'
+        +'<td>C</td>'
+        +'<td>A</td>'
+        +'<td> </td>'
+        +'</tr>'
+        +'<tr id="secondcheckr">'
+        +'<td colspan="5" class="F16">L.DATA</td>'
+        +'</tr>'
+        +'<tr>'
+        +'<td colspan="5" class="F16" id="secondCheckRps">PS &nbsp;</td>'
+        +'</tr>'
+        +'<tr class="F16">'
+        +'<td> </td>'
+        +'<td>R</td>'
+        +'<td>D</td>'
+        +'<td>deg</td>'
+        +'<td> </td>'
+        +' </tr>'
+        +'<tr id="secondcheckdegr">'
+        +'<td colspan="5" class="F16" id="secondCheckRcs">CS &nbsp;</td>'
+        +'</tr>'
+        +'</tbody>'
+
+        +'<div  >'
+        +'<td colspan="5"  class="F16" id="secondCheckPd">PD &nbsp;</td>'
+        +'</div>'
+        +'</table>'
+
+        +'<table border="1" cellspacing="0" cellpadding="0" class="TabLine">'
+        +'<tbody>'
+        +' <tr class="F16">'
+        +'<td class="C-blue"> &lt; L &gt;</td>'
+        +' <td>S</td>'
+        +'<td>C</td>'
+        +'<td>A</td>'
+        +'<td> </td>'
+        +' </tr>'
+        +' <tr id="secondcheckl">'
+        +' <td colspan="5" class="F16">L.DATA</td>'
+        +'</tr>'
+        +'<tr>'
+        +'<td colspan="5" class="F16" id="secondCheckLps">PS &nbsp;</td>'
+        +'</tr>'
+        +'<tr class="F16">'
+        +'   <td> </td>'
+        +'  <td>R</td>'
+        +'   <td>D</td>'
+        +'  <td>deg</td>'
+        +'   <td> </td>'
+        +'  </tr>'
+
+        +'  <tr id="secondcheckdegl">'
+        +'   <td colspan="5" class="F16" id="secondCheckLcs">CS &nbsp;</td>'
+        +'</tr>'
+        +'</tbody>'
+        +' </table>'
+        +'</div>'
+        +' </div>';
+
+
+
     laydate.render({
         elem: '#checkDate',
         type: 'date'
@@ -1398,9 +1546,23 @@
             },
             async : false,
             success : function(data) {
-				if(data.code==-1){
-					console.info(data.code);
-				}
+                $("#righteyeDiopterS").text('');
+                $("#righteyeDiopterC").text('');
+                $("#righteyeDiopterA").text('');
+                $("#lefteyeDiopterS").text('');
+                $("#lefteyeDiopterC").text('');
+                $("#lefteyeDiopterA").text('');
+                $("#righteyeDengxiaoqiujing").text('');
+                $("#lefteyeDengxiaoqiujing").text('');
+                $("#ouPd").text('');
+                $("#osPd").text('');
+                $("#odPd").text('');
+                $("[name='righteyeResultType']:checked").attr("checked",false);
+                $("[name='lefteyeResultType']:checked").attr('checked',false);
+                $("[name='lefteyeResultIns']:checked").attr("checked",false);
+                $("[name='righteyeResultIns']:checked").attr('checked',false);
+                $("[name='righteyeResultIns']").parent().parent().hide();
+                $("[name='lefteyeResultIns']").parent().parent().hide();
 				if(data.code==0) {console.info(data.data)
 					$("#righteyeDiopterS").text(data.data.righteyeDiopterS);
                     $("#righteyeDiopterC").text(data.data.righteyeDiopterC);
@@ -1452,8 +1614,10 @@
             data :{childIdcard:childIdcard, age:value},
             async : false,
             success : function(data) {
-                if(data.code==-1){
-                    console.info(data.code);
+                for(var i=0;i<3;i++){
+                    $("#leftPic").html('<li><img src="/img/tousu-pic1.jpg"  alt=""/></li><li><img src="/img/tousu-pic1.jpg"  alt=""/></li><li><img src="/img/tousu-pic1.jpg"  alt=""/></li>');
+                    $("#rightPic").html('<li><img src="/img/tousu-pic1.jpg"  alt=""/></li><li><img src="/img/tousu-pic1.jpg"  alt=""/></li><li><img src="/img/tousu-pic1.jpg"  alt=""/></li>');
+                    $("#guangyujielun").text('');
                 }
                 if(data.code==0) {
                     console.info(data.data);
@@ -1491,9 +1655,12 @@
             },
             async : false,
             success : function(data) {
-                if(data.code==-1){
-                    console.info(data.code);
-                }
+                $("[name='youer-santongqian']").html(div1);
+                $("[name='youer-santonghou']").html(div2);
+				$("#RK1").text("k1：");
+            	$("#RK2").text("k2：");
+                $("#LK1").text("k1：");
+                $("#LK2").text("k2：");
                 if(data.code==0) {console.info(data.data);
                     var childDiopterDOS=data.data.childDiopterDOS;
                     for(var i=0;i<childDiopterDOS.length;i++){
@@ -1690,9 +1857,8 @@
             },
             async : false,
             success : function(data) {
-                if(data.code==-1){
-                    console.info(data.code);
-                }
+                $("#firstCheckOd").text('');
+                $("#firstCheckOs").text('');
                 if(data.code==0) {console.info(data.data)
 					$("#firstCheckOd").text(data.data.firstCheckOd+"mm");
                 	$("#firstCheckOs").text(data.data.firstCheckOs+"mm");
@@ -1717,6 +1883,25 @@
             success : function(data) {
                 if(data.code==-1){
                     console.info(data.code);
+                    alert("没有找到这个孩子的信息，可能您输入的身份证号有误");
+                    document.getElementById("formdatar").reset();
+                    /**
+                     * 解决回显的数据无法清除问题
+                     */
+                    $("[name='childGender']:checked").attr('checked',false);
+                    $("[name='childType']:checked").each(function(){
+                        $(this).attr("checked",false);
+                    });
+                    $("[name='motherEyeHis']:checked").attr("checked",false);
+                    $("[name='motherEyeIns']:checked").attr('checked',false);
+                    $("[name='motherEyeIns']").prev().hide();
+                    $("[name='fatherEyeHis']:checked").attr("checked",false);
+                    $("[name='fatherEyeIns']:checked").attr('checked',false);
+                    $("[name='fatherEyeIns']").prev().hide();
+                    $("[name='childDelivery']:checked").attr("checked",false);
+                    $("[name='childMedicineHis']:checked").attr("checked",false);
+                    $("[name='childSuffocation']:checked").attr("checked",false);
+                    $("[name='childOxygen']:checked").attr("checked",false);
                 }
                 if(data.code==0) {
 					console.info(data.data);

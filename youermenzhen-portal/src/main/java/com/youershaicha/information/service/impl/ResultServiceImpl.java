@@ -38,7 +38,7 @@ public class ResultServiceImpl implements ResultService{
         /**
          *  基本信息
          */
-        String childIdcard=obj.getString("childIdcard");//身份证号
+        String childIdcard=obj.getString("childIdcard").trim();//身份证号
         String childName=obj.getString("childName");//孩子姓名
         Integer age=obj.getInteger("age");//检查年龄段
         Date date = new Date();//检查日期
